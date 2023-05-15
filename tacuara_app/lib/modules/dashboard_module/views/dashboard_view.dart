@@ -12,6 +12,8 @@ class DashboardView extends StatefulWidget {
 
 class _DashboardViewState extends State<DashboardView> {
   List images = [
+    Images.tacuara,
+    Images.tacuara1,
     Images.cabana1,
     Images.cabana2,
     Images.cabana3,
@@ -39,7 +41,7 @@ class _DashboardViewState extends State<DashboardView> {
           SizedBox(
             width: size.width,
             child: AspectRatio(
-              aspectRatio: 16 / 12,
+              aspectRatio: 16 / 13,
               child: Stack(
                 alignment: AlignmentDirectional.topCenter,
                 children: [
