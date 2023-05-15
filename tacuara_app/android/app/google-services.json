@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "708241801500",
+    "project_id": "hotel-tacuara-d4cc6",
+    "storage_bucket": "hotel-tacuara-d4cc6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708241801500:android:9c6b04912fbd91e9337ad9",
+        "android_client_info": {
+          "package_name": "com.alojamientotacuara.tacuara_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708241801500-hh9s3danhokn3aitrl2t6cv3nbugkjpo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlt_5FoCxkMYXomIipPVIU82DHdYTP2ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708241801500-hh9s3danhokn3aitrl2t6cv3nbugkjpo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
