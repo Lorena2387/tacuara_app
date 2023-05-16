@@ -21,22 +21,23 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Hotel Tacuara',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            primary: const Color(0xFF1B5E20),
-            seedColor: const Color(0xFF1B5E20),
-          ),
-          useMaterial3: true,
+      debugShowCheckedModeBanner: false,
+      title: 'Hotel Tacuara',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          primary: const Color(0xFF1B5E20),
+          seedColor: const Color(0xFF1B5E20),
         ),
-        home: MultiProvider(
-          providers: [
-            ChangeNotifierProvider(
-              create: (_) => DashboardProvider(),
-            ),
-          ],
-          child: const DashboardView(),
-        ));
+        useMaterial3: true,
+      ),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (_) => DashboardProvider(),
+          ),
+        ],
+        child: const DashboardView(),
+      ),
+    );
   }
 }

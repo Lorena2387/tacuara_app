@@ -28,6 +28,7 @@ class _DashboardViewState extends State<DashboardView> {
           child: Image.asset(Images.appLogo),
         ),
         title: const Text('Hotel Tacuara'),
+        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {},
@@ -36,7 +37,8 @@ class _DashboardViewState extends State<DashboardView> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.all(0),
+        padding: EdgeInsets.only(bottom: size.height * 0.05),
+        physics: const RangeMaintainingScrollPhysics(),
         children: [
           SizedBox(
             width: size.width,
@@ -158,18 +160,18 @@ class _DashboardViewState extends State<DashboardView> {
               ),
             ),
           ),
-          SizedBox(
-            height: size.height * 0.05,
-          ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+            padding: EdgeInsets.symmetric(
+              horizontal: size.width * 0.05,
+              vertical: size.height * 0.025,
+            ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
                   'Conoce nuestras habitaciones',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 15,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -184,7 +186,8 @@ class _DashboardViewState extends State<DashboardView> {
                         Card(
                           elevation: 6,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16)),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(16),
                             child: GestureDetector(
@@ -212,9 +215,10 @@ class _DashboardViewState extends State<DashboardView> {
                         const Text(
                           'Cabaña familiar',
                           style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13),
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 13,
+                          ),
                         )
                       ],
                     ),
@@ -223,7 +227,8 @@ class _DashboardViewState extends State<DashboardView> {
                         Card(
                           elevation: 6,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16)),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(16),
                             child: GestureDetector(
@@ -257,10 +262,196 @@ class _DashboardViewState extends State<DashboardView> {
                       ],
                     )
                   ],
-                )
+                ),
               ],
             ),
-          )
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: size.width * 0.05,
+              vertical: size.height * 0.025,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Visita nuestro restaurante',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (_) => Container(
+                            width: size.width,
+                            height: size.height * 0.5,
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: size.height * 0.05,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      SizedBox(
+                                        width: size.width * 0.1,
+                                      ),
+                                      const Text(
+                                        'Visita nuestro restaurante',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Container(
+                                          width: size.width * 0.1,
+                                          color: Colors.transparent,
+                                          child: const Icon(
+                                            Icons.close,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.45,
+                                  child: ListView(),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Ver más',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          color: AppThemes.primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    Images.tacuara,
+                    width: size.width,
+                    height: size.height * 0.15,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: size.width * 0.05,
+              vertical: size.height * 0.025,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Row(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Disfruta un Pasadia',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      'Ver más',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: AppThemes.primaryColor,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    Images.tacuara,
+                    width: size.width,
+                    height: size.height * 0.15,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: size.width * 0.05,
+              vertical: size.height * 0.025,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Row(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Celebra tu evento con nosotros',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      'Ver más',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: AppThemes.primaryColor,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    Images.tacuara,
+                    width: size.width,
+                    height: size.height * 0.15,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
