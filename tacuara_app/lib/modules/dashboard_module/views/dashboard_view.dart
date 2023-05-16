@@ -31,6 +31,11 @@ class _DashboardViewState extends State<DashboardView> {
     'Acompañamiento de guía',
     'Parqueadero',
   ];
+  List<String> eventos = [
+    'Matrimonio',
+    'Cumpleaños',
+    'Aniversarios',
+  ];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -490,7 +495,7 @@ class _DashboardViewState extends State<DashboardView> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Icon(
+                                                          const Icon(
                                                             Icons.circle,
                                                             size: 10,
                                                             color: AppThemes
@@ -504,8 +509,10 @@ class _DashboardViewState extends State<DashboardView> {
                                                               child: Text(
                                                             pasadia[index],
                                                             maxLines: 2,
-                                                            style: TextStyle(
-                                                                fontSize: 12),
+                                                            style:
+                                                                const TextStyle(
+                                                                    fontSize:
+                                                                        12),
                                                           ))
                                                         ],
                                                       ),
@@ -632,20 +639,84 @@ class _DashboardViewState extends State<DashboardView> {
                                               vertical: size.height * 0.04),
                                           children: [
                                             const Text(
-                                              'Capacidad máxima 200 personas, incluye:',
+                                              'Capacidad máxima 200 personas, como:',
                                               style: TextStyle(
                                                 fontSize: 13,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ),
+                                            SizedBox(
+                                              height: size.height * 0.03,
+                                            ),
+                                            GridView.builder(
+                                                physics:
+                                                    NeverScrollableScrollPhysics(),
+                                                shrinkWrap: true,
+                                                gridDelegate:
+                                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                                        childAspectRatio:
+                                                            10 / 2,
+                                                        mainAxisSpacing:
+                                                            size.height * 0.02,
+                                                        crossAxisSpacing:
+                                                            size.width * 0.02,
+                                                        crossAxisCount: 2),
+                                                itemCount: eventos.length,
+                                                itemBuilder:
+                                                    (BuildContext context,
+                                                        int index) {
+                                                  return Wrap(
+                                                    children: [
+                                                      Container(
+                                                        width: size.width * 0.5,
+                                                        child: Row(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            const Icon(
+                                                              Icons.circle,
+                                                              size: 10,
+                                                              color: AppThemes
+                                                                  .primaryColor,
+                                                            ),
+                                                            SizedBox(
+                                                              width:
+                                                                  size.width *
+                                                                      0.01,
+                                                            ),
+                                                            Expanded(
+                                                                child: Text(
+                                                              eventos[index],
+                                                              maxLines: 2,
+                                                              style:
+                                                                  const TextStyle(
+                                                                      fontSize:
+                                                                          12),
+                                                            ))
+                                                          ],
+                                                        ),
+                                                      )
+                                                    ],
+                                                  );
+                                                }),
+                                            SizedBox(
+                                              height: size.height * 0.01,
+                                            ),
+                                            const Text(
+                                              'Incluye alquiler del lugar y las zonas con 1 mesero sin cabañas.',
+                                              style: TextStyle(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500),
+                                            )
                                           ],
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ));
                       },
-                      child: Text(
+                      child: const Text(
                         'Ver más',
                         style: TextStyle(
                           fontSize: 12,
