@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/modules/dashboard_module/widgets/modal_bottom_sheet_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
 
@@ -36,6 +37,70 @@ class _DashboardViewState extends State<DashboardView> {
     'Cumpleaños',
     'Aniversarios',
   ];
+
+  void _showBottomSheet(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    showModalBottomSheet(
+      context: context,
+      builder: (_) => Container(
+        width: size.width,
+        height: size.height * 0.5,
+        child: Column(
+          children: [
+            SizedBox(
+              height: size.height * 0.05,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    width: size.width * 0.1,
+                  ),
+                  const Text(
+                    'Visita nuestro restaurante',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.03,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: size.width * 0.1,
+                      color: Colors.transparent,
+                      child: const Icon(
+                        Icons.close,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.45,
+              child: ListView(
+                padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.09,
+                    vertical: size.height * 0.04),
+                children: const [
+                  Text(
+                    'Ven y disfruta de nuestros deliciosos platos los fines de semana.',
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -270,7 +335,7 @@ class _DashboardViewState extends State<DashboardView> {
                           height: 10,
                         ),
                         const Text(
-                          'Cabana parejas',
+                          'Cabaña parejas',
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w500,
@@ -305,70 +370,7 @@ class _DashboardViewState extends State<DashboardView> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (_) => Container(
-                            width: size.width,
-                            height: size.height * 0.5,
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: size.height * 0.05,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      SizedBox(
-                                        width: size.width * 0.1,
-                                      ),
-                                      const Text(
-                                        'Visita nuestro restaurante',
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.03,
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Container(
-                                          width: size.width * 0.1,
-                                          color: Colors.transparent,
-                                          child: const Icon(
-                                            Icons.close,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: size.height * 0.45,
-                                  child: ListView(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.09,
-                                        vertical: size.height * 0.04),
-                                    children: const [
-                                      Text(
-                                        'Ven y disfruta de nuestros deliciosos platos los fines de semana.',
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
+                      onTap: () => showRestaurantBottomSheet(),
                       child: const Text(
                         'Ver más',
                         style: TextStyle(
@@ -383,13 +385,16 @@ class _DashboardViewState extends State<DashboardView> {
                 SizedBox(
                   height: size.height * 0.03,
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    Images.restaurante,
-                    width: size.width,
-                    height: size.height * 0.15,
-                    fit: BoxFit.fitWidth,
+                GestureDetector(
+                  onTap: () => showRestaurantBottomSheet(),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(
+                      Images.restaurante,
+                      width: size.width,
+                      height: size.height * 0.15,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                 ),
               ],
@@ -416,137 +421,7 @@ class _DashboardViewState extends State<DashboardView> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (_) => Container(
-                                  width: size.width,
-                                  height: size.height * 0.5,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height: size.height * 0.05,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            SizedBox(
-                                              width: size.width * 0.1,
-                                            ),
-                                            const Text(
-                                              'Disfruta de un pasadía',
-                                              style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            GestureDetector(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Container(
-                                                width: size.width * 0.1,
-                                                color: Colors.transparent,
-                                                child: const Icon(Icons.close),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.45,
-                                        child: ListView(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: size.width * 0.09,
-                                              vertical: size.height * 0.04),
-                                          children: [
-                                            const Text(
-                                              'Actividad principal: Promedio de 7 horas donde se desarrollará actividades de los secretos del árbol.',
-                                              style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            SizedBox(
-                                              height: size.height * 0.03,
-                                            ),
-                                            GridView.builder(
-                                              physics:
-                                                  const NeverScrollableScrollPhysics(),
-                                              shrinkWrap: true,
-                                              gridDelegate:
-                                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                                      childAspectRatio: 10 / 2,
-                                                      mainAxisSpacing:
-                                                          size.height * 0.02,
-                                                      crossAxisSpacing:
-                                                          size.width * 0.02,
-                                                      crossAxisCount: 2),
-                                              itemCount: pasadia.length,
-                                              itemBuilder:
-                                                  (BuildContext context,
-                                                      int index) {
-                                                return Wrap(
-                                                  children: [
-                                                    Container(
-                                                      width: size.width * 0.5,
-                                                      child: Row(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          const Icon(
-                                                            Icons.circle,
-                                                            size: 10,
-                                                            color: AppThemes
-                                                                .primaryColor,
-                                                          ),
-                                                          SizedBox(
-                                                            width: size.width *
-                                                                0.01,
-                                                          ),
-                                                          Expanded(
-                                                              child: Text(
-                                                            pasadia[index],
-                                                            maxLines: 2,
-                                                            style:
-                                                                const TextStyle(
-                                                                    fontSize:
-                                                                        12),
-                                                          ))
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            ),
-                                            MaterialButton(
-                                              onPressed: () {},
-                                              elevation: 10,
-                                              minWidth: 100,
-                                              height: 40,
-                                              color: AppThemes.primaryColor,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                              ),
-                                              child: const Text(
-                                                'Reservar',
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: AppThemes
-                                                        .secundaryColor),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ));
-                      },
+                      onTap: () => showDayPassBottomSheet(),
                       child: const Text(
                         'Ver más',
                         style: TextStyle(
@@ -561,13 +436,16 @@ class _DashboardViewState extends State<DashboardView> {
                 SizedBox(
                   height: size.height * 0.03,
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    Images.pasadia,
-                    width: size.width,
-                    height: size.height * 0.15,
-                    fit: BoxFit.fitWidth,
+                GestureDetector(
+                  onTap: () => showDayPassBottomSheet(),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(
+                      Images.pasadia,
+                      width: size.width,
+                      height: size.height * 0.15,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                 ),
               ],
@@ -594,128 +472,7 @@ class _DashboardViewState extends State<DashboardView> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (_) => Container(
-                                  width: size.width,
-                                  height: size.height * 0.5,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height: size.height * 0.05,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            SizedBox(
-                                              width: size.width * 0.1,
-                                            ),
-                                            const Text(
-                                              'Celebra tu día especial con nosotros',
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                            GestureDetector(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Container(
-                                                width: size.width * 0.1,
-                                                color: Colors.transparent,
-                                                child: const Icon(Icons.close),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.45,
-                                        child: ListView(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: size.width * 0.09,
-                                              vertical: size.height * 0.04),
-                                          children: [
-                                            const Text(
-                                              'Capacidad máxima 200 personas, como:',
-                                              style: TextStyle(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: size.height * 0.03,
-                                            ),
-                                            GridView.builder(
-                                                physics:
-                                                    NeverScrollableScrollPhysics(),
-                                                shrinkWrap: true,
-                                                gridDelegate:
-                                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                                        childAspectRatio:
-                                                            10 / 2,
-                                                        mainAxisSpacing:
-                                                            size.height * 0.02,
-                                                        crossAxisSpacing:
-                                                            size.width * 0.02,
-                                                        crossAxisCount: 2),
-                                                itemCount: eventos.length,
-                                                itemBuilder:
-                                                    (BuildContext context,
-                                                        int index) {
-                                                  return Wrap(
-                                                    children: [
-                                                      Container(
-                                                        width: size.width * 0.5,
-                                                        child: Row(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            const Icon(
-                                                              Icons.circle,
-                                                              size: 10,
-                                                              color: AppThemes
-                                                                  .primaryColor,
-                                                            ),
-                                                            SizedBox(
-                                                              width:
-                                                                  size.width *
-                                                                      0.01,
-                                                            ),
-                                                            Expanded(
-                                                                child: Text(
-                                                              eventos[index],
-                                                              maxLines: 2,
-                                                              style:
-                                                                  const TextStyle(
-                                                                      fontSize:
-                                                                          12),
-                                                            ))
-                                                          ],
-                                                        ),
-                                                      )
-                                                    ],
-                                                  );
-                                                }),
-                                            SizedBox(
-                                              height: size.height * 0.01,
-                                            ),
-                                            const Text(
-                                              'Incluye alquiler del lugar y las zonas con 1 mesero sin cabañas.',
-                                              style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w500),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ));
-                      },
+                      onTap: () => showEventBottomSheet(),
                       child: const Text(
                         'Ver más',
                         style: TextStyle(
@@ -730,13 +487,16 @@ class _DashboardViewState extends State<DashboardView> {
                 SizedBox(
                   height: size.height * 0.03,
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    Images.eventos,
-                    width: size.width,
-                    height: size.height * 0.15,
-                    fit: BoxFit.fitWidth,
+                GestureDetector(
+                  onTap: () => showEventBottomSheet(),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(
+                      Images.eventos,
+                      width: size.width,
+                      height: size.height * 0.15,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                 ),
               ],
@@ -744,6 +504,141 @@ class _DashboardViewState extends State<DashboardView> {
           ),
         ],
       ),
+    );
+  }
+
+  void showRestaurantBottomSheet() => showBottomSheetWidget(
+        context: context,
+        title: 'Visita nuestro restaurante',
+        content: [
+          const Text(
+            'Ven y disfruta de nuestros deliciosos platos los fines de semana.',
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+        onPressedButton: () {},
+      );
+
+  void showDayPassBottomSheet() {
+    Size size = MediaQuery.of(context).size;
+    return showBottomSheetWidget(
+      context: context,
+      title: 'Disfruta de un pasadía',
+      content: [
+        const Text(
+          'Actividad principal: Promedio de 7 horas donde se desarrollará actividades de los secretos del árbol.',
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        SizedBox(
+          height: size.height * 0.03,
+        ),
+        GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            childAspectRatio: 10 / 2,
+            mainAxisSpacing: size.height * 0.02,
+            crossAxisSpacing: size.width * 0.02,
+            crossAxisCount: 2,
+          ),
+          itemCount: pasadia.length,
+          itemBuilder: (BuildContext context, int index) {
+            return SizedBox(
+              width: size.width * 0.5,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Icon(
+                    Icons.circle,
+                    size: 10,
+                    color: AppThemes.primaryColor,
+                  ),
+                  SizedBox(
+                    width: size.width * 0.01,
+                  ),
+                  Expanded(
+                      child: Text(
+                    pasadia[index],
+                    maxLines: 2,
+                    style: const TextStyle(fontSize: 12),
+                  ))
+                ],
+              ),
+            );
+          },
+        ),
+      ],
+      onPressedButton: () {},
+    );
+  }
+
+  void showEventBottomSheet() {
+    Size size = MediaQuery.of(context).size;
+    return showBottomSheetWidget(
+      context: context,
+      title: 'Celebra tu evento con nosotros',
+      content: [
+        const Text(
+          'Capacidad máxima 200 personas, como:',
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        SizedBox(
+          height: size.height * 0.03,
+        ),
+        GridView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 10 / 2,
+                mainAxisSpacing: size.height * 0.02,
+                crossAxisSpacing: size.width * 0.02,
+                crossAxisCount: 2),
+            itemCount: eventos.length,
+            itemBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                width: size.width * 0.5,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Icon(
+                      Icons.circle,
+                      size: 10,
+                      color: AppThemes.primaryColor,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    Expanded(
+                        child: Text(
+                      eventos[index],
+                      maxLines: 2,
+                      style: const TextStyle(fontSize: 12),
+                    ))
+                  ],
+                ),
+              );
+            }),
+        SizedBox(
+          height: size.height * 0.01,
+        ),
+        const Text(
+          'Incluye alquiler del lugar, no incluye alojamiento.',
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+      onPressedButton: () {},
     );
   }
 }
