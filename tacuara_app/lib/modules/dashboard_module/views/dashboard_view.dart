@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/modules/dashboard_module/views/cabana_familiar_view.dart';
 
 import 'package:tacuara_app/modules/dashboard_module/widgets/other_services_card_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
@@ -210,11 +211,11 @@ class _DashboardViewState extends State<DashboardView> {
                             borderRadius: BorderRadius.circular(16),
                             child: GestureDetector(
                               onTap: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             const CabanaFamiliar()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const CabanaFamiliarView()));
                               },
                               child: Image(
                                 width: size.width * 0.41,
@@ -251,11 +252,11 @@ class _DashboardViewState extends State<DashboardView> {
                             borderRadius: BorderRadius.circular(16),
                             child: GestureDetector(
                               onTap: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             const CabanaParejas()));
+                                //  Navigator.push(
+                                //      context,
+                                //      MaterialPageRoute(
+                                //          builder: (context) =>
+                                //              const CabanaParejas()));
                               },
                               child: Image(
                                 width: size.width * 0.41,

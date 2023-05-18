@@ -10,4 +10,8 @@ class Images {
   static const String restaurante = 'assets/images/restaurante.png';
   static const String pasadia = 'assets/images/pasadia.png';
   static const String eventos = 'assets/images/eventos.png';
+  static const String cabanafam1 = 'assets/images/cabanafam1.png';
+  static const String cabanafam2 = 'assets/images/cabanafam2.png';
+  static const String cabanafam3 = 'assets/images/cabanafam3.png';
+  static const String cabanafam4 = 'assets/images/cabanafam4.png';
 }
