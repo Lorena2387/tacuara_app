@@ -176,6 +176,17 @@ class _DashboardViewState extends State<DashboardView> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
+                  'Alojamiento Tacuara es el lugar perfecto para compartir, descansar y vivir una experiencia inolvidable en medio de la naturaleza.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                const Text(
                   'Conoce nuestras habitaciones',
                   style: TextStyle(
                     fontSize: 15,
@@ -206,8 +217,8 @@ class _DashboardViewState extends State<DashboardView> {
                                 //             const CabanaFamiliar()));
                               },
                               child: Image(
-                                width: size.width * 0.35,
-                                height: size.width * 0.2,
+                                width: size.width * 0.41,
+                                height: size.width * 0.3,
                                 image: const AssetImage(
                                   Images.cabanaFamiliar,
                                 ),
@@ -247,8 +258,8 @@ class _DashboardViewState extends State<DashboardView> {
                                 //             const CabanaParejas()));
                               },
                               child: Image(
-                                width: size.width * 0.35,
-                                height: size.width * 0.2,
+                                width: size.width * 0.41,
+                                height: size.width * 0.3,
                                 image: const AssetImage(Images.cabanaParejas3),
                                 fit: BoxFit.cover,
                               ),
@@ -270,6 +281,27 @@ class _DashboardViewState extends State<DashboardView> {
                     )
                   ],
                 ),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                MaterialButton(
+                  onPressed: () {},
+                  elevation: 8,
+                  minWidth: 100,
+                  height: 30,
+                  color: AppThemes.primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Text(
+                    'Consultar disponibilidad',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      color: AppThemes.secundaryColor,
+                    ),
+                  ),
+                )
               ],
             ),
           ),
