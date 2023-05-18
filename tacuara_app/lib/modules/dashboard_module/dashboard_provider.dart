@@ -19,4 +19,15 @@ class DashboardProvider extends ChangeNotifier {
     'Cumpleaños',
     'Aniversarios',
   ];
+  List<String> cabanafamiliar = [
+    'Desayuno',
+    'servicio de piscina',
+    'Parqueadero privado cubierto',
+    'Wifi',
+    'Televisión',
+    'Baño privado',
+    'Cama doble',
+    'Camarote',
+    'Cama auxiliar',
+  ];
 }
