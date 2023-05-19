@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/dashboard_module/views/cabana_familiar_view.dart';
+import 'package:tacuara_app/modules/dashboard_module/views/date_picker_view.dart';
 
 import 'package:tacuara_app/modules/dashboard_module/widgets/other_services_card_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
@@ -286,7 +287,12 @@ class _DashboardViewState extends State<DashboardView> {
                   height: size.height * 0.02,
                 ),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const DatePickerView()));
+                  },
                   elevation: 8,
                   minWidth: 100,
                   height: 30,
