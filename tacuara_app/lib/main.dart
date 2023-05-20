@@ -20,23 +20,23 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Hotel Tacuara',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          primary: const Color(0xFF1B5E20),
-          seedColor: const Color(0xFF1B5E20),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => DashboardProvider(),
         ),
-        useMaterial3: true,
-      ),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (_) => DashboardProvider(),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Hotel Tacuara',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            primary: const Color(0xFF1B5E20),
+            seedColor: const Color(0xFF1B5E20),
           ),
-        ],
-        child: const DashboardView(),
+          useMaterial3: true,
+        ),
+        home: const DashboardView(),
       ),
     );
   }

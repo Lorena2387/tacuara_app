@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:tacuara_app/modules/dashboard_module/views/cabana_familiar_view.dart';
+import 'package:provider/provider.dart';
+import 'package:tacuara_app/modules/dashboard_module/dashboard_provider.dart';
+//import 'package:tacuara_app/modules/dashboard_module/views/cabana_familiar_view.dart';
 import 'package:tacuara_app/modules/dashboard_module/views/date_picker_view.dart';
 
 import 'package:tacuara_app/modules/dashboard_module/widgets/other_services_card_widget.dart';
@@ -19,16 +21,9 @@ class DashboardView extends StatefulWidget {
 }
 
 class _DashboardViewState extends State<DashboardView> {
-  List images = [
-    Images.tacuara,
-    Images.tacuara1,
-    Images.cabana1,
-    Images.cabana2,
-    Images.cabana3,
-  ];
-
   @override
   Widget build(BuildContext context) {
+    var controller = Provider.of<DashboardProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -57,7 +52,7 @@ class _DashboardViewState extends State<DashboardView> {
                 alignment: AlignmentDirectional.topCenter,
                 children: [
                   CarouselSlider(
-                    items: images
+                    items: controller.dashboardImages
                         .map(
                           (image) => AspectRatio(
                             aspectRatio: 16 / 9,
@@ -212,11 +207,11 @@ class _DashboardViewState extends State<DashboardView> {
                             borderRadius: BorderRadius.circular(16),
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const CabanaFamiliarView()));
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //             const CabanaFamiliarView()));
                               },
                               child: Image(
                                 width: size.width * 0.41,
@@ -320,9 +315,7 @@ class _DashboardViewState extends State<DashboardView> {
           OtherServicesCardWidget(
             title: 'Disfruta de un pasadía',
             image: Images.pasadia,
-            onTap: () => showDayPassBottomSheetWidget(
-              context: context,
-            ),
+            onTap: () => showDayPassBottomSheetWidget(context: context),
           ),
           OtherServicesCardWidget(
             title: 'Celebra tu evento con nosotros',
