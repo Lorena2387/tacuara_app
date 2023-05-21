@@ -40,13 +40,13 @@ class DashboardProvider extends ChangeNotifier {
     'Cama auxiliar',
   ];
   List<String> couplesCabin = [
-    'Desayno',
+    'Desayuno',
     'Servicio de piscina',
     'Jacuzzi termal',
     'Ducha caliente',
     'Parqueadero privado cubierto',
     'Wifi',
-    'Baño privaado',
+    'Baño privado',
     'Cama doble',
   ];
   List<String> imagesCabin = [
