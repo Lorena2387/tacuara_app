@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tacuara_app/modules/dashboard_module/widgets/room_details_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
 import '../../../utils/images.dart';
 import '../dashboard_provider.dart';
+//import '../widgets/room_details_widget.dart';
 
 class RoomDetailsView extends StatefulWidget {
   const RoomDetailsView({super.key});
@@ -178,6 +180,10 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                 ],
               ),
             ),
+            SizedBox(
+              height: size.height * 0.03,
+            ),
+            CouplesCabinWidget(),
           ],
         ),
       ),
