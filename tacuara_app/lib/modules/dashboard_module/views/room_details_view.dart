@@ -62,27 +62,54 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10)),
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                        aspectRatio: 16 / 9,
-                        autoPlay: true,
-                        autoPlayCurve: Curves.linear,
-                        viewportFraction: 1,
-                        enlargeStrategy: CenterPageEnlargeStrategy.zoom,
-                      ),
-                      items: images
-                          .map(
-                            (image) => AspectRatio(
-                              aspectRatio: 16 / 9,
-                              child: ClipRRect(
-                                child: Image.asset(
-                                  image,
-                                  fit: BoxFit.fitWidth,
+                    child: Stack(
+                      children: [
+                        CarouselSlider(
+                          options: CarouselOptions(
+                            aspectRatio: 16 / 9,
+                            autoPlay: true,
+                            autoPlayCurve: Curves.linear,
+                            viewportFraction: 1,
+                            enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+                          ),
+                          items: images
+                              .map(
+                                (image) => AspectRatio(
+                                  aspectRatio: 16 / 9,
+                                  child: ClipRRect(
+                                    child: Image.asset(
+                                      image,
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                  ),
                                 ),
-                              ),
+                              )
+                              .toList(),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Column(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(5),
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                  child: const Text(
+                                    ' \$490.000',
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                              ],
                             ),
-                          )
-                          .toList(),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
@@ -138,30 +165,51 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                   SizedBox(
                     height: size.height * 0.01,
                   ),
-                  const Text(
-                    'Capacidad regular 8 personas',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.bed,
+                        size: 18,
+                        color: AppThemes.primaryColor,
+                      ),
+                      const Text(': 6'),
+                      SizedBox(
+                        width: size.width * 0.02,
+                      ),
+                      const Icon(
+                        Icons.group,
+                        size: 18,
+                        color: AppThemes.primaryColor,
+                      ),
+                      const Text(': 8-10'),
+                    ],
                   ),
-                  SizedBox(
-                    height: size.height * 0.02,
-                  ),
-                  const Text(
-                    'Capacidad máxima 9-10 personas',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                  ),
+
+                  // const Text(
+                  //   'Capacidad regular 8 personas',
+                  //   textAlign: TextAlign.center,
+                  //   style: TextStyle(
+                  //     fontSize: 14,
+                  //     fontWeight: FontWeight.w500,
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: size.height * 0.02,
+                  // ),
+                  // const Text(
+                  //   'Capacidad máxima 9-10 personas',
+                  //   textAlign: TextAlign.center,
+                  //   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                  // ),
                   SizedBox(
                     height: size.height * 0.02,
                   ),
                   MaterialButton(
                     onPressed: () {},
                     elevation: 8,
-                    minWidth: 200,
-                    height: 30,
+                    minWidth: 220,
+                    height: 40,
                     color: AppThemes.primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -170,8 +218,8 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                       'Reservar',
                       style: TextStyle(
                           color: AppThemes.secundaryColor,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400),
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                   SizedBox(
@@ -184,6 +232,9 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
               height: size.height * 0.03,
             ),
             CouplesCabinWidget(),
+            SizedBox(
+              height: size.height * 0.04,
+            )
           ],
         ),
       ),

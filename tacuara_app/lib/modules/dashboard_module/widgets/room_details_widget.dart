@@ -24,24 +24,50 @@ class CouplesCabinWidget extends StatelessWidget {
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10),
             ),
-            child: CarouselSlider(
-              options: CarouselOptions(
-                aspectRatio: 16 / 9,
-                autoPlay: true,
-                autoPlayCurve: Curves.linear,
-                viewportFraction: 1,
-                enlargeStrategy: CenterPageEnlargeStrategy.zoom,
-              ),
-              items: controller.imagesCabin
-                  .map(
-                    (image) => AspectRatio(
-                      aspectRatio: 16 / 9,
-                      child: ClipRRect(
-                        child: Image.asset(image, fit: BoxFit.fitWidth),
-                      ),
+            child: Stack(
+              children: [
+                CarouselSlider(
+                  options: CarouselOptions(
+                    aspectRatio: 16 / 9,
+                    autoPlay: true,
+                    autoPlayCurve: Curves.linear,
+                    viewportFraction: 1,
+                    enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+                  ),
+                  items: controller.imagesCabin
+                      .map(
+                        (image) => AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: ClipRRect(
+                            child: Image.asset(image, fit: BoxFit.fitWidth),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(5),
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          child: const Text(
+                            ' \$190.000',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ],
                     ),
-                  )
-                  .toList(),
+                  ),
+                ),
+              ],
             ),
           ),
           SizedBox(
@@ -94,11 +120,37 @@ class CouplesCabinWidget extends StatelessWidget {
                   ),
                 );
               }),
+          SizedBox(
+            height: size.height * 0.02,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.bed,
+                size: 18,
+                color: AppThemes.primaryColor,
+              ),
+              const Text(': 1'),
+              SizedBox(
+                width: size.width * 0.01,
+              ),
+              const Icon(
+                Icons.group,
+                size: 18,
+                color: AppThemes.primaryColor,
+              ),
+              const Text(': 2')
+            ],
+          ),
+          SizedBox(
+            height: size.height * 0.02,
+          ),
           MaterialButton(
             onPressed: () {},
             elevation: 8,
-            minWidth: 200,
-            height: 30,
+            minWidth: 220,
+            height: 40,
             color: AppThemes.primaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -107,8 +159,8 @@ class CouplesCabinWidget extends StatelessWidget {
               'Reservar',
               style: TextStyle(
                 color: AppThemes.secundaryColor,
-                fontSize: 15,
-                fontWeight: FontWeight.w400,
+                fontSize: 17,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
