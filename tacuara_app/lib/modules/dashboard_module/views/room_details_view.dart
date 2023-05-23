@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:tacuara_app/modules/dashboard_module/widgets/room_details_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
@@ -185,23 +186,6 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                       const Text(': 8-10'),
                     ],
                   ),
-
-                  // const Text(
-                  //   'Capacidad regular 8 personas',
-                  //   textAlign: TextAlign.center,
-                  //   style: TextStyle(
-                  //     fontSize: 14,
-                  //     fontWeight: FontWeight.w500,
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: size.height * 0.02,
-                  // ),
-                  // const Text(
-                  //   'Capacidad máxima 9-10 personas',
-                  //   textAlign: TextAlign.center,
-                  //   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                  // ),
                   SizedBox(
                     height: size.height * 0.02,
                   ),

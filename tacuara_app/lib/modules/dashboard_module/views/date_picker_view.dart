@@ -49,8 +49,8 @@ class _DatePickerViewState extends State<DatePickerView> {
                         builder: (contex) => const RoomDetailsView()));
               },
               elevation: 8,
-              minWidth: 200,
-              height: 30,
+              minWidth: 220,
+              height: 40,
               color: AppThemes.primaryColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
@@ -58,8 +58,8 @@ class _DatePickerViewState extends State<DatePickerView> {
               child: const Text(
                 'Continuar',
                 style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600,
                   color: AppThemes.secundaryColor,
                 ),
               ),

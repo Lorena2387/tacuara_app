@@ -289,8 +289,8 @@ class _DashboardViewState extends State<DashboardView> {
                             builder: (context) => const DatePickerView()));
                   },
                   elevation: 8,
-                  minWidth: 100,
-                  height: 30,
+                  minWidth: 220,
+                  height: 40,
                   color: AppThemes.primaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -298,8 +298,8 @@ class _DashboardViewState extends State<DashboardView> {
                   child: const Text(
                     'Consultar disponibilidad',
                     style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
                       color: AppThemes.secundaryColor,
                     ),
                   ),

@@ -31,8 +31,8 @@ class _MyAppState extends State<MyApp> {
         title: 'Hotel Tacuara',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            primary: const Color(0xFF1B5E20),
-            seedColor: const Color(0xFF1B5E20),
+            primary: const Color(0Xff1b5e20),
+            seedColor: Colors.white,
           ),
           useMaterial3: true,
         ),
