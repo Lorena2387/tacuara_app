@@ -28,7 +28,13 @@ class DashboardProvider extends ChangeNotifier {
     'Cumpleaños',
     'Aniversarios',
   ];
-  List<String> cabanafamiliar = [
+  List<String> familyCabinImages = [
+    Images.cabanafam1,
+    Images.cabanafam2,
+    Images.cabanafam3,
+    Images.cabanafam4,
+  ];
+  List<String> familyCabinServices = [
     'Desayuno',
     'servicio de piscina',
     'Parqueadero privado cubierto',
@@ -39,7 +45,7 @@ class DashboardProvider extends ChangeNotifier {
     'Camarote',
     'Cama auxiliar',
   ];
-  List<String> couplesCabin = [
+  List<String> couplesCabinServices = [
     'Desayuno',
     'Servicio de piscina',
     'Jacuzzi termal',
@@ -49,7 +55,7 @@ class DashboardProvider extends ChangeNotifier {
     'Baño privado',
     'Cama doble',
   ];
-  List<String> imagesCabin = [
+  List<String> couplesCabinImages = [
     Images.cabanaParejas1,
     Images.cabanaParejas2,
     Images.cabanaParejas3,

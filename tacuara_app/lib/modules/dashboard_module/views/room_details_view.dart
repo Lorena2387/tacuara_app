@@ -1,11 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tacuara_app/modules/dashboard_module/widgets/cabins_widget.dart';
 
 import 'package:tacuara_app/modules/dashboard_module/widgets/room_details_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
-import '../../../utils/images.dart';
+//import '../../../utils/images.dart';
 import '../dashboard_provider.dart';
 //import '../widgets/room_details_widget.dart';
 
@@ -17,12 +18,6 @@ class RoomDetailsView extends StatefulWidget {
 }
 
 class _RoomDetailsViewState extends State<RoomDetailsView> {
-  List<String> images = [
-    Images.cabanafam1,
-    Images.cabanafam2,
-    Images.cabanafam3,
-    Images.cabanafam4,
-  ];
   List<String> cabanafamiliar = [
     'Desayuno',
     'servicio de piscina',
@@ -34,6 +29,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
     'Camarote',
     'Cama auxiliar',
   ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -73,7 +69,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                             viewportFraction: 1,
                             enlargeStrategy: CenterPageEnlargeStrategy.zoom,
                           ),
-                          items: images
+                          items: controller.familyCabinImages
                               .map(
                                 (image) => AspectRatio(
                                   aspectRatio: 16 / 9,
@@ -130,7 +126,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                     padding: const EdgeInsets.all(22),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: controller.cabanafamiliar.length,
+                    itemCount: controller.familyCabinServices.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 10 / 2,
                       mainAxisSpacing: size.height * 0.01,
@@ -153,7 +149,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                             ),
                             Expanded(
                               child: Text(
-                                controller.cabanafamiliar[index],
+                                controller.familyCabinServices[index],
                                 maxLines: 2,
                                 style: const TextStyle(fontSize: 12),
                               ),
@@ -218,7 +214,15 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
             CouplesCabinWidget(),
             SizedBox(
               height: size.height * 0.04,
-            )
+            ),
+            CabinsWidget(
+              familyCabinImages: controller.familyCabinImages,
+              title: 'Cabaña familiar',
+              price: '\$490.000',
+              cabinServices: controller.familyCabinServices,
+              numberOfBeds: '6',
+              maximumOccupancy: '10',
+            ),
           ],
         ),
       ),

@@ -2,21 +2,50 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:tacuara_app/utils/app_themes.dart';
-
+import '../../../utils/app_themes.dart';
 import '../dashboard_provider.dart';
 
-class CouplesCabinWidget extends StatelessWidget {
+class CabinsWidget extends StatefulWidget {
+  final List<String> familyCabinImages;
+  final String title;
+
+  final String price;
+  final List<String> cabinServices;
+  final String numberOfBeds;
+  final String maximumOccupancy;
+  const CabinsWidget({
+    super.key,
+    required this.familyCabinImages,
+    required this.title,
+    required this.price,
+    required this.cabinServices,
+    required this.numberOfBeds,
+    required this.maximumOccupancy,
+  });
+
+  @override
+  State<CabinsWidget> createState() => _CabinsWidgetState();
+}
+
+class _CabinsWidgetState extends State<CabinsWidget> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<DashboardProvider>(context, listen: false);
-    return Card(
-      color: Colors.white,
-      elevation: 0,
-      margin: const EdgeInsets.symmetric(
-        horizontal: 8,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            spreadRadius: 0,
+            blurRadius: 8,
+            offset: const Offset(0, 8),
+          ),
+        ],
       ),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -35,7 +64,7 @@ class CouplesCabinWidget extends StatelessWidget {
                     viewportFraction: 1,
                     enlargeStrategy: CenterPageEnlargeStrategy.zoom,
                   ),
-                  items: controller.couplesCabinImages
+                  items: controller.familyCabinImages
                       .map(
                         (image) => AspectRatio(
                           aspectRatio: 16 / 9,
@@ -58,10 +87,10 @@ class CouplesCabinWidget extends StatelessWidget {
                               color: Colors.white,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
-                          child: const Text(
-                            ' \$190.000',
+                          child: Text(
+                            widget.price,
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontWeight: FontWeight.w700),
+                            style: const TextStyle(fontWeight: FontWeight.w700),
                           ),
                         ),
                       ],
@@ -74,13 +103,46 @@ class CouplesCabinWidget extends StatelessWidget {
           SizedBox(
             height: size.height * 0.03,
           ),
-          const Text(
-            'Cabaña parejas',
-            style: TextStyle(
+          Text(
+            widget.title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
           ),
+          SizedBox(
+            height: size.height * 0.03,
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Icon(
+              Icons.bed,
+              size: 18,
+              color: AppThemes.primaryColor,
+            ),
+            SizedBox(
+              width: size.width * 0.03,
+            ),
+            Text(widget.numberOfBeds),
+            SizedBox(
+              width: size.width * 0.04,
+            ),
+            const Text(
+              '|',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              width: size.width * 0.03,
+            ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            const Icon(Icons.group, size: 18, color: AppThemes.primaryColor),
+            SizedBox(
+              width: size.width * 0.03,
+            ),
+            Text(widget.maximumOccupancy)
+          ]),
           SizedBox(
             height: size.height * 0.01,
           ),
@@ -88,7 +150,7 @@ class CouplesCabinWidget extends StatelessWidget {
               padding: const EdgeInsets.all(22),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: controller.couplesCabinServices.length,
+              itemCount: widget.cabinServices.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: 10 / 2,
                 mainAxisSpacing: size.height * 0.01,
@@ -111,7 +173,7 @@ class CouplesCabinWidget extends StatelessWidget {
                       ),
                       Expanded(
                           child: Text(
-                        controller.couplesCabinServices[index],
+                        widget.cabinServices[index],
                         maxLines: 2,
                         style: const TextStyle(
                           fontSize: 12,
@@ -121,29 +183,6 @@ class CouplesCabinWidget extends StatelessWidget {
                   ),
                 );
               }),
-          SizedBox(
-            height: size.height * 0.02,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.bed,
-                size: 18,
-                color: AppThemes.primaryColor,
-              ),
-              const Text(': 1'),
-              SizedBox(
-                width: size.width * 0.01,
-              ),
-              const Icon(
-                Icons.group,
-                size: 18,
-                color: AppThemes.primaryColor,
-              ),
-              const Text(': 2')
-            ],
-          ),
           SizedBox(
             height: size.height * 0.02,
           ),
