@@ -31,7 +31,10 @@ class _DashboardViewState extends State<DashboardView> {
           padding: EdgeInsets.all(size.width * 0.02),
           child: Image.asset(Images.appLogo),
         ),
-        title: const Text('Hotel Tacuara'),
+        title: Text(
+          'Hotel Tacuara',
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
         centerTitle: true,
         actions: [
           IconButton(
@@ -105,12 +108,10 @@ class _DashboardViewState extends State<DashboardView> {
                               ),
                               const Expanded(
                                 child: Text(
-                                  'Finca Diosa, vereda San Gerardo\nGarzón-Huila',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
+                                    'Finca Diosa, vereda San Gerardo\nGarzón-Huila',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700)),
                               ),
                             ],
                           ),
@@ -183,13 +184,8 @@ class _DashboardViewState extends State<DashboardView> {
                 SizedBox(
                   height: size.height * 0.02,
                 ),
-                const Text(
-                  'Conoce nuestras habitaciones',
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                Text('Conoce nuestras habitaciones',
+                    style: Theme.of(context).textTheme.titleSmall),
                 SizedBox(
                   height: size.height * 0.03,
                 ),
@@ -227,13 +223,9 @@ class _DashboardViewState extends State<DashboardView> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Text(
+                        Text(
                           'Cabaña familiar',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 13,
-                          ),
+                          style: Theme.of(context).textTheme.titleSmall,
                         )
                       ],
                     ),
@@ -266,14 +258,8 @@ class _DashboardViewState extends State<DashboardView> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Text(
-                          'Cabaña parejas',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 13,
-                          ),
-                        )
+                        Text('Cabaña parejas',
+                            style: Theme.of(context).textTheme.titleSmall)
                       ],
                     )
                   ],

@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/modules/dashboard_module/views/user_register_view.dart';
 
 import '../../../utils/app_themes.dart';
 
@@ -184,7 +185,12 @@ class _CabinsWidgetState extends State<CabinsWidget> {
             height: size.height * 0.02,
           ),
           MaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const UserRegister()));
+            },
             elevation: 8,
             minWidth: 220,
             height: 40,

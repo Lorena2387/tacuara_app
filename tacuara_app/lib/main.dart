@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tacuara_app/modules/dashboard_module/dashboard_provider.dart';
 import 'package:tacuara_app/modules/dashboard_module/views/dashboard_view.dart';
+import 'package:tacuara_app/utils/app_themes.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,13 +30,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Hotel Tacuara',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            primary: const Color(0Xff1b5e20),
-            seedColor: Colors.white,
-          ),
-          useMaterial3: true,
-        ),
+        theme: AppThemes.light,
         home: const DashboardView(),
       ),
     );
