@@ -1,21 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../utils/app_themes.dart';
-import '../dashboard_provider.dart';
 
 class CabinsWidget extends StatefulWidget {
-  final List<String> familyCabinImages;
+  final List<String> cabinImages;
   final String title;
-
   final String price;
   final List<String> cabinServices;
   final String numberOfBeds;
   final String maximumOccupancy;
   const CabinsWidget({
     super.key,
-    required this.familyCabinImages,
+    required this.cabinImages,
     required this.title,
     required this.price,
     required this.cabinServices,
@@ -31,7 +28,7 @@ class _CabinsWidgetState extends State<CabinsWidget> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var controller = Provider.of<DashboardProvider>(context, listen: false);
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -64,7 +61,7 @@ class _CabinsWidgetState extends State<CabinsWidget> {
                     viewportFraction: 1,
                     enlargeStrategy: CenterPageEnlargeStrategy.zoom,
                   ),
-                  items: controller.familyCabinImages
+                  items: widget.cabinImages
                       .map(
                         (image) => AspectRatio(
                           aspectRatio: 16 / 9,
