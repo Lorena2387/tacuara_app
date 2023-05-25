@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/modules/dashboard_module/views/user_register_view.dart';
+import 'package:tacuara_app/modules/dashboard_module/widgets/my_button_widget.dart';
 import 'package:tacuara_app/modules/dashboard_module/widgets/text_form_field_widget.dart';
+import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
 
 class LoginView extends StatefulWidget {
@@ -52,6 +55,58 @@ class _LoginViewState extends State<LoginView> {
                     controller: _controllerPassword,
                     obscureText: true,
                   ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  MyButtonWidget(
+                      onPressed: () {},
+                      color: AppThemes.primaryColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      text: 'Iniciar sesión',
+                      width: 220,
+                      height: 40),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Aun no tienes cuenta?',
+                        style: TextStyle(
+                          color: Colors.black45,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const UserRegister()));
+                        },
+                        child: const Text(
+                          'Regístrate',
+                          style: TextStyle(
+                            color: AppThemes.primaryColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'Olvidé mi contraseña',
+                        style: TextStyle(
+                          color: AppThemes.primaryColor,
+                        ),
+                      )),
                 ],
               ),
             ),
