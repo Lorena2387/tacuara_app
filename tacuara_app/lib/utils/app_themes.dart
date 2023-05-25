@@ -9,16 +9,17 @@ class AppThemes {
       seedColor: Colors.white,
     ),
     textTheme: const TextTheme(
-        titleMedium: TextStyle(
-          color: Colors.black87,
-          fontSize: 22,
-          fontWeight: FontWeight.w600,
-        ),
-        titleSmall: TextStyle(
-          color: Colors.black54,
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-        )),
+      titleMedium: TextStyle(
+        color: Colors.black87,
+        fontSize: 22,
+        fontWeight: FontWeight.w600,
+      ),
+      titleSmall: TextStyle(
+        color: Colors.black87,
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+      ),
+    ),
     useMaterial3: true,
   );
 }

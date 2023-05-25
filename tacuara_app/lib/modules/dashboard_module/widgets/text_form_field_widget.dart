@@ -15,31 +15,27 @@ class textFormFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 18,
-        vertical: 12,
+    return TextFormField(
+      obscureText: obscureText,
+      controller: controller,
+      style: const TextStyle(
+        color: AppThemes.primaryColor,
       ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: TextFormField(
-        decoration: InputDecoration(
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black45),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppThemes.primaryColor,
-            ),
-          ),
-          labelText: labelText,
-          labelStyle: const TextStyle(
-            color: Colors.black54,
+      decoration: InputDecoration(
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black45),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppThemes.primaryColor,
           ),
         ),
-        cursorColor: AppThemes.primaryColor,
+        labelText: labelText,
+        labelStyle: const TextStyle(
+          color: Colors.black54,
+        ),
       ),
+      cursorColor: AppThemes.primaryColor,
     );
   }
 }

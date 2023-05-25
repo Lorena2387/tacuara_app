@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
-class MyButtonWidget extends StatelessWidget {
+class MyButton2 extends StatelessWidget {
   final VoidCallback onPressed;
   final Color color;
   final ShapeBorder shape;
-  final String text;
   final double width;
   final double height;
-  const MyButtonWidget(
+  final String text;
+  const MyButton2(
       {super.key,
       required this.onPressed,
       required this.color,
       required this.shape,
-      required this.text,
       required this.width,
-      required this.height});
+      required this.height,
+      required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +23,16 @@ class MyButtonWidget extends StatelessWidget {
       onPressed: onPressed,
       color: color,
       shape: shape,
+      minWidth: width,
+      height: height,
       child: Text(
         text,
         style: const TextStyle(
-            color: AppThemes.secundaryColor,
-            fontSize: 15,
-            fontWeight: FontWeight.w500),
+          color: AppThemes.primaryColor,
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
+        ),
       ),
-      minWidth: width,
-      height: height,
     );
   }
 }
