@@ -14,7 +14,7 @@ class UserRegister extends StatefulWidget {
 
 class _UserRegisterState extends State<UserRegister> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerName = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _controllerLastname = TextEditingController();
   final TextEditingController _controllerCellphone = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
@@ -47,7 +47,14 @@ class _UserRegisterState extends State<UserRegister> {
                     height: size.height * 0.03,
                   ),
                   textFormFieldWidget(
-                      controller: _controllerName, labelText: 'Nombres'),
+                      controller: _nameController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor digíte su nombre';
+                        }
+                        return null;
+                      },
+                      labelText: 'Nombres'),
                   SizedBox(
                     height: size.height * 0.02,
                   ),
@@ -83,24 +90,20 @@ class _UserRegisterState extends State<UserRegister> {
                   SizedBox(
                     height: size.height * 0.03,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 8.0, vertical: 10),
-                    child: MyButtonWidget(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginView()));
-                      },
-                      color: AppThemes.primaryColor,
-                      width: 220,
-                      height: 40,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      text: 'Registrarme',
+                  MyButtonWidget(
+                    onPressed: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const LoginView()));
+                    },
+                    color: AppThemes.primaryColor,
+                    width: 220,
+                    height: 40,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
+                    text: 'Registrarme',
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(

@@ -4,6 +4,7 @@ import 'package:tacuara_app/utils/app_themes.dart';
 class textFormFieldWidget extends StatelessWidget {
   final String labelText;
   final TextEditingController controller;
+  final FormFieldValidator<String>? validator;
   final bool obscureText;
 
   const textFormFieldWidget({
@@ -11,6 +12,7 @@ class textFormFieldWidget extends StatelessWidget {
     required this.labelText,
     required this.controller,
     this.obscureText = false,
+    this.validator,
   });
 
   @override
