@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/dashboard_module/views/login_view.dart';
+import 'package:tacuara_app/modules/dashboard_module/widgets/check_box_widget.dart';
 import 'package:tacuara_app/modules/dashboard_module/widgets/my_button2_widget.dart';
 import 'package:tacuara_app/modules/dashboard_module/widgets/my_button_widget.dart';
 import 'package:tacuara_app/modules/dashboard_module/widgets/text_form_field_widget.dart';
@@ -87,6 +88,10 @@ class _UserRegisterState extends State<UserRegister> {
                     labelText: 'Confirmar contraseña',
                     obscureText: true,
                   ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  CheckBoxWidget(),
                   SizedBox(
                     height: size.height * 0.03,
                   ),

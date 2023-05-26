@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-import 'package:tacuara_app/modules/dashboard_module/views/room_details_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
+
+import '../../module2/room_module/views/room_details_view.dart';
 
 class DatePickerView extends StatefulWidget {
   const DatePickerView({super.key});

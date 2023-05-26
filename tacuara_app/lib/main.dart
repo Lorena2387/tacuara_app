@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tacuara_app/module2/room_module/room_provider.dart';
 import 'package:tacuara_app/modules/dashboard_module/dashboard_provider.dart';
 import 'package:tacuara_app/modules/dashboard_module/views/dashboard_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
@@ -26,6 +27,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (_) => DashboardProvider(),
         ),
+        ChangeNotifierProvider(create: (_) => RoomProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

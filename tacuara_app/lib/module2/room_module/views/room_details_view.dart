@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tacuara_app/modules/dashboard_module/widgets/cabins_widget.dart';
+
+import 'package:tacuara_app/module2/room_module/widgets/cabins_widget.dart';
+
+import '../room_provider.dart';
 
 //import '../../../utils/images.dart';
-import '../dashboard_provider.dart';
+
 //import '../widgets/room_details_widget.dart';
 
 class RoomDetailsView extends StatefulWidget {
@@ -17,7 +20,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var controller = Provider.of<DashboardProvider>(context, listen: false);
+    var controller = Provider.of<RoomProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Habitaciones disponibles'),
