@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tacuara_app/modules/dashboard_module/views/user_register_view.dart';
-import 'package:tacuara_app/modules/dashboard_module/widgets/my_button_widget.dart';
-import 'package:tacuara_app/modules/dashboard_module/widgets/text_form_field_widget.dart';
+import 'package:tacuara_app/module3/authentication_module/views/user_register_view.dart';
+import 'package:tacuara_app/widgets/my_button_widget.dart';
+import 'package:tacuara_app/module3/authentication_module/views/text_form_field_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
 
