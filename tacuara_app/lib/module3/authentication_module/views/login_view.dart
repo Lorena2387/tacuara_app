@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/module3/authentication_module/views/user_register_view.dart';
 import 'package:tacuara_app/widgets/my_button_widget.dart';
-import 'package:tacuara_app/module3/authentication_module/views/text_form_field_widget.dart';
+//import 'package:tacuara_app/module3/authentication_module/widgets/text_form_field_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
 
@@ -14,8 +14,8 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerEmail = TextEditingController();
-  final TextEditingController _controllerPassword = TextEditingController();
+  // final TextEditingController _controllerEmail = TextEditingController();
+  // final TextEditingController _controllerPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -44,17 +44,17 @@ class _LoginViewState extends State<LoginView> {
                   SizedBox(
                     height: size.height * 0.03,
                   ),
-                  textFormFieldWidget(
-                      labelText: 'Correo electrónico',
-                      controller: _controllerEmail),
-                  SizedBox(
-                    height: size.height * 0.03,
-                  ),
-                  textFormFieldWidget(
-                    labelText: 'Contraseña',
-                    controller: _controllerPassword,
-                    obscureText: true,
-                  ),
+                  // textFormFieldWidget(
+                  //     labelText: 'Correo electrónico',
+                  //     controller: _controllerEmail, validator: null,),
+                  // SizedBox(
+                  //   height: size.height * 0.03,
+                  // ),
+                  // textFormFieldWidget(
+                  //   labelText: 'Contraseña',
+                  //   controller: _controllerPassword,
+                  //   obscureText: true, validator: null,
+                  // ),
                   SizedBox(
                     height: size.height * 0.02,
                   ),

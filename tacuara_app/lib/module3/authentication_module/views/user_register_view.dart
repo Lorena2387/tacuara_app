@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/module3/authentication_module/views/login_view.dart';
-
 import 'package:tacuara_app/module3/authentication_module/widgets/check_box_widget.dart';
+
 import 'package:tacuara_app/widgets/my_button2_widget.dart';
 import 'package:tacuara_app/widgets/my_button_widget.dart';
-import 'package:tacuara_app/module3/authentication_module/views/text_form_field_widget.dart';
+import 'package:tacuara_app/module3/authentication_module/widgets/text_form_field_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
 class UserRegister extends StatefulWidget {
@@ -16,12 +16,12 @@ class UserRegister extends StatefulWidget {
 
 class _UserRegisterState extends State<UserRegister> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _controllerName = TextEditingController();
   final TextEditingController _controllerLastname = TextEditingController();
   final TextEditingController _controllerCellphone = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
-  final TextEditingController _controllerConfirmpassword =
+  final TextEditingController _controllerConfirmPassword =
       TextEditingController();
 
   @override
@@ -49,10 +49,10 @@ class _UserRegisterState extends State<UserRegister> {
                     height: size.height * 0.03,
                   ),
                   textFormFieldWidget(
-                      controller: _nameController,
+                      controller: _controllerName,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Por favor digíte su nombre';
+                          return 'Por favor ingrese su nombre';
                         }
                         return null;
                       },
@@ -61,23 +61,58 @@ class _UserRegisterState extends State<UserRegister> {
                     height: size.height * 0.02,
                   ),
                   textFormFieldWidget(
-                      controller: _controllerLastname, labelText: 'Apellidos'),
+                      controller: _controllerLastname,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor ingrese su apellido';
+                        }
+                        return null;
+                      },
+                      labelText: 'Apellidos'),
                   SizedBox(
                     height: size.height * 0.02,
                   ),
                   textFormFieldWidget(
-                      controller: _controllerCellphone, labelText: 'Celular'),
+                      controller: _controllerCellphone,
+                      validator: (value) {
+                        final phoneRegex = RegExp(r'^\+?[1-9]\d{1,14}$');
+                        if (!phoneRegex.hasMatch(value!)) {
+                          return 'Por favor ingrese un número de celular válido';
+                        }
+                        return null;
+                      },
+                      labelText: 'Celular'),
                   SizedBox(
                     height: size.height * 0.02,
                   ),
                   textFormFieldWidget(
                       controller: _controllerEmail,
+                      validator: (value) {
+                        final emailRegExp =
+                            RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor ingrese su correo electrónico';
+                        }
+                        if (!emailRegExp.hasMatch(value)) {
+                          return 'Por favor ingre un correo válido';
+                        }
+                        return null;
+                      },
                       labelText: 'Correo electerónico'),
                   SizedBox(
                     height: size.height * 0.02,
                   ),
                   textFormFieldWidget(
                     controller: _controllerPassword,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese su contraseña';
+                      }
+                      if (value.length < 6) {
+                        return 'Su contraseña debe tener 6 caracteres';
+                      }
+                      return null;
+                    },
                     labelText: 'Contraseña',
                     obscureText: true,
                   ),
@@ -85,14 +120,23 @@ class _UserRegisterState extends State<UserRegister> {
                     height: size.height * 0.02,
                   ),
                   textFormFieldWidget(
-                    controller: _controllerConfirmpassword,
+                    controller: _controllerConfirmPassword,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Confirme su contraseña';
+                      }
+                      if (value != _controllerPassword) {
+                        return 'Las contraseñas no coinciden';
+                      }
+                      return null;
+                    },
                     labelText: 'Confirmar contraseña',
                     obscureText: true,
                   ),
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  CheckBoxWidget(),
+                  const CheckBoxWidget(),
                   SizedBox(
                     height: size.height * 0.03,
                   ),

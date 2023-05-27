@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
 class textFormFieldWidget extends StatelessWidget {
-  final String labelText;
   final TextEditingController controller;
-  final FormFieldValidator<String>? validator;
+  final String labelText;
+  final Function validator;
   final bool obscureText;
 
   const textFormFieldWidget({
     super.key,
     required this.labelText,
-    required this.controller,
     this.obscureText = false,
-    this.validator,
+    required this.controller,
+    required this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: obscureText,
       controller: controller,
+      obscureText: obscureText,
       style: const TextStyle(
         color: AppThemes.primaryColor,
       ),
