@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../module3/authentication_module/views/user_register_view.dart';
+import '../../../modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
 import '../../../utils/app_themes.dart';
 
 class CabinsWidget extends StatefulWidget {

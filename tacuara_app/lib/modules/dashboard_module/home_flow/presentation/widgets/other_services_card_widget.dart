@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/app_themes.dart';
+import '../../../../../utils/app_themes.dart';
 
 class OtherServicesCardWidget extends StatefulWidget {
   final String title;

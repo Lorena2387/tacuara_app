@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tacuara_app/modules/dashboard_module/dashboard_provider.dart';
+import 'package:tacuara_app/modules/dashboard_module/home_flow/provider/dashboard_provider.dart';
 
-import '../../../utils/app_themes.dart';
+import '../../../../../utils/app_themes.dart';
 import 'modal_bottom_sheet_widget.dart';
 
 void showDayPassBottomSheetWidget({

@@ -3,6 +3,7 @@ import 'package:tacuara_app/utils/app_themes.dart';
 
 class MyButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
+  final Function? onLongPress;
   final Color color;
   final ShapeBorder shape;
   final String text;
@@ -11,6 +12,7 @@ class MyButtonWidget extends StatelessWidget {
   const MyButtonWidget(
       {super.key,
       required this.onPressed,
+      this.onLongPress,
       required this.color,
       required this.shape,
       required this.text,
@@ -21,17 +23,21 @@ class MyButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: onPressed,
+      onLongPress: () {
+        onLongPress?.call();
+      },
       color: color,
       shape: shape,
+      minWidth: width,
+      height: height,
       child: Text(
         text,
         style: const TextStyle(
-            color: AppThemes.secundaryColor,
-            fontSize: 15,
-            fontWeight: FontWeight.w500),
+          color: AppThemes.secundaryColor,
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
+        ),
       ),
-      minWidth: width,
-      height: height,
     );
   }
 }

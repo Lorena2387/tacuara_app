@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tacuara_app/module3/authentication_module/views/login_view.dart';
-import 'package:tacuara_app/module3/authentication_module/widgets/check_box_widget.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/check_box_widget.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
 
 import 'package:tacuara_app/widgets/my_button2_widget.dart';
 import 'package:tacuara_app/widgets/my_button_widget.dart';
-import 'package:tacuara_app/module3/authentication_module/widgets/text_form_field_widget.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/text_form_field_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
 class UserRegister extends StatefulWidget {
@@ -27,6 +29,7 @@ class _UserRegisterState extends State<UserRegister> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var controller = Provider.of<RegisterProvider>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
@@ -48,7 +51,7 @@ class _UserRegisterState extends State<UserRegister> {
                   SizedBox(
                     height: size.height * 0.03,
                   ),
-                  textFormFieldWidget(
+                  TextFormFieldWidget(
                       controller: _controllerName,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -60,7 +63,7 @@ class _UserRegisterState extends State<UserRegister> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  textFormFieldWidget(
+                  TextFormFieldWidget(
                       controller: _controllerLastname,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -72,7 +75,7 @@ class _UserRegisterState extends State<UserRegister> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  textFormFieldWidget(
+                  TextFormFieldWidget(
                       controller: _controllerCellphone,
                       validator: (value) {
                         final phoneRegex = RegExp(r'^\+?[1-9]\d{1,14}$');
@@ -85,7 +88,7 @@ class _UserRegisterState extends State<UserRegister> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  textFormFieldWidget(
+                  TextFormFieldWidget(
                       controller: _controllerEmail,
                       validator: (value) {
                         final emailRegExp =
@@ -102,7 +105,7 @@ class _UserRegisterState extends State<UserRegister> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  textFormFieldWidget(
+                  TextFormFieldWidget(
                     controller: _controllerPassword,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -119,7 +122,7 @@ class _UserRegisterState extends State<UserRegister> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  textFormFieldWidget(
+                  TextFormFieldWidget(
                     controller: _controllerConfirmPassword,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -136,7 +139,15 @@ class _UserRegisterState extends State<UserRegister> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  const CheckBoxWidget(),
+                  CheckBoxWidget(
+                    textButton: 'Acepto los términos y condiciones',
+                    checkBoxValue: controller.termsAndConditionsCheckBoxValue,
+                    checkBoxOnChanged: (value) {
+                      setState(() =>
+                          controller.termsAndConditionsCheckBoxValue = value!);
+                    },
+                    textButtonOnPressed: () {},
+                  ),
                   SizedBox(
                     height: size.height * 0.03,
                   ),

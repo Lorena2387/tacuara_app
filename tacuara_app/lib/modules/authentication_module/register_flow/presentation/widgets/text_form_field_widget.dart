@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
-class textFormFieldWidget extends StatelessWidget {
+class TextFormFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
   final Function validator;
   final bool obscureText;
 
-  const textFormFieldWidget({
+  const TextFormFieldWidget({
     super.key,
     required this.labelText,
     this.obscureText = false,
