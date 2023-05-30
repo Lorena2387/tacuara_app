@@ -9,6 +9,8 @@ import 'package:tacuara_app/widgets/my_button_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/text_form_field_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
+import '../widgets/check_box1_widget.dart';
+
 class UserRegister extends StatefulWidget {
   const UserRegister({super.key});
 
@@ -145,6 +147,15 @@ class _UserRegisterState extends State<UserRegister> {
                     checkBoxOnChanged: (value) {
                       setState(() =>
                           controller.termsAndConditionsCheckBoxValue = value!);
+                    },
+                    textButtonOnPressed: () {},
+                  ),
+                  CheckBox1Widget(
+                    textButton: 'Acepto la política de privacidad',
+                    checkBoxValue: controller.privacyPolicyCheckBoxValue,
+                    checkBoxOnChanged: (value) {
+                      setState(
+                          () => controller.privacyPolicyCheckBoxValue = value!);
                     },
                     textButtonOnPressed: () {},
                   ),

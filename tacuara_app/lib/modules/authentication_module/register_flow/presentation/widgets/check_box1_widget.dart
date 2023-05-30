@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
-class CheckBoxWidget extends StatefulWidget {
+class CheckBox1Widget extends StatefulWidget {
   final String textButton;
   final bool checkBoxValue;
   final Function checkBoxOnChanged;
   final Function textButtonOnPressed;
-  const CheckBoxWidget({
-    super.key,
-    required this.textButton,
-    required this.checkBoxValue,
-    required this.checkBoxOnChanged,
-    required this.textButtonOnPressed,
-  });
+  const CheckBox1Widget(
+      {super.key,
+      required this.textButton,
+      required this.checkBoxValue,
+      required this.checkBoxOnChanged,
+      required this.textButtonOnPressed});
 
   @override
-  State<CheckBoxWidget> createState() => _CheckBoxWidgetState();
+  State<CheckBox1Widget> createState() => _CheckBox1WidgetState();
 }
 
-class _CheckBoxWidgetState extends State<CheckBoxWidget> {
-  bool isChecked = false;
-
+class _CheckBox1WidgetState extends State<CheckBox1Widget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,11 +34,10 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
             checkColor: AppThemes.secundaryColor,
           ),
           TextButton(
-            onPressed: () {},
-            style:
-                TextButton.styleFrom(foregroundColor: AppThemes.primaryColor),
-            child: const Text('Acepto los términos y condiciones'),
-          ),
+              onPressed: () {},
+              style:
+                  TextButton.styleFrom(foregroundColor: AppThemes.primaryColor),
+              child: const Text('Acepto la política de privacidad'))
         ],
       ),
     );
