@@ -19,15 +19,6 @@ class UserRegister extends StatefulWidget {
 }
 
 class _UserRegisterState extends State<UserRegister> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerName = TextEditingController();
-  final TextEditingController _controllerLastname = TextEditingController();
-  final TextEditingController _controllerCellphone = TextEditingController();
-  final TextEditingController _controllerEmail = TextEditingController();
-  final TextEditingController _controllerPassword = TextEditingController();
-  final TextEditingController _controllerConfirmPassword =
-      TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -38,7 +29,7 @@ class _UserRegisterState extends State<UserRegister> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Form(
-              key: _formKey,
+              key: controller.formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -54,7 +45,7 @@ class _UserRegisterState extends State<UserRegister> {
                     height: size.height * 0.03,
                   ),
                   TextFormFieldWidget(
-                      controller: _controllerName,
+                      controller: controller.controllerName,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor ingrese su nombre';
@@ -66,7 +57,7 @@ class _UserRegisterState extends State<UserRegister> {
                     height: size.height * 0.02,
                   ),
                   TextFormFieldWidget(
-                      controller: _controllerLastname,
+                      controller: controller.controllerLastname,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor ingrese su apellido';
@@ -78,7 +69,7 @@ class _UserRegisterState extends State<UserRegister> {
                     height: size.height * 0.02,
                   ),
                   TextFormFieldWidget(
-                      controller: _controllerCellphone,
+                      controller: controller.controllerCellphone,
                       validator: (value) {
                         final phoneRegex = RegExp(r'^\+?[1-9]\d{1,14}$');
                         if (!phoneRegex.hasMatch(value!)) {
@@ -91,7 +82,7 @@ class _UserRegisterState extends State<UserRegister> {
                     height: size.height * 0.02,
                   ),
                   TextFormFieldWidget(
-                      controller: _controllerEmail,
+                      controller: controller.controllerEmail,
                       validator: (value) {
                         final emailRegExp =
                             RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
@@ -108,7 +99,7 @@ class _UserRegisterState extends State<UserRegister> {
                     height: size.height * 0.02,
                   ),
                   TextFormFieldWidget(
-                    controller: _controllerPassword,
+                    controller: controller.controllerPassword,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Por favor ingrese su contraseña';
@@ -125,12 +116,12 @@ class _UserRegisterState extends State<UserRegister> {
                     height: size.height * 0.02,
                   ),
                   TextFormFieldWidget(
-                    controller: _controllerConfirmPassword,
+                    controller: controller.controllerConfirmPassword,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Confirme su contraseña';
                       }
-                      if (value != _controllerPassword) {
+                      if (value != controller.controllerPassword) {
                         return 'Las contraseñas no coinciden';
                       }
                       return null;
