@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../../../../../utils/app_themes.dart';
 
-class TextFormFieldWidget extends StatelessWidget {
+class TextFormFielLogindWidget extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
-  final Function validator;
+  //final Function validator;
   final bool obscureText;
-  const TextFormFieldWidget(
+  const TextFormFielLogindWidget(
       {super.key,
       required this.controller,
       required this.labelText,
-      required this.validator,
+      //required this.validator,
       required this.obscureText});
 
   @override
