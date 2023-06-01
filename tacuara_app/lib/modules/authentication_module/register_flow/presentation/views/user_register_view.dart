@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tacuara_app/module3/authentication_module/views/login_view.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/check_box_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
 
@@ -9,6 +8,7 @@ import 'package:tacuara_app/widgets/my_button_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/text_form_field_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
+import '../../../login_flow/presentation/views/login_view.dart';
 import '../widgets/check_box1_widget.dart';
 
 class UserRegister extends StatefulWidget {
@@ -155,11 +155,12 @@ class _UserRegisterState extends State<UserRegister> {
                   ),
                   MyButtonWidget(
                     onPressed: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => const LoginView()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginView()));
                     },
+                    onLongPress: () {},
                     color: AppThemes.primaryColor,
                     width: 220,
                     height: 40,

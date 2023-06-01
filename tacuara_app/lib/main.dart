@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tacuara_app/module2/room_module/room_provider.dart';
+import 'package:tacuara_app/modules/authentication_module/login_flow/provider/login_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
 import 'package:tacuara_app/modules/dashboard_module/home_flow/provider/dashboard_provider.dart';
 import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
@@ -32,6 +33,7 @@ class _MyAppState extends State<MyApp> {
           create: (_) => RoomProvider(),
         ),
         ChangeNotifierProvider(create: (_) => RegisterProvider()),
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
