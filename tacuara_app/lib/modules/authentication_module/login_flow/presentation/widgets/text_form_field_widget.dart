@@ -4,10 +4,11 @@ import '../../../../../utils/app_themes.dart';
 
 class TextFormFielLogindWidget extends StatelessWidget {
   final TextEditingController controller;
+  final formKey = GlobalKey<FormState>();
   final String labelText;
   //final Function validator;
   final bool obscureText;
-  const TextFormFielLogindWidget(
+  TextFormFielLogindWidget(
       {super.key,
       required this.controller,
       required this.labelText,
