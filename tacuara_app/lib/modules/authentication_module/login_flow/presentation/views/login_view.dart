@@ -23,21 +23,18 @@ class _LoginViewState extends State<LoginView> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Form(
-            key: controller.formKeyLogin,
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Form(
+              key: controller.formKey2,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Text(
-                      'Inicia sesión',
-                      style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
+                  const Text(
+                    'Inicia sesión',
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: size.height * 0.03,

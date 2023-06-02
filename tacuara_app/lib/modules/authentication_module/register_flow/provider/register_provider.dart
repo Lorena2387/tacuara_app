@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class RegisterProvider extends ChangeNotifier {
   bool termsAndConditionsCheckBoxValue = false;
   bool privacyPolicyCheckBoxValue = false;
-  final formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey1 = GlobalKey<FormState>();
   final TextEditingController controllerName = TextEditingController();
   final TextEditingController controllerLastname = TextEditingController();
   final TextEditingController controllerCellphone = TextEditingController();

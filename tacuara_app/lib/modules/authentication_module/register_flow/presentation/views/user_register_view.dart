@@ -29,7 +29,7 @@ class _UserRegisterState extends State<UserRegister> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Form(
-              key: controller.formKey,
+              key: controller.formKey1,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
