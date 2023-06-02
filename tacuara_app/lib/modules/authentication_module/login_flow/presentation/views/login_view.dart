@@ -15,6 +15,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  final _formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,7 +26,7 @@ class _LoginViewState extends State<LoginView> {
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
             child: Form(
-              key: controller.formKey2,
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -19,6 +19,7 @@ class UserRegister extends StatefulWidget {
 }
 
 class _UserRegisterState extends State<UserRegister> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -29,7 +30,7 @@ class _UserRegisterState extends State<UserRegister> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Form(
-              key: controller.formKey1,
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
