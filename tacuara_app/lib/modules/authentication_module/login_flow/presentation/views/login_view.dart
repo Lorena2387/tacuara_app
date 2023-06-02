@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/presentation/widgets/text_form_field_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/provider/login_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
+import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/admin_profile_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
 import 'package:tacuara_app/widgets/my_button_widget.dart';
@@ -68,6 +69,12 @@ class _LoginViewState extends State<LoginView> {
                     text: 'Iniciar sesión',
                     width: 220,
                     height: 40,
+                    onLongPress: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AdminProfile()));
+                    },
                   ),
                   SizedBox(
                     height: size.height * 0.03,
