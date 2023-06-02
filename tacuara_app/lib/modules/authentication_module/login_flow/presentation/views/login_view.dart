@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/presentation/widgets/text_form_field_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/provider/login_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
+import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/tab_bar_user_view.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/admin_profile_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
@@ -62,7 +63,12 @@ class _LoginViewState extends State<LoginView> {
                     height: size.height * 0.04,
                   ),
                   MyButtonWidget(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const tabBarUserView()));
+                    },
                     color: AppThemes.primaryColor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -87,6 +93,7 @@ class _LoginViewState extends State<LoginView> {
                         style: TextStyle(
                           color: Colors.black45,
                           fontSize: 17,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                       TextButton(
