@@ -34,6 +34,15 @@ class _tabBarAdminViewState extends State<tabBarAdminView>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppThemes.primaryColor,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.menu,
+              color: Colors.black,
+            ),
+          ),
+        ],
       ),
       body: Column(
         children: [
