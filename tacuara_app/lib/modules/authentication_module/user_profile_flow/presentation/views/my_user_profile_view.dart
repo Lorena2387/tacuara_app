@@ -64,6 +64,19 @@ class _MyUserProfileViewState extends State<MyUserProfileView> {
                     return null;
                   },
                 ),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+                TextFormFieldProfileWidget(
+                  controller: controller.addressController,
+                  labelText: 'Dirección',
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor ingrese su dirección';
+                    }
+                    return null;
+                  },
+                ),
               ],
             ),
           ),
