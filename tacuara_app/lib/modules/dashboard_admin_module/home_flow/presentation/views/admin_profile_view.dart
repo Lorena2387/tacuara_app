@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AdminProfile extends StatefulWidget {
-  const AdminProfile({super.key});
+class AdminProfileView extends StatefulWidget {
+  const AdminProfileView({super.key});
 
   @override
-  State<AdminProfile> createState() => _AdminProfileState();
+  State<AdminProfileView> createState() => _AdminProfileViewState();
 }
 
-class _AdminProfileState extends State<AdminProfile> {
+class _AdminProfileViewState extends State<AdminProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold();

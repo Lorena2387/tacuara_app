@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/my_reservations_view.dart';
-import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/my_settings_view.dart';
-import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/my_user_profile_view.dart';
+import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/admin_profile_view.dart';
+import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/regsiter_user_view.dart';
+import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/user_reservations_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
-class tabBarUserView extends StatefulWidget {
-  const tabBarUserView({super.key});
+class tabBarAdminView extends StatefulWidget {
+  const tabBarAdminView({super.key});
 
   @override
-  State<tabBarUserView> createState() => _tabBarUserViewState();
+  State<tabBarAdminView> createState() => _tabBarAdminViewState();
 }
 
-class _tabBarUserViewState extends State<tabBarUserView>
+class _tabBarAdminViewState extends State<tabBarAdminView>
     with SingleTickerProviderStateMixin {
   int selectedPage = 0;
   TabController? controller;
@@ -45,15 +45,7 @@ class _tabBarUserViewState extends State<tabBarUserView>
             tabs: const [
               Tab(
                 child: Text(
-                  'Perfil',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                ),
-              ),
-              Tab(
-                child: Text(
-                  'Reservas',
+                  'Reservacion',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 17,
@@ -62,7 +54,15 @@ class _tabBarUserViewState extends State<tabBarUserView>
               ),
               Tab(
                 child: Text(
-                  'Ajustes',
+                  'Registros',
+                  style: TextStyle(
+                    fontSize: 17,
+                  ),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'Perfil',
                   style: TextStyle(
                     fontSize: 17,
                   ),
@@ -71,15 +71,14 @@ class _tabBarUserViewState extends State<tabBarUserView>
             ],
           ),
           Expanded(
-            child: TabBarView(
-              controller: controller,
-              children: const [
-                MyUserProfileView(),
-                MyReservationView(),
-                MySettingsView(),
-              ],
-            ),
-          ),
+              child: TabBarView(
+            controller: controller,
+            children: const [
+              UserReservations(),
+              RegisterUser(),
+              AdminProfileView()
+            ],
+          ))
         ],
       ),
     );
