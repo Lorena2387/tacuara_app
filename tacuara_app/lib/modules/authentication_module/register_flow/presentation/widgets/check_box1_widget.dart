@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
 class CheckBox1Widget extends StatefulWidget {
@@ -34,7 +35,12 @@ class _CheckBox1WidgetState extends State<CheckBox1Widget> {
             checkColor: AppThemes.secundaryColor,
           ),
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PrivacyPolicyView()));
+              },
               style:
                   TextButton.styleFrom(foregroundColor: AppThemes.primaryColor),
               child: const Text('Acepto la política de privacidad'))

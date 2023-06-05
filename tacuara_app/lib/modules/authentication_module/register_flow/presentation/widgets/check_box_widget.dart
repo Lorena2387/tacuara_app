@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/terms_conditions_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
 class CheckBoxWidget extends StatefulWidget {
@@ -37,7 +38,12 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
             checkColor: AppThemes.secundaryColor,
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const TermsConditionsView()));
+            },
             style:
                 TextButton.styleFrom(foregroundColor: AppThemes.primaryColor),
             child: const Text('Acepto los términos y condiciones'),
