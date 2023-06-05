@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/tab_bar_user_view.dart';
 import 'package:tacuara_app/modules/dashboard_module/home_flow/provider/dashboard_provider.dart';
 //import 'package:tacuara_app/modules/dashboard_module/views/cabana_familiar_view.dart';
 import 'package:tacuara_app/module1/calendar_module/date_picker_view.dart';
@@ -36,12 +37,45 @@ class _DashboardViewState extends State<DashboardView> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
+      ),
+      endDrawer: Drawer(
+        child: ListView(children: [
+          ListTile(
+            title: const Text(
+              'Perfil',
+              style: TextStyle(
+                  color: AppThemes.primaryColor, fontWeight: FontWeight.w500),
+            ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const tabBarUserView()));
+            },
           ),
-        ],
+          SizedBox(
+            height: size.height * 0.01,
+          ),
+          ListTile(
+            title: const Text(
+              'Términos y condiciones',
+              style: TextStyle(
+                  color: AppThemes.primaryColor, fontWeight: FontWeight.w500),
+            ),
+            onTap: () {},
+          ),
+          SizedBox(
+            height: size.height * 0.01,
+          ),
+          ListTile(
+            title: const Text(
+              'Política de privacidad',
+              style: TextStyle(
+                  color: AppThemes.primaryColor, fontWeight: FontWeight.w500),
+            ),
+            onTap: () {},
+          )
+        ]),
       ),
       body: ListView(
         padding: EdgeInsets.only(bottom: size.height * 0.05),

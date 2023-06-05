@@ -34,16 +34,56 @@ class _tabBarAdminViewState extends State<tabBarAdminView>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppThemes.primaryColor,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.black,
-            ),
-          ),
-        ],
       ),
+      endDrawer: Drawer(
+          child: ListView(
+        children: [
+          ListTile(
+            title: const Text(
+              'Cambiar mi contraseña',
+              style: TextStyle(
+                color: AppThemes.primaryColor,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            onTap: () {},
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          ListTile(
+            title: const Text(
+              'Términos y condiciones',
+              style: TextStyle(
+                color: AppThemes.primaryColor,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            onTap: () {},
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          ListTile(
+            title: const Text(
+              'Política de privacidad',
+              style: TextStyle(
+                  color: AppThemes.primaryColor, fontWeight: FontWeight.w500),
+            ),
+            onTap: () {},
+          ),
+          const SizedBox(
+            height: 300,
+          ),
+          ListTile(
+            title: const Text(
+              'Cerrar sesión',
+              style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500),
+            ),
+            onTap: () {},
+          )
+        ],
+      )),
       body: Column(
         children: [
           TabBar(
