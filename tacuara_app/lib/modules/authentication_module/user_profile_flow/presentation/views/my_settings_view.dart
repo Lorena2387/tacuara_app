@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
+import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/terms_conditions_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
 class MySettingsView extends StatefulWidget {
@@ -32,7 +34,12 @@ class _MySettingsViewState extends State<MySettingsView> {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const TermsConditionsView()));
+              },
               child: const Text(
                 'Términos y condiciones',
                 textAlign: TextAlign.left,
@@ -44,7 +51,12 @@ class _MySettingsViewState extends State<MySettingsView> {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PrivacyPolicyView()));
+              },
               child: const Text(
                 'Política de privacidad',
                 textAlign: TextAlign.left,

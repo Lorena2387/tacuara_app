@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/check_box_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
+import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
 
 import 'package:tacuara_app/widgets/my_button2_widget.dart';
@@ -182,7 +183,12 @@ class _UserRegisterState extends State<UserRegister> {
                       vertical: 10,
                     ),
                     child: MyButton2(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const DashboardView()));
+                        },
                         color: AppThemes.secundaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),

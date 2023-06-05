@@ -7,6 +7,8 @@ import 'package:tacuara_app/modules/dashboard_module/home_flow/provider/dashboar
 import 'package:tacuara_app/module1/calendar_module/date_picker_view.dart';
 
 import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/widgets/other_services_card_widget.dart';
+import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
+import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/terms_conditions_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
 
@@ -62,7 +64,12 @@ class _DashboardViewState extends State<DashboardView> {
               style: TextStyle(
                   color: AppThemes.primaryColor, fontWeight: FontWeight.w500),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const TermsConditionsView()));
+            },
           ),
           SizedBox(
             height: size.height * 0.01,
@@ -73,7 +80,12 @@ class _DashboardViewState extends State<DashboardView> {
               style: TextStyle(
                   color: AppThemes.primaryColor, fontWeight: FontWeight.w500),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PrivacyPolicyView()));
+            },
           )
         ]),
       ),

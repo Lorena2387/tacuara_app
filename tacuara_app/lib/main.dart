@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tacuara_app/module2/room_module/room_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/provider/login_provider.dart';
+import 'package:tacuara_app/modules/authentication_module/recover_password_flow/provider/recover_password_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/user_profile_flow/provider/profile_provider.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/provider/dashboard_admin_provider.dart';
@@ -45,6 +46,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => DashboardAdminProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => RecoverPasswordProvider(),
         ),
       ],
       child: MaterialApp(

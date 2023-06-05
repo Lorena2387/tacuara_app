@@ -17,4 +17,6 @@ class Images {
   static const String cabanaParejas1 = 'assets/images/cabana_parejas1.png';
   static const String cabanaParejas2 = 'assets/images/cabana_parejas2.png';
   static const String iniciosesion = 'assets/images/iniciosesion.png';
+  static const String recuperarcontrasena =
+      'assets/images/recuperarcontrasena.png';
 }

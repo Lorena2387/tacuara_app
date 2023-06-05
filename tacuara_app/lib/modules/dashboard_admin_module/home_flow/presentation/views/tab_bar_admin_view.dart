@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/admin_profile_view.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/regsiter_user_view.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/user_reservations_view.dart';
+import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
+import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/terms_conditions_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
 class tabBarAdminView extends StatefulWidget {
@@ -59,7 +61,12 @@ class _tabBarAdminViewState extends State<tabBarAdminView>
                 fontWeight: FontWeight.w500,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const TermsConditionsView()));
+            },
           ),
           const SizedBox(
             height: 10,
@@ -70,7 +77,12 @@ class _tabBarAdminViewState extends State<tabBarAdminView>
               style: TextStyle(
                   color: AppThemes.primaryColor, fontWeight: FontWeight.w500),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PrivacyPolicyView()));
+            },
           ),
           const SizedBox(
             height: 300,
