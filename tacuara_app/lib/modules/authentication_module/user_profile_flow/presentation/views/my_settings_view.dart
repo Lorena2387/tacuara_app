@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/modules/authentication_module/change_password_flow/presentation/views/change_password_view.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/terms_conditions_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
@@ -22,7 +23,12 @@ class _MySettingsViewState extends State<MySettingsView> {
               height: size.height * 0.04,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ChangePasswordView()));
+              },
               child: const Text(
                 'Cambiar mi contraseña',
                 textAlign: TextAlign.left,

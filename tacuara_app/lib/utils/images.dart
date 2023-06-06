@@ -19,4 +19,5 @@ class Images {
   static const String iniciosesion = 'assets/images/iniciosesion.png';
   static const String recuperarcontrasena =
       'assets/images/recuperarcontrasena.png';
+  static const String cambiarcontrasena = 'assets/images/cambiarcontrasena.png';
 }
