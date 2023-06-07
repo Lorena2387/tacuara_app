@@ -4,8 +4,9 @@ class UserRegisterDomain {
   final String cellphone;
   final String password;
   final String confirmpassword;
+  final bool isAdmin;
 
-  UserRegisterDomain(
+  UserRegisterDomain(this.isAdmin,
       {required this.name,
       required this.lastname,
       required this.cellphone,
