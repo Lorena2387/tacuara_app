@@ -5,4 +5,7 @@ class ChangePasswordProvider extends ChangeNotifier {
   List<String> imagesCambiarContrasena = [
     Images.cambiarcontrasena,
   ];
+  TextEditingController oldPassController = TextEditingController();
+  TextEditingController newPassController = TextEditingController();
+  TextEditingController confirmPassController = TextEditingController();
 }

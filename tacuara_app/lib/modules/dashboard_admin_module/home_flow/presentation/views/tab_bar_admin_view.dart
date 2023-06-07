@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/modules/authentication_module/change_password_flow/presentation/views/change_password_view.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/admin_profile_view.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/regsiter_user_view.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/user_reservations_view.dart';
@@ -48,7 +49,12 @@ class _tabBarAdminViewState extends State<tabBarAdminView>
                 fontWeight: FontWeight.w500,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ChangePasswordView()));
+            },
           ),
           const SizedBox(
             height: 10,

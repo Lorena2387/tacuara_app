@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tacuara_app/module2/room_module/room_provider.dart';
+import 'package:tacuara_app/modules/authentication_module/change_password_flow/provider/change_password_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/provider/login_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/recover_password_flow/provider/recover_password_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
@@ -49,6 +50,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => RecoverPasswordProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ChangePasswordProvider(),
         ),
       ],
       child: MaterialApp(
