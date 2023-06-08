@@ -10,10 +10,4 @@ class RegisterUserUseCase {
     return await userRepository.registerUser(
         name, lastname, cellphone, email, password, confimpassword);
   }
-
-  Future<String> regsiterAdmin(String name, String lastname, String cellphone,
-      String email, String password, String confirmpassword) async {
-    return await userRepository.registerAdmin(
-        name, lastname, cellphone, email, password, confirmpassword);
-  }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/check_box_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
-import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
+//import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
 
 import 'package:tacuara_app/widgets/my_button2_widget.dart';
@@ -11,6 +12,7 @@ import 'package:tacuara_app/modules/authentication_module/register_flow/presenta
 import 'package:tacuara_app/utils/app_themes.dart';
 
 import '../../../login_flow/presentation/views/login_view.dart';
+
 import '../widgets/check_box1_widget.dart';
 
 class UserRegister extends StatefulWidget {
@@ -163,10 +165,11 @@ class _UserRegisterState extends State<UserRegister> {
                   ),
                   MyButtonWidget(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginView()));
+                      registerUser();
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const LoginView()));
                     },
                     onLongPress: () {},
                     color: AppThemes.primaryColor,
@@ -184,10 +187,10 @@ class _UserRegisterState extends State<UserRegister> {
                     ),
                     child: MyButton2(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const DashboardView()));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => const DashboardView()));
                         },
                         color: AppThemes.secundaryColor,
                         shape: RoundedRectangleBorder(
@@ -236,5 +239,9 @@ class _UserRegisterState extends State<UserRegister> {
         ),
       ),
     );
+  }
+
+  Future<void> registerUser() async {
+    if (_formKey.currentState!.validate()) {}
   }
 }
