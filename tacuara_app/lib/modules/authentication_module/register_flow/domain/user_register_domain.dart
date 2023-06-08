@@ -13,3 +13,10 @@ class UserRegisterDomain {
       required this.password,
       required this.confirmpassword});
 }
+
+abstract class UserRepository {
+  Future<String> registerUser(String name, String lastname, String cellphone,
+      String email, String password, String confimpassword);
+  Future<String> registerAdmin(String name, String lastname, String cellphone,
+      String email, String password, String confirmpassword);
+}
