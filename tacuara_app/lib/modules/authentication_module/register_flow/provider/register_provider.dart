@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tacuara_app/modules/authentication_module/register_flow/domain/register_user_use_case.dart';
 
 class RegisterProvider extends ChangeNotifier {
   bool termsAndConditionsCheckBoxValue = false;
@@ -12,5 +11,4 @@ class RegisterProvider extends ChangeNotifier {
   final TextEditingController controllerPassword = TextEditingController();
   final TextEditingController controllerConfirmPassword =
       TextEditingController();
-  late final RegisterUserUseCase registerUserUseCase;
 }
