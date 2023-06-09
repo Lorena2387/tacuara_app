@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/check_box_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
+import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/register_admin_view.dart';
 //import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
 
@@ -29,6 +30,22 @@ class _UserRegisterState extends State<UserRegister> {
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<RegisterProvider>(context, listen: false);
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RegisterAdminView()));
+            },
+            icon: const Icon(
+              Icons.person,
+              color: Colors.transparent,
+            ),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -137,7 +154,7 @@ class _UserRegisterState extends State<UserRegister> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  CheckBoxWidget(
+                  CheckBox1Widget(
                     textButton: 'Acepto los términos y condiciones',
                     checkBoxValue: controller.termsAndConditionsCheckBoxValue,
                     checkBoxOnChanged: (value) {
@@ -146,7 +163,7 @@ class _UserRegisterState extends State<UserRegister> {
                     },
                     textButtonOnPressed: () {},
                   ),
-                  CheckBox1Widget(
+                  CheckBox2Widget(
                     textButton: 'Acepto la política de privacidad',
                     checkBoxValue: controller.privacyPolicyCheckBoxValue,
                     checkBoxOnChanged: (value) {
@@ -165,7 +182,6 @@ class _UserRegisterState extends State<UserRegister> {
                   ),
                   MyButtonWidget(
                     onPressed: () {
-                      registerUser();
                       // Navigator.push(
                       //     context,
                       //     MaterialPageRoute(
@@ -239,9 +255,5 @@ class _UserRegisterState extends State<UserRegister> {
         ),
       ),
     );
-  }
-
-  Future<void> registerUser() async {
-    if (_formKey.currentState!.validate()) {}
   }
 }

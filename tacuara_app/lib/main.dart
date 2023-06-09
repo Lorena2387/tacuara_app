@@ -15,6 +15,7 @@ import 'package:tacuara_app/utils/app_themes.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 

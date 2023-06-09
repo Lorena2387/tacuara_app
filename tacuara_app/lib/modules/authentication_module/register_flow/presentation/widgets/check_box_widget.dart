@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/terms_conditions_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
-class CheckBoxWidget extends StatefulWidget {
+class CheckBox1Widget extends StatefulWidget {
   final String textButton;
   final bool checkBoxValue;
   final Function checkBoxOnChanged;
   final Function textButtonOnPressed;
-  const CheckBoxWidget({
+  const CheckBox1Widget({
     super.key,
     required this.textButton,
     required this.checkBoxValue,
@@ -16,10 +16,10 @@ class CheckBoxWidget extends StatefulWidget {
   });
 
   @override
-  State<CheckBoxWidget> createState() => _CheckBoxWidgetState();
+  State<CheckBox1Widget> createState() => _CheckBox1WidgetState();
 }
 
-class _CheckBoxWidgetState extends State<CheckBoxWidget> {
+class _CheckBox1WidgetState extends State<CheckBox1Widget> {
   bool isChecked = false;
 
   @override

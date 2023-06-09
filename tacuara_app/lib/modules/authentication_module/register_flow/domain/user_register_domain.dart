@@ -1,11 +1,11 @@
-class UserRegisterDomain {
+class User {
   final String name;
   final String lastname;
   final String cellphone;
   final String password;
   final String confirmpassword;
 
-  UserRegisterDomain(
+  User(
       {required this.name,
       required this.lastname,
       required this.cellphone,
@@ -31,15 +31,10 @@ class Admin {
   });
 }
 
-abstract class UserRepository {
-  Future<String> registerUser(String name, String lastname, String cellphone,
-      String email, String password, String confimpassword);
-
-  registerAdmin(String name, String lastname, String cellphone, String email,
-      String password, String confirmpassword) {}
+abstract class RegisterUserUseCase {
+  Future<void> createUser(User user);
 }
 
-abstract class AdminRepository {
-  Future<String> registerAdmin(String name, String lastname, String cellphone,
-      String email, String password, String confirmpassword);
+abstract class AuthenticateAdminUseCase {
+  Future<void> createAdmin(Admin admin);
 }

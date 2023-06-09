@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
-class CheckBox1Widget extends StatefulWidget {
+class CheckBox2Widget extends StatefulWidget {
   final String textButton;
   final bool checkBoxValue;
   final Function checkBoxOnChanged;
   final Function textButtonOnPressed;
-  const CheckBox1Widget(
+  const CheckBox2Widget(
       {super.key,
       required this.textButton,
       required this.checkBoxValue,
@@ -15,10 +15,10 @@ class CheckBox1Widget extends StatefulWidget {
       required this.textButtonOnPressed});
 
   @override
-  State<CheckBox1Widget> createState() => _CheckBox1WidgetState();
+  State<CheckBox2Widget> createState() => _CheckBox2WidgetState();
 }
 
-class _CheckBox1WidgetState extends State<CheckBox1Widget> {
+class _CheckBox2WidgetState extends State<CheckBox2Widget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
