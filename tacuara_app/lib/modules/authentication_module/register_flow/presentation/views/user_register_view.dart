@@ -56,7 +56,7 @@ class _UserRegisterState extends State<UserRegister> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: size.height * 0.05,
+                    height: size.height * 0.01,
                   ),
                   Text(
                     'Regístrate',
