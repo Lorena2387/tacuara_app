@@ -6,6 +6,12 @@ class User {
   final String password;
   final String confirmpassword;
 
-  User(this.name, this.lastname, this.cellphone, this.email, this.password,
-      this.confirmpassword);
+  User(
+    this.name,
+    this.lastname,
+    this.cellphone,
+    this.email,
+    this.password,
+    this.confirmpassword,
+  );
 }

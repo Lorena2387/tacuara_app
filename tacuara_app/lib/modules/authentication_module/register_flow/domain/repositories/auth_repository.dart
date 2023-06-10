@@ -1,4 +1,5 @@
 import 'package:tacuara_app/modules/authentication_module/register_flow/data/datasources/auth_datasource.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/data/repositories/user_repository.dart';
 
 abstract class AuthRepository {
   Future<void> registerUser(String email, String password);
@@ -6,11 +7,13 @@ abstract class AuthRepository {
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthDataSource authDataSource;
+  final UserRepository _userRepository;
 
-  AuthRepositoryImpl(this.authDataSource);
+  AuthRepositoryImpl(this.authDataSource, this._userRepository);
 
   @override
   Future<void> registerUser(String email, String password) async {
-    await authDataSource.registerUser(email, password);
+    final existingUser = await _userRepository.
+        await await authDataSource.registerUser(email, password);
   }
 }
