@@ -1,6 +1,8 @@
 import 'package:tacuara_app/modules/authentication_module/register_flow/data/datasources/user_datasource.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/user_exception_widget.dart';
 
+import '../../domain/entities/user.dart';
+
 class UserRepository {
   final UserDataSource _userDataSource;
 
@@ -17,5 +19,11 @@ class UserRepository {
 
   Future<void> getUserByEmail(String email) async {
     final userData = await _userDataSource.getUserByEmail(email);
+
+    if (userData != true) {
+      return User.fromMap(userData);
+    } else {
+      return null;
+    }
   }
 }

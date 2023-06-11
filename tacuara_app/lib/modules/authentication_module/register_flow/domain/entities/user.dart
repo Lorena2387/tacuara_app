@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class User {
   final String name;
   final String lastname;
@@ -14,4 +16,6 @@ class User {
     this.password,
     this.confirmpassword,
   );
+
+  static Future<void> fromMap(DocumentSnapshot<Object?> userData) async {}
 }
