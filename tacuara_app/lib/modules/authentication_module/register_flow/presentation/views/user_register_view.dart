@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tacuara_app/modules/authentication_module/register_flow/domain/use_cases/create_usecase.dart';
-import 'package:tacuara_app/modules/authentication_module/register_flow/domain/use_cases/register_usecase.dart';
 
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/check_box_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
@@ -27,8 +25,7 @@ class UserRegister extends StatefulWidget {
 
 class _UserRegisterState extends State<UserRegister> {
   final _formKey = GlobalKey<FormState>();
-  void _registerUser(RegisterUseCase registerUseCase,
-      CreateUserUseCase createUserUseCase) async {}
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -141,20 +138,20 @@ class _UserRegisterState extends State<UserRegister> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  TextFormFieldWidget(
-                    controller: controller.controllerConfirmPassword,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Confirme su contraseña';
-                      }
-                      if (value != controller.controllerPassword) {
-                        return 'Las contraseñas no coinciden';
-                      }
-                      return null;
-                    },
-                    labelText: 'Confirmar contraseña',
-                    obscureText: true,
-                  ),
+                  // TextFormFieldWidget(
+                  //   controller: controller.controllerConfirmPassword,
+                  //   validator: (value) {
+                  //     if (value == null || value.isEmpty) {
+                  //       return 'Confirme su contraseña';
+                  //     }
+                  //     if (value != controller.controllerPassword) {
+                  //       return 'Las contraseñas no coinciden';
+                  //     }
+                  //     return null;
+                  //   },
+                  //   labelText: 'Confirmar contraseña',
+                  //   obscureText: true,
+                  // ),
                   SizedBox(
                     height: size.height * 0.02,
                   ),
