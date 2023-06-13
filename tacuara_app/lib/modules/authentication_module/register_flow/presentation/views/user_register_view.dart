@@ -17,7 +17,9 @@ import '../../../login_flow/presentation/views/login_view.dart';
 import '../widgets/check_box1_widget.dart';
 
 class UserRegister extends StatefulWidget {
-  const UserRegister({super.key});
+  const UserRegister({
+    super.key,
+  });
 
   @override
   State<UserRegister> createState() => _UserRegisterState();
