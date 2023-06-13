@@ -11,4 +11,14 @@ class RegisterProvider extends ChangeNotifier {
   final TextEditingController controllerPassword = TextEditingController();
   final TextEditingController controllerConfirmPassword =
       TextEditingController();
+
+  @override
+  void dispose() {
+    controllerName.dispose();
+    controllerLastname.dispose();
+    controllerCellphone.dispose();
+    controllerEmail.dispose();
+    controllerPassword.dispose();
+    super.dispose();
+  }
 }
