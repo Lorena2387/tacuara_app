@@ -6,7 +6,8 @@ import 'package:tacuara_app/modules/authentication_module/register_flow/data/dat
 class AuthRepository {
   final AuthDataSource _authDataSource;
 
-  AuthRepository(this._authDataSource);
+  AuthRepository(this._authDataSource,
+      {required AuthDataSource authDataSource});
 
   Future<void> register(String email, String password) async {
     await _authDataSource.registerUser(
