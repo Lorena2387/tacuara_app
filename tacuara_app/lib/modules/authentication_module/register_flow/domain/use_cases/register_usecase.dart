@@ -1,21 +1,15 @@
 import 'package:tacuara_app/modules/authentication_module/register_flow/data/repositories/auth_repository.dart';
-import 'package:tacuara_app/modules/authentication_module/register_flow/data/repositories/user_repository.dart';
 
 class RegisterUseCase {
   final AuthRepository _authRepository;
-  final UserRepository _userRepository;
 
   RegisterUseCase(
     this._authRepository,
-    this._userRepository,
   );
 
   Future<void> registerUser(
     String email,
     String password,
-    String name,
-    String lastname,
-    String cellphone,
   ) async {
     try {
       if (!_isValidEmail(email)) {
@@ -24,11 +18,11 @@ class RegisterUseCase {
       if (!_isValidPassword(password)) {
         throw Exception('Su contraseña debe tener 8 caracteres');
       }
+
       await _authRepository.register(
         email,
         password,
       );
-      await _userRepository.createUser(name, lastname, cellphone, email);
     } catch (e) {
       throw Exception('Error al registrar al usuario: $e');
     }
