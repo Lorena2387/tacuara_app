@@ -55,6 +55,9 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (_) => ChangePasswordProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => RegisterProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
