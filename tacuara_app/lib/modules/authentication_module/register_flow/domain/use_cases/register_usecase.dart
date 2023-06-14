@@ -1,16 +1,16 @@
-import 'package:tacuara_app/modules/authentication_module/register_flow/data/repositories/auth_repository.dart';
-import 'package:tacuara_app/modules/authentication_module/register_flow/data/repositories/user_repository.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/domain/repositories/auth_repository_domain.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/domain/repositories/user_repository_domain.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
 
 class RegisterUseCase {
-  final AuthRepository _authRepository;
-  final UserRepository _userRepository;
+  final AuthRepositoryImpl _authRepositoryImpl;
+  final UserRepositoryDomainImpl _userRepositoryDomainImpl;
   final RegisterProvider _registerProvider;
 
   RegisterUseCase(
-    this._authRepository,
     this._registerProvider,
-    this._userRepository,
+    this._authRepositoryImpl,
+    this._userRepositoryDomainImpl,
   );
 
   Future<void> registerUser() async {
@@ -36,11 +36,12 @@ class RegisterUseCase {
         throw Exception('Por favor ingrese un número de celular válido');
       }
 
-      await _authRepository.register(
+      await _authRepositoryImpl.registerUser(
         email,
         password,
       );
-      await _userRepository.createUser(name, lastname, cellphone, email);
+      await _userRepositoryDomainImpl.createUser(
+          name, lastname, cellphone, email);
     } catch (e) {
       throw Exception('Error al registrar al usuario: $e');
     }

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/check_box_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_use_case_provider.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/register_admin_view.dart';
 //import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
@@ -30,6 +31,8 @@ class _UserRegisterState extends State<UserRegister> {
 
   @override
   Widget build(BuildContext context) {
+    final registerUseCaseProvider =
+        Provider.of<RegisterUseCaseProvider>(context);
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<RegisterProvider>(context, listen: false);
     return Scaffold(
