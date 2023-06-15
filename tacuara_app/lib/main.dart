@@ -5,6 +5,11 @@ import 'package:tacuara_app/module2/room_module/room_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/change_password_flow/provider/change_password_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/provider/login_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/recover_password_flow/provider/recover_password_provider.dart';
+// import 'package:tacuara_app/modules/authentication_module/register_flow/data/datasources/auth_datasource.dart';
+// import 'package:tacuara_app/modules/authentication_module/register_flow/data/datasources/user_datasource.dart';
+// import 'package:tacuara_app/modules/authentication_module/register_flow/domain/repositories/auth_repository_domain.dart';
+// import 'package:tacuara_app/modules/authentication_module/register_flow/domain/repositories/user_repository_domain.dart';
+// import 'package:tacuara_app/modules/authentication_module/register_flow/domain/use_cases/register_usecase.dart';
 //import 'package:tacuara_app/modules/authentication_module/register_flow/domain/use_cases/register_usecase.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/user_profile_flow/provider/profile_provider.dart';
@@ -13,7 +18,7 @@ import 'package:tacuara_app/modules/dashboard_module/home_flow/provider/dashboar
 import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
-import 'modules/authentication_module/register_flow/provider/register_use_case_provider.dart';
+//import 'modules/authentication_module/register_flow/provider/register_use_case_provider.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,9 +62,6 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => ChangePasswordProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => RegisterUseCaseProvider(),
         ),
       ],
       child: MaterialApp(
