@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/check_box_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
-import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_use_case_provider.dart';
+
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/register_admin_view.dart';
 //import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
@@ -15,6 +15,7 @@ import 'package:tacuara_app/utils/app_themes.dart';
 
 import '../../../login_flow/presentation/views/login_view.dart';
 
+import '../../provider/register_use_case_provider.dart';
 import '../widgets/check_box1_widget.dart';
 
 class UserRegister extends StatefulWidget {
@@ -31,8 +32,6 @@ class _UserRegisterState extends State<UserRegister> {
 
   @override
   Widget build(BuildContext context) {
-    final registerUseCaseProvider =
-        Provider.of<RegisterUseCaseProvider>(context);
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<RegisterProvider>(context, listen: false);
     return Scaffold(
@@ -188,10 +187,15 @@ class _UserRegisterState extends State<UserRegister> {
                   ),
                   MyButtonWidget(
                     onPressed: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => const LoginView()));
+                      String name = controller.controllerName.text;
+                      String lastname = controller.controllerLastname.text;
+                      String cellphone = controller.controllerCellphone.text;
+                      String email = controller.controllerEmail.text;
+                      String password = controller.controllerPassword.text;
+                      Provider.of<RegisterUseCaseProvider>(context,
+                              listen: false)
+                          .registerUser(
+                              name, lastname, cellphone, email, password);
                     },
                     onLongPress: () {},
                     color: AppThemes.primaryColor,

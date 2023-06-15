@@ -9,8 +9,13 @@ class RegisterUseCaseProvider extends ChangeNotifier {
     this._registerUseCase,
   );
 
-  Future<void> registerUser(String name, String lastname, String cellphone,
-      String email, String password) async {
+  Future<void> registerUser(
+    String name,
+    String lastname,
+    String cellphone,
+    String email,
+    String password,
+  ) async {
     try {
       await _registerUseCase.registerUser();
     } catch (e) {}
