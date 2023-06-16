@@ -5,6 +5,7 @@ import 'package:tacuara_app/module2/room_module/room_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/change_password_flow/provider/change_password_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/provider/login_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/recover_password_flow/provider/recover_password_provider.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/registration_state.dart';
 // import 'package:tacuara_app/modules/authentication_module/register_flow/data/datasources/auth_datasource.dart';
 // import 'package:tacuara_app/modules/authentication_module/register_flow/data/datasources/user_datasource.dart';
 // import 'package:tacuara_app/modules/authentication_module/register_flow/domain/repositories/auth_repository_domain.dart';
@@ -62,6 +63,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => ChangePasswordProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => RegistrationState(),
         ),
       ],
       child: MaterialApp(
