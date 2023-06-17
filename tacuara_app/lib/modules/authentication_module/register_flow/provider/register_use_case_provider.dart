@@ -17,7 +17,8 @@ class RegisterUseCaseProvider extends ChangeNotifier {
     String password,
   ) async {
     try {
-      await _registerUseCase.registerUser();
+      await _registerUseCase.registerUser(
+          name, lastname, cellphone, email, password);
     } catch (e) {}
   }
 }

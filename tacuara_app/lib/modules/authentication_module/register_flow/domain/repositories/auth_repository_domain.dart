@@ -4,6 +4,7 @@ import 'package:tacuara_app/modules/authentication_module/register_flow/presenta
 
 abstract class AuthRepository {
   Future<void> registerUser(String email, String password);
+  Future<bool> isEmailExist(String email);
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -26,5 +27,11 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e) {
       throw AuthRepositoryException('Error al registrar el usuario: $e');
     }
+  }
+
+  @override
+  Future<bool> isEmailExist(String email) {
+    // TODO: implement isEmailExist
+    throw UnimplementedError();
   }
 }

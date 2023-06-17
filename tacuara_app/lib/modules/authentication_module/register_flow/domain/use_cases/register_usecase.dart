@@ -1,74 +1,26 @@
 import 'package:tacuara_app/modules/authentication_module/register_flow/domain/repositories/auth_repository_domain.dart';
-import 'package:tacuara_app/modules/authentication_module/register_flow/domain/repositories/user_repository_domain.dart';
-import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
 
 class RegisterUseCase {
   final AuthRepositoryImpl _authRepositoryImpl;
-  final UserRepositoryDomainImpl _userRepositoryDomainImpl;
-  final RegisterProvider _registerProvider;
 
   RegisterUseCase(
-    this._registerProvider,
     this._authRepositoryImpl,
-    this._userRepositoryDomainImpl,
   );
 
-  Future<void> registerUser() async {
-    final name = _registerProvider.controllerName.text;
-    final lastname = _registerProvider.controllerLastname.text;
-    final cellphone = _registerProvider.controllerCellphone.text;
-    final email = _registerProvider.controllerEmail.text;
-    final password = _registerProvider.controllerPassword.text;
+  Future<void> registerUser(String name, String lastname, String cellphone,
+      String email, String password) async {
     try {
-      if (!_isValidEmail(email)) {
-        throw Exception('Ingrese un correo elctrónico válido');
-      }
-      if (!_isValidPassword(password)) {
-        throw Exception('Su contraseña debe tener 8 caracteres');
-      }
-      if (!_isValidName(name)) {
-        throw Exception('Por favor ingrese un nombre válido');
-      }
-      if (!_isValidLastname(lastname)) {
-        throw Exception('Por favor ingrese un apellido válido');
-      }
-      if (!_isValidPhoneNumber(cellphone)) {
-        throw Exception('Por favor ingrese un número de celular válido');
-      }
+      final isEmailExist = await _authRepositoryImpl.isEmailExist(email);
 
-      await _authRepositoryImpl.registerUser(
-        email,
-        password,
-      );
-      await _userRepositoryDomainImpl.createUser(
-          name, lastname, cellphone, email);
+      if (isEmailExist) {
+        throw Exception('El correo ya está en uso, intenta con otro correo');
+      } else {
+        final registerUser =
+            await _authRepositoryImpl.registerUser(email, password);
+        return registerUser;
+      }
     } catch (e) {
-      throw Exception('Error al registrar al usuario: $e');
+      throw Exception('Error al crear usuario');
     }
-  }
-
-  bool _isValidEmail(String email) {
-    final emailRegex = RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
-    return emailRegex.hasMatch(email);
-  }
-
-  bool _isValidPassword(String password) {
-    final passwordRegex = RegExp(r'^(?=.*[0-9])[a-zA-Z0-9]{8,}$');
-    return passwordRegex.hasMatch(password);
-  }
-
-  bool _isValidName(String name) {
-    final nameRegex = RegExp(r'^[a-zA-Z\s]{2,}$');
-    return nameRegex.hasMatch(name);
-  }
-
-  bool _isValidLastname(String lastname) {
-    final lastnameRegex = RegExp(r'^[a-zA-Z\s]{2,}$');
-    return lastnameRegex.hasMatch(lastname);
-  }
-
-  bool _isValidPhoneNumber(String cellphone) {
-    final phoneRegex = RegExp(r'^\+?[1-9]\d{1,14}$');
-    return phoneRegex.hasMatch(cellphone);
   }
 }

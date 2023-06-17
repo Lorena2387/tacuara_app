@@ -14,4 +14,8 @@ class AuthRepository {
     await _authDataSource.registerUser(
         email, password, context as BuildContext);
   }
+
+  Future<String> getCurrentUserId() {
+    return _authDataSource.getCurrentUserId();
+  }
 }
