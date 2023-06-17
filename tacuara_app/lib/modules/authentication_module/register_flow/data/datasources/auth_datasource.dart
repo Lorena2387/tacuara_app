@@ -28,4 +28,13 @@ class AuthDataSource {
       throw Exception('Error al registrar al usuario');
     }
   }
+
+  Future<String> getCurrentUserId() async {
+    User? user = _firebaseAuth.currentUser;
+    if (user != null) {
+      return user.uid;
+    } else {
+      throw Exception('No se ha iniciado sesión');
+    }
+  }
 }

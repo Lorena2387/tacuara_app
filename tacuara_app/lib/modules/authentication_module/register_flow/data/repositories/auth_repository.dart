@@ -9,7 +9,8 @@ class AuthRepository {
   AuthRepository(this._authDataSource,
       {required AuthDataSource authDataSource});
 
-  Future<void> register(String email, String password) async {
+  Future<void> registerUserWithEmailAndPassword(
+      String email, String password) async {
     await _authDataSource.registerUser(
         email, password, context as BuildContext);
   }
