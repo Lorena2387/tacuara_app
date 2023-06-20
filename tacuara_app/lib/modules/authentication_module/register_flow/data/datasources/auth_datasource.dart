@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 
 class AuthDataSource {
@@ -7,23 +8,33 @@ class AuthDataSource {
   Future<void> registerUser(
       String email, String password, BuildContext context) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Registro exitoso'),
-              content: Text('El usuario ha sido registrado exitosamente'),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('Aceptar'))
-              ],
+      await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then(
+        (UserCredential response) {
+          if (response.user != null) {
+            debugPrint(response.user?.uid.toString());
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text('Registro exitoso'),
+                  content:
+                      const Text('El usuario ha sido registrado exitosamente'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Aceptar'),
+                    ),
+                  ],
+                );
+              },
             );
-          });
+          }
+        },
+      );
     } catch (e) {
       throw Exception('Error al registrar al usuario');
     }

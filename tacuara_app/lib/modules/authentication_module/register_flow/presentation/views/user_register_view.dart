@@ -30,10 +30,22 @@ class UserRegister extends StatefulWidget {
 class _UserRegisterState extends State<UserRegister> {
   final _formKey = GlobalKey<FormState>();
 
+  void registerUser() {
+    if (_formKey.currentState!.validate()) {}
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<RegisterProvider>(context, listen: false);
+    // var registerUseCase =
+    //     Provider.of<RegisterUseCaseProvider>(context, listen: false);
+
+    // Future<void> _registerUser() {
+    //   final name = controller.controllerName.text;
+
+    // }
+
     return Scaffold(
       appBar: AppBar(
         actions: [
