@@ -15,7 +15,7 @@ class AuthRepository {
         email, password, context as BuildContext);
   }
 
-  Future<String> getCurrentUserId() {
-    return _authDataSource.getCurrentUserId();
-  }
+  // Future<String> getCurrentUserId() {
+  //   return _authDataSource.getCurrentUserId();
+  // }
 }

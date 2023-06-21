@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/data/datasources/error_type.dart';
 
 class AuthDataSource {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -35,17 +36,28 @@ class AuthDataSource {
           }
         },
       );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-email') {
+        throw Exception(AuthErrorType.invalidEmail);
+      } else if (e.code == 'weak-password') {
+        throw Exception(AuthErrorType.weakPassword);
+      } else if (e.code == 'email-already-in-use') {
+        throw Exception(AuthErrorType.emailAreadyInUse);
+      } else {
+        throw Exception(AuthErrorType.unexpectedError);
+      }
     } catch (e) {
-      throw Exception('Error al registrar al usuario');
-    }
-  }
-
-  Future<String> getCurrentUserId() async {
-    User? user = _firebaseAuth.currentUser;
-    if (user != null) {
-      return user.uid;
-    } else {
-      throw Exception('No se ha iniciado sesión');
+      throw Exception(AuthErrorType.unexpectedError);
     }
   }
 }
+
+  // Future<String> getCurrentUserId() async {
+  //   User? user = _firebaseAuth.currentUser;
+  //   if (user != null) {
+  //     return user.uid;
+  //   } else {
+  //     throw Exception('No se ha iniciado sesión');
+  //   }
+  // }
+
