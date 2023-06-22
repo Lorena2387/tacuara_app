@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/data/datasources/error_type.dart';
 
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/check_box_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
@@ -29,22 +30,30 @@ class UserRegister extends StatefulWidget {
 
 class _UserRegisterState extends State<UserRegister> {
   final _formKey = GlobalKey<FormState>();
-
-  void registerUser() {
-    if (_formKey.currentState!.validate()) {}
-  }
+  
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<RegisterProvider>(context, listen: false);
     // var registerUseCase =
-    //     Provider.of<RegisterUseCaseProvider>(context, listen: false);
 
     // Future<void> _registerUser() {
     //   final name = controller.controllerName.text;
 
     // }
+    void registerUser() {
+      if (_formKey.currentState!.validate()) {
+        final name = controller.controllerName.text;
+        final lastname = controller.controllerLastname.text;
+        final cellphone = controller.controllerCellphone.text;
+        final email = controller.controllerEmail.text;
+        final password = controller.controllerPassword.text;
+       final registerUseCaseProvider = Provider.of<RegisterUseCaseProvider>(context, listen: false)
+            .registerUser(name, lastname, cellphone, email, password);
+            if(registerUseCaseProvider.)
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(

@@ -1,8 +1,4 @@
-import 'dart:js';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:tacuara_app/modules/authentication_module/register_flow/data/datasources/error_type.dart';
 
 class RegisterProvider extends ChangeNotifier {
   bool termsAndConditionsCheckBoxValue = false;
@@ -16,8 +12,6 @@ class RegisterProvider extends ChangeNotifier {
   final TextEditingController controllerConfirmPassword =
       TextEditingController();
 
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
   @override
   void dispose() {
     controllerName.dispose();
@@ -28,26 +22,26 @@ class RegisterProvider extends ChangeNotifier {
     super.dispose();
   }
 
-  void _showSuccessSnackBar(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text(
-        'Registro exitoso',
-      ),
-      duration: Duration(seconds: 2),
-    ));
-  }
+  // void _showSuccessSnackBar(BuildContext context) {
+  //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  //     content: Text(
+  //       'Registro exitoso',
+  //     ),
+  //     duration: Duration(seconds: 2),
+  //   ));
+  // }
 
-  Future<void> registerUser() async {
-    try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: controllerEmail.text, password: controllerPassword.text);
-      _showSuccessSnackBar(context as BuildContext);
-    } catch (e) {
-      if (e is Exception) {
-        throw _getErrorMessage(e);
-      }
-    }
-  }
+  // Future<void> registerUser() async {
+  //   try {
+  //     await _firebaseAuth.createUserWithEmailAndPassword(
+  //         email: controllerEmail.text, password: controllerPassword.text);
+  //     _showSuccessSnackBar(context as BuildContext);
+  //   } catch (e) {
+  //     if (e is Exception) {
+  //       throw _getErrorMessage(e);
+  //     }
+  //   }
+  // }
 
   // String _getErrorMessage(Exception error) {
   //   switch (error) {
