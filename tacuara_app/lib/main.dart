@@ -80,7 +80,12 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider<RegisterUseCaseProvider>(
           create: (_) => RegisterUseCaseProvider(
-            Provider.of<RegisterUseCase>(_, listen: false),
+            RegisterUseCase(
+              AuthRepositoryImpl(
+                AuthDataSource(),
+                UserDataSource(),
+              ),
+            ),
           ),
         ),
       ],

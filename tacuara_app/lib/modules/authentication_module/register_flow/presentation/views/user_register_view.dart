@@ -30,13 +30,13 @@ class UserRegister extends StatefulWidget {
 
 class _UserRegisterState extends State<UserRegister> {
   final _formKey = GlobalKey<FormState>();
-  
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<RegisterProvider>(context, listen: false);
-    // var registerUseCase =
+    var registerUseCaseProvider =
+        Provider.of<RegisterUseCaseProvider>(context, listen: false);
 
     // Future<void> _registerUser() {
     //   final name = controller.controllerName.text;
@@ -49,9 +49,58 @@ class _UserRegisterState extends State<UserRegister> {
         final cellphone = controller.controllerCellphone.text;
         final email = controller.controllerEmail.text;
         final password = controller.controllerPassword.text;
-       final registerUseCaseProvider = Provider.of<RegisterUseCaseProvider>(context, listen: false)
-            .registerUser(name, lastname, cellphone, email, password);
-            if(registerUseCaseProvider.)
+        final authErrorType = registerUseCaseProvider.registerUser(
+            name, lastname, cellphone, email, password);
+        // ignore: unrelated_type_equality_checks
+        if (authErrorType == AuthErrorType.success) {
+          try {
+            // ignore: unrelated_type_equality_checks
+            if (authErrorType == AuthErrorType.invalidEmail) {
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: const Text('Registro'),
+                        content: const Text('El email es incorrecto'),
+                        actions: [
+                          TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('Ok'))
+                        ],
+                      ));
+
+              // ignore: unrelated_type_equality_checks
+            } else if (authErrorType == AuthErrorType.weakPassword) {
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: const Text('Registro'),
+                        content: const Text('Contraseña debil'),
+                        actions: [
+                          TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('Ok'))
+                        ],
+                      ));
+              // ignore: unrelated_type_equality_checks
+            } else if (authErrorType == AuthErrorType.emailAreadyInUse) {
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: const Text('Registro'),
+                        content: const Text('El email ya está en uso'),
+                        actions: [
+                          TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('Ok'))
+                        ],
+                      ));
+            } else {
+              throw Exception(AuthErrorType.unexpectedError);
+            }
+          } catch (e) {
+            throw Exception(AuthErrorType.unexpectedError);
+          }
+        }
       }
     }
 
@@ -208,15 +257,7 @@ class _UserRegisterState extends State<UserRegister> {
                   ),
                   MyButtonWidget(
                     onPressed: () {
-                      String name = controller.controllerName.text;
-                      String lastname = controller.controllerLastname.text;
-                      String cellphone = controller.controllerCellphone.text;
-                      String email = controller.controllerEmail.text;
-                      String password = controller.controllerPassword.text;
-                      Provider.of<RegisterUseCaseProvider>(context,
-                              listen: false)
-                          .registerUser(
-                              name, lastname, cellphone, email, password);
+                      registerUser();
                     },
                     onLongPress: () {},
                     color: AppThemes.primaryColor,

@@ -1,4 +1,5 @@
 enum AuthErrorType {
+  success,
   invalidEmail,
   weakPassword,
   emailAreadyInUse,
