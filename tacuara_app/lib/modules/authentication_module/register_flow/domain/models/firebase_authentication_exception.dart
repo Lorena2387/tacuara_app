@@ -1,7 +1,7 @@
 class FirebaseAuthenticationException {
-  static String emailAlreadyInUse = 'email-already-in-use';
-  static String invalidEmail = 'invalid-email';
-  static String weakPassword = 'weak-password';
-  static String operationNotAllowed = 'operation-not-allowed';
-  static String unexpectedError = 'unexpected-error';
+  static const String emailAlreadyInUse = 'email-already-in-use';
+  static const String invalidEmail = 'invalid-email';
+  static const String weakPassword = 'weak-password';
+  static const String operationNotAllowed = 'operation-not-allowed';
+  static const String unexpectedError = 'unexpected-error';
 }

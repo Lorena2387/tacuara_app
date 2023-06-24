@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tacuara_app/modules/authentication_module/register_flow/data/datasources/error_type.dart';
-
+//import 'package:tacuara_app/modules/authentication_module/register_flow/domain/models/firebase_authentication_exception.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/check_box_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
-
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/register_admin_view.dart';
 //import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
-
 import 'package:tacuara_app/widgets/my_button2_widget.dart';
 import 'package:tacuara_app/widgets/my_button_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/text_form_field_widget.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
-
 import '../../../login_flow/presentation/views/login_view.dart';
-
-import '../../provider/register_use_case_provider.dart';
 import '../widgets/check_box1_widget.dart';
 
 class UserRegister extends StatefulWidget {
@@ -33,73 +27,6 @@ class _UserRegisterState extends State<UserRegister> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<RegisterProvider>(context, listen: false);
-    var registerUseCaseProvider =
-        Provider.of<RegisterUseCaseProvider>(context, listen: false);
-
-    // Future<void> _registerUser() {
-    //   final name = controller.controllerName.text;
-
-    // }
-    void registerUser() {
-      if (controller.formKey.currentState!.validate()) {
-        final name = controller.controllerName.text;
-        final lastname = controller.controllerLastname.text;
-        final cellphone = controller.controllerCellphone.text;
-        final email = controller.controllerEmail.text;
-        final password = controller.controllerPassword.text;
-        final authErrorType = registerUseCaseProvider.registerUser(
-            name, lastname, cellphone, email, password);
-        // ignore: unrelated_type_equality_checks
-        if (authErrorType == AuthErrorType.success) {
-          try {
-            if (authErrorType == AuthErrorType.invalidEmail) {
-              showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                        title: const Text('Registro'),
-                        content: const Text('El email es incorrecto'),
-                        actions: [
-                          TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: const Text('Ok'))
-                        ],
-                      ));
-
-              // ignore: unrelated_type_equality_checks
-            } else if (authErrorType == AuthErrorType.weakPassword) {
-              showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                        title: const Text('Registro'),
-                        content: const Text('Contraseña debil'),
-                        actions: [
-                          TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: const Text('Ok'))
-                        ],
-                      ));
-              // ignore: unrelated_type_equality_checks
-            } else if (authErrorType == AuthErrorType.emailAreadyInUse) {
-              showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                        title: const Text('Registro'),
-                        content: const Text('El email ya está en uso'),
-                        actions: [
-                          TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: const Text('Ok'))
-                        ],
-                      ));
-            } else {
-              throw Exception(AuthErrorType.unexpectedError);
-            }
-          } catch (e) {
-            throw Exception(AuthErrorType.unexpectedError);
-          }
-        }
-      }
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -253,8 +180,8 @@ class _UserRegisterState extends State<UserRegister> {
                     height: size.height * 0.03,
                   ),
                   MyButtonWidget(
-                    onPressed: () {
-                      controller
+                    onPressed: () async {
+                      await controller
                           .registerUser(
                         email: controller.controllerEmail.text.trim(),
                         password: controller.controllerPassword.text.trim(),
@@ -264,11 +191,11 @@ class _UserRegisterState extends State<UserRegister> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: const Text(
-                                'Registro',
+                              title: Text(
+                                value?.user!.uid ?? '',
                               ),
                               content: const Text(
-                                'El email es incorrecto',
+                                'El registro ha sido exitoso.',
                               ),
                               actions: [
                                 TextButton(
@@ -286,7 +213,24 @@ class _UserRegisterState extends State<UserRegister> {
                             ),
                           );
                         },
-                      ).catchError((error) {});
+                      ).catchError((error) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('Registro de usuario'),
+                            content: Text(
+                              controller.registerUserExceptionMessage(
+                                  exceptionCode: error),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('Cerrar'),
+                              ),
+                            ],
+                          ),
+                        );
+                      });
                     },
                     onLongPress: () {},
                     color: AppThemes.primaryColor,

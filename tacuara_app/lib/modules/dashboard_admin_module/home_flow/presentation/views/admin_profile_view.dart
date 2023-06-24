@@ -13,7 +13,6 @@ class AdminProfileView extends StatefulWidget {
 }
 
 class _AdminProfileViewState extends State<AdminProfileView> {
-  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,7 +24,7 @@ class _AdminProfileViewState extends State<AdminProfileView> {
           padding: const EdgeInsets.all(15.0),
           child: Center(
             child: Form(
-              key: _formKey,
+              //key: _formKey,
               child: Column(
                 children: [
                   SizedBox(

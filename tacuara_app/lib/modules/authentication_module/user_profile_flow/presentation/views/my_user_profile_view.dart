@@ -13,7 +13,6 @@ class MyUserProfileView extends StatefulWidget {
 }
 
 class _MyUserProfileViewState extends State<MyUserProfileView> {
-  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -23,7 +22,7 @@ class _MyUserProfileViewState extends State<MyUserProfileView> {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Form(
-            key: _formKey,
+            //key: _formKey,
             child: Column(
               children: [
                 SizedBox(
