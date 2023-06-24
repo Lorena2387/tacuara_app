@@ -35,7 +35,10 @@ class AuthDataSource {
           }
         },
       );
-    } catch (e) {}
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+      print(e.message);
+    }
   }
 }
 

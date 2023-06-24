@@ -54,7 +54,6 @@ class _UserRegisterState extends State<UserRegister> {
         // ignore: unrelated_type_equality_checks
         if (authErrorType == AuthErrorType.success) {
           try {
-            // ignore: unrelated_type_equality_checks
             if (authErrorType == AuthErrorType.invalidEmail) {
               showDialog(
                   context: context,
