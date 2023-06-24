@@ -29,8 +29,6 @@ class UserRegister extends StatefulWidget {
 }
 
 class _UserRegisterState extends State<UserRegister> {
-  final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -43,7 +41,7 @@ class _UserRegisterState extends State<UserRegister> {
 
     // }
     void registerUser() {
-      if (_formKey.currentState!.validate()) {
+      if (controller.formKey.currentState!.validate()) {
         final name = controller.controllerName.text;
         final lastname = controller.controllerLastname.text;
         final cellphone = controller.controllerCellphone.text;
@@ -125,7 +123,7 @@ class _UserRegisterState extends State<UserRegister> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Form(
-              key: _formKey,
+              key: controller.formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -256,7 +254,39 @@ class _UserRegisterState extends State<UserRegister> {
                   ),
                   MyButtonWidget(
                     onPressed: () {
-                      registerUser();
+                      controller
+                          .registerUser(
+                        email: controller.controllerEmail.text.trim(),
+                        password: controller.controllerPassword.text.trim(),
+                      )
+                          .then(
+                        (value) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text(
+                                'Registro',
+                              ),
+                              content: const Text(
+                                'El email es incorrecto',
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LoginView()),
+                                  ),
+                                  child: const Text(
+                                    'Ok',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ).catchError((error) {});
                     },
                     onLongPress: () {},
                     color: AppThemes.primaryColor,
