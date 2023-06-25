@@ -6,7 +6,6 @@ import 'package:tacuara_app/modules/authentication_module/register_flow/domain/m
 class RegisterProvider extends ChangeNotifier {
   bool termsAndConditionsCheckBoxValue = false;
   bool privacyPolicyCheckBoxValue = false;
-  final formKey = GlobalKey<FormState>();
 
   final TextEditingController controllerName = TextEditingController();
   final TextEditingController controllerLastname = TextEditingController();
@@ -26,16 +25,10 @@ class RegisterProvider extends ChangeNotifier {
     super.dispose();
   }
 
-  Future<UserCredential?> registerUser(
+  Future<UserCredential> registerUser(
       {required String email, required String password}) async {
-    if (formKey.currentState!.validate() &&
-        termsAndConditionsCheckBoxValue &&
-        privacyPolicyCheckBoxValue) {
-      return await FirebaseRegisterUser.registerWithEmailAndPassword(
-          email: email, password: password);
-    } else {
-      return null;
-    }
+    return await FirebaseRegisterUser.registerWithEmailAndPassword(
+        email: email, password: password);
   }
 
   String registerUserExceptionMessage({

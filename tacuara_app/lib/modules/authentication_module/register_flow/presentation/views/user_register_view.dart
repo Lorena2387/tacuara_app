@@ -23,6 +23,7 @@ class UserRegister extends StatefulWidget {
 }
 
 class _UserRegisterState extends State<UserRegister> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -50,7 +51,7 @@ class _UserRegisterState extends State<UserRegister> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Form(
-              key: controller.formKey,
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -136,20 +137,20 @@ class _UserRegisterState extends State<UserRegister> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  // TextFormFieldWidget(
-                  //   controller: controller.controllerConfirmPassword,
-                  //   validator: (value) {
-                  //     if (value == null || value.isEmpty) {
-                  //       return 'Confirme su contraseña';
-                  //     }
-                  //     if (value != controller.controllerPassword) {
-                  //       return 'Las contraseñas no coinciden';
-                  //     }
-                  //     return null;
-                  //   },
-                  //   labelText: 'Confirmar contraseña',
-                  //   obscureText: true,
-                  // ),
+                  TextFormFieldWidget(
+                    controller: controller.controllerConfirmPassword,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Confirme su contraseña';
+                      }
+                      if (value != controller.controllerPassword) {
+                        return 'Las contraseñas no coinciden';
+                      }
+                      return null;
+                    },
+                    labelText: 'Confirmar contraseña',
+                    obscureText: true,
+                  ),
                   SizedBox(
                     height: size.height * 0.02,
                   ),
@@ -181,56 +182,60 @@ class _UserRegisterState extends State<UserRegister> {
                   ),
                   MyButtonWidget(
                     onPressed: () async {
-                      await controller
-                          .registerUser(
-                        email: controller.controllerEmail.text.trim(),
-                        password: controller.controllerPassword.text.trim(),
-                      )
-                          .then(
-                        (value) {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: Text(
-                                value?.user!.uid ?? '',
-                              ),
-                              content: const Text(
-                                'El registro ha sido exitoso.',
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const LoginView()),
-                                  ),
-                                  child: const Text(
-                                    'Ok',
-                                  ),
+                      if (validateForm()) {
+                        await controller
+                            .registerUser(
+                          email: controller.controllerEmail.text.trim(),
+                          password: controller.controllerPassword.text.trim(),
+                        )
+                            .then(
+                          (value) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text(
+                                  value.user!.uid,
                                 ),
-                              ],
-                            ),
-                          );
-                        },
-                      ).catchError((error) {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: const Text('Registro de usuario'),
-                            content: Text(
-                              controller.registerUserExceptionMessage(
-                                  exceptionCode: error),
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text('Cerrar'),
+                                content: const Text(
+                                  'El registro ha sido exitoso.',
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const LoginView()),
+                                    ),
+                                    child: const Text(
+                                      'Ok',
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            );
+                          },
+                        ).catchError(
+                          (error) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text('Registro de usuario'),
+                                content: Text(
+                                  controller.registerUserExceptionMessage(
+                                      exceptionCode: error),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text('Cerrar'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                         );
-                      });
+                      }
                     },
                     onLongPress: () {},
                     color: AppThemes.primaryColor,
@@ -300,5 +305,9 @@ class _UserRegisterState extends State<UserRegister> {
         ),
       ),
     );
+  }
+
+  bool validateForm() {
+    return _formKey.currentState!.validate();
   }
 }
