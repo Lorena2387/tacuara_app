@@ -14,6 +14,12 @@ class RegisterProvider extends ChangeNotifier {
   final TextEditingController controllerPassword = TextEditingController();
   final TextEditingController controllerConfirmPassword =
       TextEditingController();
+  String name = '';
+  String lastname = '';
+  String cellphone = '';
+  String email = '';
+  String password = '';
+  String confirmPassword = '';
 
   @override
   void dispose() {

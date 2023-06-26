@@ -6,6 +6,7 @@ class TextFormFieldWidget extends StatelessWidget {
   final String labelText;
   final Function validator;
   final bool obscureText;
+  final Function onChange;
 
   const TextFormFieldWidget({
     super.key,
@@ -13,6 +14,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.obscureText = false,
     required this.controller,
     required this.validator,
+    required this.onChange,
   });
 
   @override
@@ -38,6 +40,8 @@ class TextFormFieldWidget extends StatelessWidget {
         ),
       ),
       cursorColor: AppThemes.primaryColor,
+      validator: (value) => validator.call(value),
+      onChanged: (value) => onChange.call(value),
     );
   }
 }
