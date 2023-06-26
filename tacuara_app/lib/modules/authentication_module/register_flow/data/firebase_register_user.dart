@@ -15,18 +15,16 @@ class FirebaseRegisterUser {
     } on FirebaseAuthException catch (error) {
       debugPrint('Firebase register failed - error code: ${error.code}');
       debugPrint('Firebase register failed - error message: ${error.message}');
-      if (error.code == FirebaseAuthenticationException.invalidEmail) {
-        throw FirebaseAuthenticationException.invalidEmail;
-      } else if (error.code ==
-          FirebaseAuthenticationException.emailAlreadyInUse) {
-        throw FirebaseAuthenticationException.emailAlreadyInUse;
-      } else if (error.code == FirebaseAuthenticationException.weakPassword) {
-        throw FirebaseAuthenticationException.weakPassword;
-      } else if (error.code ==
-          FirebaseAuthenticationException.operationNotAllowed) {
-        throw FirebaseAuthenticationException.operationNotAllowed;
+      if (error.code == FirebaseSingUpException.invalidEmail) {
+        throw FirebaseSingUpException.invalidEmail;
+      } else if (error.code == FirebaseSingUpException.emailAlreadyInUse) {
+        throw FirebaseSingUpException.emailAlreadyInUse;
+      } else if (error.code == FirebaseSingUpException.weakPassword) {
+        throw FirebaseSingUpException.weakPassword;
+      } else if (error.code == FirebaseSingUpException.operationNotAllowed) {
+        throw FirebaseSingUpException.operationNotAllowed;
       } else {
-        throw FirebaseAuthenticationException.unexpectedError;
+        throw FirebaseSingUpException.unexpectedError;
       }
     }
   }

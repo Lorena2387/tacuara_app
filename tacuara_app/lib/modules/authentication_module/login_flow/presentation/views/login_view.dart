@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tacuara_app/modules/authentication_module/login_flow/presentation/widgets/text_form_field_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/provider/login_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/recover_password_flow/presentation/views/recover_password_view.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
 import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/tab_bar_user_view.dart';
+//import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/tab_bar_user_view.dart';
 //import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/admin_profile_view.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/tab_bar_admin_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
 import 'package:tacuara_app/widgets/my_button_widget.dart';
+
+import '../../../../../widgets/text_form_field_widget.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -19,17 +21,18 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var controller = Provider.of<LoginProvider>(context, listen: false);
+    var controller = Provider.of<LoginProvider>(context, listen: true);
     return Scaffold(
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
             child: Form(
-              //key: _formKey,
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -49,26 +52,99 @@ class _LoginViewState extends State<LoginView> {
                   SizedBox(
                     height: size.height * 0.03,
                   ),
-                  TextFormFielLogindWidget(
-                      controller: controller.controllerEmail,
-                      labelText: 'Correo electrónico',
-                      obscureText: false),
+                  TextFormFieldWidget(
+                    controller: controller.controllerEmail,
+                    labelText: 'Correo electrónico',
+                    obscureText: false,
+                    validator: (value) {
+                      final emailRegExp =
+                          RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese su correo electrónico';
+                      }
+                      if (!emailRegExp.hasMatch(value)) {
+                        return 'Por favor ingrese un correo válido';
+                      }
+                    },
+                    onChange: (value) {
+                      controller.email = value;
+                    },
+                  ),
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  TextFormFielLogindWidget(
-                      controller: controller.controllerPassword,
-                      labelText: 'Contraseña',
-                      obscureText: true),
+                  TextFormFieldWidget(
+                    controller: controller.controllerPassword,
+                    labelText: 'Contraseña',
+                    obscureText: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese su contraseña';
+                      }
+                      if (value.length < 6) {
+                        return 'Su contraseña debe tener 6 caracteres';
+                      }
+                    },
+                    onChange: (value) {
+                      controller.password = value;
+                    },
+                  ),
                   SizedBox(
                     height: size.height * 0.04,
                   ),
                   MyButtonWidget(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const tabBarUserView()));
+                    onPressed: () async {
+                      if (validateForm()) {
+                        await controller
+                            .loginUser(
+                          email: controller.email.trim(),
+                          password: controller.password.trim(),
+                        )
+                            .then(
+                          (value) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text(
+                                  'Inicio de sesión',
+                                ),
+                                content: const Text('Inicio de sesión exitoso'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const tabBarUserView(),
+                                      ),
+                                    ),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ).catchError(
+                          (error) {
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      title: const Text('Inicio de sesión'),
+                                      content: Text(
+                                        controller.loginUserExceptionMessage(
+                                            exceptionCode: error),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          child: const Text('Ok'),
+                                        ),
+                                      ],
+                                    ));
+                          },
+                        );
+                      }
                     },
                     color: AppThemes.primaryColor,
                     shape: RoundedRectangleBorder(
@@ -139,5 +215,9 @@ class _LoginViewState extends State<LoginView> {
         ),
       ),
     );
+  }
+
+  bool validateForm() {
+    return _formKey.currentState!.validate();
   }
 }

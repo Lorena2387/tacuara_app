@@ -9,8 +9,9 @@ import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/view
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
 import 'package:tacuara_app/widgets/my_button2_widget.dart';
 import 'package:tacuara_app/widgets/my_button_widget.dart';
-import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/text_form_field_widget.dart';
-import 'package:tacuara_app/utils/app_themes.dart';
+
+import '../../../../../utils/app_themes.dart';
+import '../../../../../widgets/text_form_field_widget.dart';
 import '../../../login_flow/presentation/views/login_view.dart';
 import '../widgets/check_box1_widget.dart';
 

@@ -42,19 +42,19 @@ class RegisterProvider extends ChangeNotifier {
   }) {
     String message = '';
     switch (exceptionCode) {
-      case FirebaseAuthenticationException.invalidEmail:
+      case FirebaseSingUpException.invalidEmail:
         message = 'Su correo no es válido.';
         break;
-      case FirebaseAuthenticationException.emailAlreadyInUse:
+      case FirebaseSingUpException.emailAlreadyInUse:
         message = 'El correo ya se encuentra en uso.';
         break;
-      case FirebaseAuthenticationException.weakPassword:
+      case FirebaseSingUpException.weakPassword:
         message = 'Su contraseña es demasiado débil.';
         break;
-      case FirebaseAuthenticationException.operationNotAllowed:
+      case FirebaseSingUpException.operationNotAllowed:
         message = 'Su operación no es permitida.';
         break;
-      case FirebaseAuthenticationException.unexpectedError:
+      case FirebaseSingUpException.unexpectedError:
         message = 'Ocurrió un error inesperado.';
         break;
     }
