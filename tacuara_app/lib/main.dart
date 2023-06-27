@@ -25,7 +25,7 @@ import 'package:tacuara_app/modules/dashboard_module/home_flow/provider/dashboar
 import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
-import 'modules/room_types/room_flow/room_provider.dart';
+import 'modules/room_types/room_flow/provider/room_provider.dart';
 
 //import 'modules/authentication_module/register_flow/provider/register_use_case_provider.dart';
 
@@ -89,6 +89,9 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
           ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DashboardAdminProvider(),
         ),
       ],
       child: MaterialApp(
