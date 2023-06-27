@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
-import 'package:tacuara_app/module2/room_module/room_provider.dart';
+
 import 'package:tacuara_app/modules/authentication_module/change_password_flow/provider/change_password_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/provider/login_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/recover_password_flow/provider/recover_password_provider.dart';
@@ -24,6 +24,8 @@ import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/provider/da
 import 'package:tacuara_app/modules/dashboard_module/home_flow/provider/dashboard_provider.dart';
 import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
+
+import 'modules/room_types/room_flow/room_provider.dart';
 
 //import 'modules/authentication_module/register_flow/provider/register_use_case_provider.dart';
 

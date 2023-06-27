@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/images.dart';
+import '../../../utils/images.dart';
 
 class RoomProvider extends ChangeNotifier {
   List<String> familyCabinImages = [

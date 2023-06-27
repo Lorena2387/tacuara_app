@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/tab_bar_user_view.dart';
 import 'package:tacuara_app/modules/dashboard_module/home_flow/provider/dashboard_provider.dart';
 //import 'package:tacuara_app/modules/dashboard_module/views/cabana_familiar_view.dart';
-import 'package:tacuara_app/module1/calendar_module/date_picker_view.dart';
 
 import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/widgets/other_services_card_widget.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
@@ -12,6 +11,7 @@ import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/pr
 import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
 
+import '../../../../bookings_module/calendar_module/date_picker_view.dart';
 import '../widgets/show_day_pass_bottom_sheet_widget.dart';
 import '../widgets/show_event_botton_sheet_widget.dart';
 import '../widgets/show_restaurant_bottom_sheet_widget.dart';

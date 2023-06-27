@@ -222,6 +222,7 @@ class _UserRegisterState extends State<UserRegister> {
                             )
                                 .then(
                               (value) {
+                                controller.saveUid(uid: value.user!.uid);
                                 showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(

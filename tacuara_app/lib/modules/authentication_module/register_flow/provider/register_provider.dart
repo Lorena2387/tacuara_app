@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/data/firebase_register_user.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/domain/models/firebase_authentication_exception.dart';
+import 'package:tacuara_app/utils/local_storage.dart';
+//import 'package:tacuara_app/utils/local_storage.dart';
 
 class RegisterProvider extends ChangeNotifier {
   bool termsAndConditionsCheckBoxValue = false;
@@ -14,6 +16,8 @@ class RegisterProvider extends ChangeNotifier {
   final TextEditingController controllerPassword = TextEditingController();
   final TextEditingController controllerConfirmPassword =
       TextEditingController();
+  final TextEditingController controllerUid = TextEditingController();
+
   String name = '';
   String lastname = '';
   String cellphone = '';
@@ -59,5 +63,9 @@ class RegisterProvider extends ChangeNotifier {
         break;
     }
     return message;
+  }
+
+  Future<void> saveUid({required String uid}) async {
+    await LocalStorage.setUid(uid);
   }
 }

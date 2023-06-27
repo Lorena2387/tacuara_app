@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:tacuara_app/module2/room_module/widgets/cabins_widget.dart';
-
 import '../room_provider.dart';
+import '../widgets/cabins_widget.dart';
 
 //import '../../../utils/images.dart';
 
