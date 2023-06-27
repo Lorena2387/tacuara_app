@@ -102,11 +102,12 @@ class _LoginViewState extends State<LoginView> {
                         )
                             .then(
                           (value) {
+                            controller.saveUid(uid: value.user!.uid);
                             showDialog(
                               context: context,
                               builder: (context) => AlertDialog(
-                                title: const Text(
-                                  'Inicio de sesión',
+                                title: Text(
+                                  value.user!.uid,
                                 ),
                                 content: const Text('Inicio de sesión exitoso'),
                                 actions: [

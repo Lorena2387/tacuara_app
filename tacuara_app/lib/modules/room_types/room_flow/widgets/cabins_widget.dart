@@ -1,8 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+//import 'package:provider/provider.dart';
+//import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
+//import 'package:tacuara_app/modules/room_types/room_flow/provider/room_provider.dart';
+//import 'package:tacuara_app/utils/local_storage.dart';
 
 import '../../../../utils/app_themes.dart';
-import '../../../authentication_module/register_flow/presentation/views/user_register_view.dart';
+//import '../../../authentication_module/register_flow/presentation/views/user_register_view.dart';
 
 class CabinsWidget extends StatefulWidget {
   final List<String> cabinImages;
@@ -11,6 +15,7 @@ class CabinsWidget extends StatefulWidget {
   final List<String> cabinServices;
   final String numberOfBeds;
   final String maximumOccupancy;
+  final Function onPressed;
   const CabinsWidget({
     super.key,
     required this.cabinImages,
@@ -19,6 +24,7 @@ class CabinsWidget extends StatefulWidget {
     required this.cabinServices,
     required this.numberOfBeds,
     required this.maximumOccupancy,
+    required this.onPressed,
   });
 
   @override
@@ -183,29 +189,6 @@ class _CabinsWidgetState extends State<CabinsWidget> {
               }),
           SizedBox(
             height: size.height * 0.02,
-          ),
-          MaterialButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const UserRegister()));
-            },
-            elevation: 8,
-            minWidth: 220,
-            height: 40,
-            color: AppThemes.primaryColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: const Text(
-              'Reservar',
-              style: TextStyle(
-                color: AppThemes.secundaryColor,
-                fontSize: 17,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
           ),
           SizedBox(
             height: size.height * 0.03,

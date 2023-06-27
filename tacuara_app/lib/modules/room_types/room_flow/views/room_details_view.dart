@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
 
 import '../provider/room_provider.dart';
 import '../widgets/cabins_widget.dart';
@@ -39,6 +40,22 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
               cabinServices: controller.familyCabinServices,
               numberOfBeds: '6',
               maximumOccupancy: '10',
+              onPressed: () {
+                if (controller.getUid().toString().isEmpty) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const UserRegister()));
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                            title: Text('Confirma tu reserva'),
+                            content: Text(
+                                'Tu reserva es de una habitación familiar con desayuno, servicio de piscina, parqueadero privado, wifi, televisión, baño privado, cama doble, camarote y cama auxiliar'),
+                          ));
+                }
+              },
             ),
             CabinsWidget(
               cabinImages: controller.couplesCabinImages,
@@ -47,6 +64,10 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
               cabinServices: controller.couplesCabinServices,
               numberOfBeds: '1',
               maximumOccupancy: '2',
+              onPressed: () {
+                if (controller.getUid().toString().isEmpty) {
+                } else {}
+              },
             ),
             SizedBox(
               height: size.height * 0.03,

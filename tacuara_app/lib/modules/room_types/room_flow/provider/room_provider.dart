@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/utils/local_storage.dart';
 
 import '../../../../utils/images.dart';
 
@@ -35,4 +36,7 @@ class RoomProvider extends ChangeNotifier {
     Images.cabanaParejas2,
     Images.cabanaParejas3,
   ];
+  Future<String> getUid() async {
+    return await LocalStorage.getUid() ?? '';
+  }
 }

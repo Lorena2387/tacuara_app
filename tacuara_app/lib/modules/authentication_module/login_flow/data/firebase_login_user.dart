@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/domain/models/firebase_authentication_exception.dart';
+import 'package:tacuara_app/utils/local_storage.dart';
 
 class FirebaseLoginUser {
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -24,5 +25,9 @@ class FirebaseLoginUser {
         throw FirebaseSingInException.unexpectedError;
       }
     }
+  }
+
+  Future<void> saveUserUid(String uid) async {
+    await LocalStorage.setUid(uid);
   }
 }

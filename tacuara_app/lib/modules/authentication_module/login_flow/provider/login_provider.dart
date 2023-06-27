@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/data/firebase_login_user.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/domain/models/firebase_authentication_exception.dart';
+import 'package:tacuara_app/utils/local_storage.dart';
 
 import '../../../../utils/images.dart';
 
@@ -46,5 +47,9 @@ class LoginProvider extends ChangeNotifier {
         break;
     }
     return message;
+  }
+
+  Future<void> saveUid({required String uid}) async {
+    await LocalStorage.setUid(uid);
   }
 }
