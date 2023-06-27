@@ -12,7 +12,7 @@ class RoomProvider extends ChangeNotifier {
   ];
   List<String> familyCabinServices = [
     'Desayuno',
-    'servicio de piscina',
+    'Servicio de piscina',
     'Parqueadero privado cubierto',
     'Wifi',
     'Televisión',
@@ -39,4 +39,13 @@ class RoomProvider extends ChangeNotifier {
   Future<String> getUid() async {
     return await LocalStorage.getUid() ?? '';
   }
+
+  List<String> reservationCoupleCabin = [
+    'Check In:',
+    'Check Out:',
+    'Precio por noche: \$190.000',
+    'Numero de reserva:',
+    'Tipo de habitación:',
+    'Total:',
+  ];
 }

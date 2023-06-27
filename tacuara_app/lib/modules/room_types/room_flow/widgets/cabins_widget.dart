@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+
+//import 'package:tacuara_app/widgets/my_button_widget.dart';
 //import 'package:provider/provider.dart';
 //import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
 //import 'package:tacuara_app/modules/room_types/room_flow/provider/room_provider.dart';
@@ -15,7 +17,8 @@ class CabinsWidget extends StatefulWidget {
   final List<String> cabinServices;
   final String numberOfBeds;
   final String maximumOccupancy;
-  final Function onPressed;
+  final Function onPressedButton;
+
   const CabinsWidget({
     super.key,
     required this.cabinImages,
@@ -24,7 +27,7 @@ class CabinsWidget extends StatefulWidget {
     required this.cabinServices,
     required this.numberOfBeds,
     required this.maximumOccupancy,
-    required this.onPressed,
+    required this.onPressedButton,
   });
 
   @override
@@ -189,6 +192,24 @@ class _CabinsWidgetState extends State<CabinsWidget> {
               }),
           SizedBox(
             height: size.height * 0.02,
+          ),
+          MaterialButton(
+            onPressed: () => widget.onPressedButton(),
+            elevation: 10,
+            minWidth: 220,
+            height: 40,
+            color: AppThemes.primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Text(
+              'Reservar',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: AppThemes.secundaryColor,
+              ),
+            ),
           ),
           SizedBox(
             height: size.height * 0.03,
