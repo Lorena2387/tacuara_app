@@ -4,6 +4,8 @@ import 'package:tacuara_app/utils/local_storage.dart';
 import '../../../../utils/images.dart';
 
 class RoomProvider extends ChangeNotifier {
+  int couplesCabinRate = 190000;
+  int familyCabinRate = 490000;
   List<String> familyCabinImages = [
     Images.cabanafam1,
     Images.cabanafam2,
@@ -48,4 +50,19 @@ class RoomProvider extends ChangeNotifier {
     'Tipo de habitación:',
     'Total:',
   ];
+  String formatDate({required DateTime date}) {
+    String year = date.year.toString();
+    String month = date.month.toString();
+    String day = date.day.toString();
+    return '$day/$month/$year';
+  }
+
+  int calculateDays({required DateTime startDate, required DateTime endDate}) {
+    int difference = endDate.difference(startDate).inDays;
+    return difference;
+  }
+
+  int totalRate({required int dayRate, required int totalNights}) {
+    return dayRate * totalNights;
+  }
 }

@@ -6,6 +6,7 @@ import 'package:tacuara_app/utils/app_themes.dart';
 
 //import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
 
+import '../../../bookings_module/calendar_flow/provider/date_picker_provider.dart';
 import '../provider/room_provider.dart';
 import '../widgets/cabins_widget.dart';
 
@@ -25,8 +26,8 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<RoomProvider>(context, listen: false);
-    // var calendarController =
-    //     Provider.of<DatePickerProvider>(context, listen: true);
+    var calendarController =
+        Provider.of<DatePickerProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Habitaciones disponibles'),
@@ -84,7 +85,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                         return AlertDialog(
                           title: const Text('Confirma tu reserva'),
                           content: Container(
-                            height: size.height * 0.10,
+                            height: size.height * 0.18,
                             width: size.width * 0.10,
                             child: ListView(
                               children: [
@@ -102,11 +103,130 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                                       SizedBox(
                                         width: size.width * 0.01,
                                       ),
-                                      const Expanded(
+                                      Expanded(
                                         child: Text(
-                                          'Número de reserva: 254896',
+                                          'Check In: ${controller.formatDate(date: calendarController.dateTimeStart)}',
                                           maxLines: 2,
-                                          style: TextStyle(
+                                          style: const TextStyle(
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  width: size.width * 0.05,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(
+                                        Icons.circle,
+                                        size: 8,
+                                        color: AppThemes.primaryColor,
+                                      ),
+                                      SizedBox(
+                                        width: size.width * 0.01,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          'Check Out: ${controller.formatDate(date: calendarController.dateTimeEnd)}',
+                                          maxLines: 2,
+                                          style: const TextStyle(
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  width: size.width * 0.05,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(
+                                        Icons.circle,
+                                        size: 8,
+                                        color: AppThemes.primaryColor,
+                                      ),
+                                      SizedBox(
+                                        width: size.width * 0.01,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          'Número de noches: ${controller.calculateDays(
+                                            startDate: calendarController
+                                                .dateTimeStart,
+                                            endDate:
+                                                calendarController.dateTimeEnd,
+                                          )}',
+                                          maxLines: 2,
+                                          style: const TextStyle(
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  width: size.width * 0.05,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(
+                                        Icons.circle,
+                                        size: 8,
+                                        color: AppThemes.primaryColor,
+                                      ),
+                                      SizedBox(
+                                        width: size.width * 0.01,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          'Tarifa por noche: \$${controller.couplesCabinRate}',
+                                          maxLines: 2,
+                                          style: const TextStyle(
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  width: size.width * 0.05,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(
+                                        Icons.circle,
+                                        size: 8,
+                                        color: AppThemes.primaryColor,
+                                      ),
+                                      SizedBox(
+                                        width: size.width * 0.01,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          'Total de la reserva: \$${controller.totalRate(
+                                            totalNights:
+                                                controller.calculateDays(
+                                              startDate: calendarController
+                                                  .dateTimeStart,
+                                              endDate: calendarController
+                                                  .dateTimeEnd,
+                                            ),
+                                            dayRate:
+                                                controller.couplesCabinRate,
+                                          )}',
+                                          maxLines: 2,
+                                          style: const TextStyle(
                                             fontSize: 12,
                                           ),
                                         ),
@@ -120,7 +240,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                           actions: [
                             TextButton(
                               onPressed: () {},
-                              child: const Text('Ok'),
+                              child: const Text('Cancelar'),
                             ),
                             TextButton(
                               onPressed: () {
@@ -132,7 +252,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                                   ),
                                 );
                               },
-                              child: const Text('Cancelar'),
+                              child: const Text('Ok'),
                             ),
                           ],
                         );
