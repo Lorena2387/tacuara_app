@@ -163,7 +163,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          'Tarifa por noche: \$${controller.couplesCabinRate}',
+                                          'Tarifa por noche: \$${controller.familyCabinRate}',
                                           maxLines: 2,
                                           style: const TextStyle(
                                             fontSize: 12,
@@ -197,8 +197,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                                               endDate: calendarController
                                                   .dateTimeEnd,
                                             ),
-                                            dayRate:
-                                                controller.couplesCabinRate,
+                                            dayRate: controller.familyCabinRate,
                                           )}',
                                           maxLines: 2,
                                           style: const TextStyle(
