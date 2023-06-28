@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
+//import 'package:tacuara_app/modules/bookings_module/calendar_flow/provider/date_picker_provider.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
 //import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
@@ -24,6 +25,8 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<RoomProvider>(context, listen: false);
+    // var calendarController =
+    //     Provider.of<DatePickerProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Habitaciones disponibles'),
@@ -83,37 +86,36 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                           content: Container(
                             height: size.height * 0.10,
                             width: size.width * 0.10,
-                            child: ListView.builder(
-                                itemCount:
-                                    controller.reservationCoupleCabin.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Container(
-                                    width: size.width * 0.05,
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Icon(
-                                          Icons.circle,
-                                          size: 8,
-                                          color: AppThemes.primaryColor,
-                                        ),
-                                        SizedBox(
-                                          width: size.width * 0.01,
-                                        ),
-                                        Expanded(
-                                            child: Text(
-                                          controller
-                                              .reservationCoupleCabin[index],
+                            child: ListView(
+                              children: [
+                                Container(
+                                  width: size.width * 0.05,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(
+                                        Icons.circle,
+                                        size: 8,
+                                        color: AppThemes.primaryColor,
+                                      ),
+                                      SizedBox(
+                                        width: size.width * 0.01,
+                                      ),
+                                      const Expanded(
+                                        child: Text(
+                                          'Número de reserva: 254896',
                                           maxLines: 2,
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             fontSize: 12,
                                           ),
-                                        ))
-                                      ],
-                                    ),
-                                  );
-                                }),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           actions: [
                             TextButton(
