@@ -20,6 +20,7 @@ import 'package:tacuara_app/modules/authentication_module/register_flow/domain/u
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_use_case_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/user_profile_flow/provider/profile_provider.dart';
+import 'package:tacuara_app/modules/bookings_module/calendar_flow/provider/date_picker_provider.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/provider/dashboard_admin_provider.dart';
 import 'package:tacuara_app/modules/dashboard_module/home_flow/provider/dashboard_provider.dart';
 import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
@@ -92,6 +93,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => DashboardAdminProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DatePickerProvider(),
         ),
       ],
       child: MaterialApp(

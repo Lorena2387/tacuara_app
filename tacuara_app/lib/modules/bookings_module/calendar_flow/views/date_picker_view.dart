@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
-import '../../room_types/room_flow/views/room_details_view.dart';
+import '../../../room_types/room_flow/views/room_details_view.dart';
+// import '../provider/data_picker_provider.dart';
 
 class DatePickerView extends StatefulWidget {
   const DatePickerView({super.key});
@@ -15,6 +17,7 @@ class _DatePickerViewState extends State<DatePickerView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    // var controller = Provider.of<DataPickerProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -33,8 +36,15 @@ class _DatePickerViewState extends State<DatePickerView> {
                     rangeSelectionColor: AppThemes.primaryColor,
                     minDate: DateTime.now(),
                     selectionMode: DateRangePickerSelectionMode.range,
-                    initialSelectedRange: PickerDateRange(DateTime.now(),
-                        DateTime.now().add(const Duration(days: 1))),
+                    initialSelectedRange: PickerDateRange(
+                      DateTime.now(),
+                      DateTime.now().add(
+                        const Duration(days: 1),
+                      ),
+                    ),
+                    onSelectionChanged: (dateRangePickerSelectionChangedArgs) {
+                      print(dateRangePickerSelectionChangedArgs.value);
+                    },
                   ),
                 ),
               ),

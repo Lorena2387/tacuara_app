@@ -12,7 +12,8 @@ import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
 
 //import '../../../../bookings_module/calendar_module/date_picker_view.dart';
-import '../../../../bookings_module/calendar_flow/date_picker_view.dart';
+
+import '../../../../bookings_module/calendar_flow/views/date_picker_view.dart';
 import '../widgets/show_day_pass_bottom_sheet_widget.dart';
 import '../widgets/show_event_botton_sheet_widget.dart';
 import '../widgets/show_restaurant_bottom_sheet_widget.dart';
