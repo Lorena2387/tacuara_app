@@ -26,6 +26,13 @@ class RoomDetailsView extends StatefulWidget {
 
 class _RoomDetailsViewState extends State<RoomDetailsView> {
   @override
+  void initState() {
+    super.initState();
+    var controller = Provider.of<RoomProvider>(context, listen: false);
+    controller.getUid();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<RoomProvider>(context, listen: false);
@@ -241,28 +248,29 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                               onPressed: () {
                                 controller.createReservation(
                                   reservation: ReservationModel(
-                                    roomType: 'Cabaña familiar',
-                                    checkIn: calendarController.dateTimeStart,
-                                    checkOut: calendarController.dateTimeEnd,
-                                    totalNights: controller.calculateDays(
-                                      startDate:
-                                          calendarController.dateTimeStart,
-                                      endDate: calendarController.dateTimeEnd,
-                                    ),
-                                    nightRate: controller.familyCabinRate,
-                                    totalRate: controller.totalRate(
-                                      dayRate: controller.familyCabinRate,
+                                      roomType: 'Cabaña familiar',
+                                      checkIn: calendarController.dateTimeStart,
+                                      checkOut: calendarController.dateTimeEnd,
                                       totalNights: controller.calculateDays(
                                         startDate:
                                             calendarController.dateTimeStart,
                                         endDate: calendarController.dateTimeEnd,
                                       ),
-                                    ),
-                                    reservationNumber:
-                                        'F${controller.reservationNumber(
-                                      date: calendarController.dateTimeStart,
-                                    )}',
-                                  ),
+                                      nightRate: controller.familyCabinRate,
+                                      totalRate: controller.totalRate(
+                                        dayRate: controller.familyCabinRate,
+                                        totalNights: controller.calculateDays(
+                                          startDate:
+                                              calendarController.dateTimeStart,
+                                          endDate:
+                                              calendarController.dateTimeEnd,
+                                        ),
+                                      ),
+                                      reservationNumber:
+                                          'F${controller.reservationNumber(
+                                        date: calendarController.dateTimeStart,
+                                      )}',
+                                      status: 'pending'),
                                 );
                               },
                               child: const Text('Ok'),
@@ -281,7 +289,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
               numberOfBeds: '1',
               maximumOccupancy: '2',
               onPressedButton: () {
-                if (controller.getUid().toString().isEmpty) {
+                if (controller.userUid.isEmpty) {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -494,7 +502,8 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                                       reservationNumber:
                                           'P${controller.reservationNumber(
                                         date: calendarController.dateTimeStart,
-                                      )}'),
+                                      )}',
+                                      status: 'pending'),
                                 );
                               },
                               child: const Text('Ok'),

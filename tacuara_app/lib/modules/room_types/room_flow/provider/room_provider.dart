@@ -7,6 +7,7 @@ import 'package:tacuara_app/utils/local_storage.dart';
 import '../../../../utils/images.dart';
 
 class RoomProvider extends ChangeNotifier {
+  String userUid = '';
   int couplesCabinRate = 190000;
   int familyCabinRate = 490000;
 
@@ -42,8 +43,8 @@ class RoomProvider extends ChangeNotifier {
     Images.cabanaParejas2,
     Images.cabanaParejas3,
   ];
-  Future<String> getUid() async {
-    return await LocalStorage.getUid() ?? '';
+  Future<void> getUid() async {
+    userUid = await LocalStorage.getUid() ?? '';
   }
 
   List<String> reservationCoupleCabin = [

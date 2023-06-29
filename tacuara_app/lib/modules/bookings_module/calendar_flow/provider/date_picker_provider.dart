@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DatePickerProvider extends ChangeNotifier {
+  bool isRoomFamilyCabinAvalible = false;
+  bool isRoomCouplesCabinAvalible = false;
   List<DateTime> selectedDates = [];
 
   late DateTime dateTimeStart;

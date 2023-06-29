@@ -3,9 +3,10 @@ class ReservationModel {
   final String reservationNumber;
   late DateTime checkIn;
   late DateTime checkOut;
-  late int totalNights;
-  late int nightRate;
-  late int totalRate;
+  final int totalNights;
+  final int nightRate;
+  final int totalRate;
+  final String status;
 
   ReservationModel({
     required this.roomType,
@@ -15,6 +16,7 @@ class ReservationModel {
     required this.nightRate,
     required this.totalRate,
     required this.reservationNumber,
+    required this.status,
   });
   Map<String, dynamic> toJson() => {
         'roomType': roomType,
@@ -24,6 +26,7 @@ class ReservationModel {
         'totalNights': totalNights,
         'nightRate': nightRate,
         'totalRate': totalRate,
+        'status': status,
       };
   static ReservationModel fromJson(Map<String, dynamic> json) =>
       ReservationModel(
@@ -33,5 +36,6 @@ class ReservationModel {
           totalNights: json['totalNights'],
           nightRate: json['nightRate'],
           totalRate: json['totalRate'],
-          roomType: json['roomType']);
+          roomType: json['roomType'],
+          status: json['status']);
 }
