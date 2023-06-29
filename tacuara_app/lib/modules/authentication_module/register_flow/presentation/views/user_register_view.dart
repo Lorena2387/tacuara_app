@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/domain/models/user.dart';
 //import 'package:tacuara_app/modules/authentication_module/register_flow/domain/models/firebase_authentication_exception.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/check_box_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
@@ -221,32 +222,51 @@ class _UserRegisterState extends State<UserRegister> {
                                   controller.controllerPassword.text.trim(),
                             )
                                 .then(
-                              (value) {
-                                controller.saveUid(uid: value.user!.uid);
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    title: Text(
-                                      value.user!.uid,
-                                    ),
-                                    content: const Text(
-                                      'El registro ha sido exitoso.',
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const LoginView()),
-                                        ),
-                                        child: const Text(
-                                          'Ok',
-                                        ),
+                              (value) async {
+                                await controller
+                                    .saveUid(uid: value.user!.uid)
+                                    .then((_) async {
+                                  await controller.getUid();
+                                  await controller.saveUserData(
+                                      user: UserModel(
+                                        name: controller.controllerName.text
+                                            .trim(),
+                                        lastname: controller
+                                            .controllerLastname.text
+                                            .trim(),
+                                        cellphone: controller
+                                            .controllerCellphone.text
+                                            .trim(),
+                                        email: controller.controllerEmail.text
+                                            .trim(),
                                       ),
-                                    ],
-                                  ),
-                                );
+                                      userUid: controller.userUid);
+                                }).then((_) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text(
+                                        value.user!.uid,
+                                      ),
+                                      content: const Text(
+                                        'El registro ha sido exitoso.',
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const LoginView()),
+                                          ),
+                                          child: const Text(
+                                            'Ok',
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                });
                               },
                             ).catchError(
                               (error) {

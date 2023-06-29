@@ -1,13 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/data/create_user_register.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/data/firebase_register_user.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/domain/models/firebase_authentication_exception.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/domain/models/user.dart';
 import 'package:tacuara_app/utils/local_storage.dart';
 //import 'package:tacuara_app/utils/local_storage.dart';
 
 class RegisterProvider extends ChangeNotifier {
   bool termsAndConditionsCheckBoxValue = false;
   bool privacyPolicyCheckBoxValue = false;
+  String userUid = '';
 
   final TextEditingController controllerName = TextEditingController();
   final TextEditingController controllerLastname = TextEditingController();
@@ -16,7 +19,6 @@ class RegisterProvider extends ChangeNotifier {
   final TextEditingController controllerPassword = TextEditingController();
   final TextEditingController controllerConfirmPassword =
       TextEditingController();
-  final TextEditingController controllerUid = TextEditingController();
 
   String name = '';
   String lastname = '';
@@ -67,5 +69,14 @@ class RegisterProvider extends ChangeNotifier {
 
   Future<void> saveUid({required String uid}) async {
     await LocalStorage.setUid(uid);
+  }
+
+  Future<void> saveUserData(
+      {required UserModel user, required String userUid}) async {
+    CreateUserRegister.saveUserData(user: user, uid: userUid);
+  }
+
+  Future<void> getUid() async {
+    userUid = await LocalStorage.getUid() ?? '';
   }
 }

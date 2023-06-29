@@ -58,7 +58,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
               numberOfBeds: '6',
               maximumOccupancy: '10',
               onPressedButton: () {
-                if (controller.getUid().toString().isEmpty) {
+                if (controller.userUid.isEmpty) {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
