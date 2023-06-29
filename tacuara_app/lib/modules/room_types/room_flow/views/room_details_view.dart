@@ -258,7 +258,10 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                                         endDate: calendarController.dateTimeEnd,
                                       ),
                                     ),
-                                    reservationNumber: '',
+                                    reservationNumber:
+                                        'F${controller.reservationNumber(
+                                      date: calendarController.dateTimeStart,
+                                    )}',
                                   ),
                                 );
                               },
@@ -488,7 +491,10 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                                             endDate:
                                                 calendarController.dateTimeEnd),
                                       ),
-                                      reservationNumber: ''),
+                                      reservationNumber:
+                                          'P${controller.reservationNumber(
+                                        date: calendarController.dateTimeStart,
+                                      )}'),
                                 );
                               },
                               child: const Text('Ok'),

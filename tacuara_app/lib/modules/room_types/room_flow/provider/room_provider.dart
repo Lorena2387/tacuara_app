@@ -9,6 +9,7 @@ import '../../../../utils/images.dart';
 class RoomProvider extends ChangeNotifier {
   int couplesCabinRate = 190000;
   int familyCabinRate = 490000;
+
   List<String> familyCabinImages = [
     Images.cabanafam1,
     Images.cabanafam2,
@@ -92,5 +93,15 @@ class RoomProvider extends ChangeNotifier {
     //   ),
     // };
     // await firebase.set((reservationty));
+  }
+
+  String reservationNumber({required DateTime date}) {
+    String year = date.year.toString().substring(2);
+    String month = date.month.toString().length == 1
+        ? '0${date.month}'
+        : date.month.toString();
+    String day =
+        date.day.toString().length == 1 ? '0${date.day}' : date.day.toString();
+    return '$day$month$year';
   }
 }
