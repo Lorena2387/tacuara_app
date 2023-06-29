@@ -1,6 +1,9 @@
+//import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
+import 'package:tacuara_app/modules/room_types/room_flow/domain/models/reservation_model.dart';
 //import 'package:tacuara_app/modules/bookings_module/calendar_flow/provider/date_picker_provider.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 
@@ -64,6 +67,16 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                             width: size.width * 0.10,
                             child: ListView(
                               children: [
+                                const Text(
+                                  'Cabaña familiar',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.03,
+                                ),
                                 Container(
                                   width: size.width * 0.05,
                                   child: Row(
@@ -225,7 +238,29 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                               child: const Text('Cancelar'),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.createReservation(
+                                  reservation: ReservationModel(
+                                    roomType: 'Cabaña familiar',
+                                    checkIn: calendarController.dateTimeStart,
+                                    checkOut: calendarController.dateTimeEnd,
+                                    totalNights: controller.calculateDays(
+                                      startDate:
+                                          calendarController.dateTimeStart,
+                                      endDate: calendarController.dateTimeEnd,
+                                    ),
+                                    nightRate: controller.couplesCabinRate,
+                                    totalRate: controller.totalRate(
+                                        dayRate: controller.familyCabinRate,
+                                        totalNights: controller.calculateDays(
+                                            startDate: calendarController
+                                                .dateTimeStart,
+                                            endDate: calendarController
+                                                .dateTimeEnd)),
+                                    reservationNumber: '',
+                                  ),
+                                );
+                              },
                               child: const Text('Ok'),
                             ),
                           ],
@@ -252,12 +287,24 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: const Text('Confirma tu reserva'),
+                          title: const Text(
+                            'Confirma tu reserva',
+                          ),
                           content: Container(
                             height: size.height * 0.18,
                             width: size.width * 0.10,
                             child: ListView(
                               children: [
+                                const Text(
+                                  'Cabaña parejas',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.03,
+                                ),
                                 Container(
                                   width: size.width * 0.05,
                                   child: Row(
