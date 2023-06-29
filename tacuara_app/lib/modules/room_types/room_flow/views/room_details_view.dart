@@ -468,7 +468,29 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                               child: const Text('Cancelar'),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.createReservation(
+                                  reservation: ReservationModel(
+                                      roomType: 'Cabaña de parejas',
+                                      checkIn: calendarController.dateTimeStart,
+                                      checkOut: calendarController.dateTimeEnd,
+                                      totalNights: controller.calculateDays(
+                                          startDate:
+                                              calendarController.dateTimeStart,
+                                          endDate:
+                                              calendarController.dateTimeEnd),
+                                      nightRate: controller.couplesCabinRate,
+                                      totalRate: controller.totalRate(
+                                        dayRate: controller.couplesCabinRate,
+                                        totalNights: controller.calculateDays(
+                                            startDate: calendarController
+                                                .dateTimeStart,
+                                            endDate:
+                                                calendarController.dateTimeEnd),
+                                      ),
+                                      reservationNumber: ''),
+                                );
+                              },
                               child: const Text('Ok'),
                             ),
                           ],
