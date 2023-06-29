@@ -249,14 +249,15 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                                           calendarController.dateTimeStart,
                                       endDate: calendarController.dateTimeEnd,
                                     ),
-                                    nightRate: controller.couplesCabinRate,
+                                    nightRate: controller.familyCabinRate,
                                     totalRate: controller.totalRate(
-                                        dayRate: controller.familyCabinRate,
-                                        totalNights: controller.calculateDays(
-                                            startDate: calendarController
-                                                .dateTimeStart,
-                                            endDate: calendarController
-                                                .dateTimeEnd)),
+                                      dayRate: controller.familyCabinRate,
+                                      totalNights: controller.calculateDays(
+                                        startDate:
+                                            calendarController.dateTimeStart,
+                                        endDate: calendarController.dateTimeEnd,
+                                      ),
+                                    ),
                                     reservationNumber: '',
                                   ),
                                 );

@@ -22,7 +22,7 @@ class ReservationModel {
         'checkIn': checkIn,
         'checkOut': checkOut,
         'totalNights': totalNights,
-        'nightRate': totalRate,
+        'nightRate': nightRate,
         'totalRate': totalRate,
       };
   static ReservationModel fromJson(Map<String, dynamic> json) =>
