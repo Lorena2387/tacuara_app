@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/room_types/room_flow/data/firebase_create_reservation.dart';
 import 'package:tacuara_app/modules/room_types/room_flow/domain/models/reservation_model.dart';
@@ -8,8 +7,6 @@ import 'package:tacuara_app/utils/local_storage.dart';
 import '../../../../utils/images.dart';
 
 class RoomProvider extends ChangeNotifier {
-  var calendarController;
-
   int couplesCabinRate = 190000;
   int familyCabinRate = 490000;
   List<String> familyCabinImages = [
@@ -75,25 +72,25 @@ class RoomProvider extends ChangeNotifier {
   Future<void> createReservation(
       {required ReservationModel reservation}) async {
     FirebaseCreateReservation.newReservation(reservation: reservation);
-    final firebase = FirebaseFirestore.instance.collection('reservation').doc();
+    // final firebase = FirebaseFirestore.instance.collection('reservation').doc();
 
-    final reservationty = {
-      'roomType': 'Cabaña familiar',
-      'checkIn': formatDate(date: calendarController.dateTimeStart),
-      'checkOut': formatDate(date: calendarController.dateTimeEnd),
-      'numberNights': calculateDays(
-        startDate: calendarController.dateTimeStart,
-        endDate: calendarController.dateTimeEnd,
-      ),
-      'rateNights': familyCabinRate,
-      'rateReservation': totalRate(
-        totalNights: calculateDays(
-          startDate: calendarController.dateTimeStart,
-          endDate: calendarController.dateTimeEnd,
-        ),
-        dayRate: familyCabinRate,
-      ),
-    };
-    await firebase.set((reservationty));
+    // final reservationty = {
+    //   'roomType': 'Cabaña familiar',
+    //   'checkIn': formatDate(date: calendarController.dateTimeStart),
+    //   'checkOut': formatDate(date: calendarController.dateTimeEnd),
+    //   'numberNights': calculateDays(
+    //     startDate: calendarController.dateTimeStart,
+    //     endDate: calendarController.dateTimeEnd,
+    //   ),
+    //   'rateNights': familyCabinRate,
+    //   'rateReservation': totalRate(
+    //     totalNights: calculateDays(
+    //       startDate: calendarController.dateTimeStart,
+    //       endDate: calendarController.dateTimeEnd,
+    //     ),
+    //     dayRate: familyCabinRate,
+    //   ),
+    // };
+    // await firebase.set((reservationty));
   }
 }
