@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DashboardAdminProvider extends ChangeNotifier {
+  String adminUid = '';
   TextEditingController nameController = TextEditingController();
   TextEditingController lastnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -12,5 +13,18 @@ class DashboardAdminProvider extends ChangeNotifier {
 
   String name = '';
   String lastname = '';
+  String cellphone = '';
   String email = '';
+  String password = '';
+  String confirmpassword = '';
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    lastnameController.dispose();
+    cellphoneController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 }

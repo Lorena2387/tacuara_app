@@ -4,7 +4,7 @@ import 'package:tacuara_app/modules/authentication_module/register_flow/domain/m
 //import 'package:tacuara_app/modules/authentication_module/register_flow/domain/models/firebase_authentication_exception.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/widgets/check_box_widget.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
-import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/register_admin_view.dart';
+
 import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 //import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
@@ -38,20 +38,7 @@ class _UserRegisterState extends State<UserRegister> {
       },
       child: Scaffold(
         appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const RegisterAdminView()));
-              },
-              icon: const Icon(
-                Icons.person,
-                color: Colors.transparent,
-              ),
-            ),
-          ],
+          actions: [],
         ),
         body: SingleChildScrollView(
           child: Center(
