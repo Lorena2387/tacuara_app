@@ -5,8 +5,8 @@ class DatePickerProvider extends ChangeNotifier {
   bool isRoomCouplesCabinAvalible = false;
   List<DateTime> selectedDates = [];
 
-  late DateTime dateTimeStart;
-  late DateTime dateTimeEnd;
+  DateTime dateTimeStart = DateTime.now();
+  DateTime dateTimeEnd = DateTime.now().add(const Duration(days: 1));
 
   void addSelectedDate(DateTime date) {
     selectedDates.add(date);
