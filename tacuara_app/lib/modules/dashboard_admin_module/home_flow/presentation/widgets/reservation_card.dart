@@ -62,43 +62,43 @@ class _ReservationCardWidgetState extends State<ReservationCardWidget> {
           SizedBox(
             height: size.height * 0.01,
           ),
-          Text(widget.referenceNumber),
+          Text('Número de referencia: ${widget.referenceNumber}'),
           SizedBox(
             height: size.height * 0.01,
           ),
-          Text(widget.checkIn),
+          Text('Check In: ${widget.checkIn}'),
           SizedBox(
             height: size.height * 0.01,
           ),
-          Text(widget.checkOut),
+          Text('Check Out: ${widget.checkOut}'),
           SizedBox(
             height: size.height * 0.01,
           ),
-          Text(widget.roomType),
+          Text('Tipo de habitación: ${widget.roomType}'),
           SizedBox(
             height: size.height * 0.01,
           ),
-          Text(widget.nightRate),
+          Text('Total noche: ${widget.nightRate}'),
           SizedBox(
             height: size.height * 0.01,
           ),
-          Text(widget.totalRate),
+          Text('Valor total: ${widget.totalRate}'),
           SizedBox(
             height: size.height * 0.01,
           ),
-          Text(widget.totalNight),
+          Text('Total noches: ${widget.totalNight}'),
           SizedBox(
             height: size.height * 0.01,
           ),
-          Text(widget.name),
+          Text('Nombre: ${widget.name}'),
           SizedBox(
             height: size.height * 0.01,
           ),
-          Text(widget.email),
+          Text('Correo electrónico: ${widget.email}'),
           SizedBox(
             height: size.height * 0.01,
           ),
-          Text(widget.cellphone),
+          Text('Celular: ${widget.cellphone}'),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
