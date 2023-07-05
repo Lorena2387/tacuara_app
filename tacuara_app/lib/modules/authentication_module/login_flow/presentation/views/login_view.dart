@@ -101,29 +101,34 @@ class _LoginViewState extends State<LoginView> {
                           password: controller.password.trim(),
                         )
                             .then(
-                          (value) {
-                            controller.saveUid(uid: value.user!.uid);
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: Text(
-                                  value.user!.uid,
-                                ),
-                                content: const Text('Inicio de sesión exitoso'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const tabBarUserView(),
-                                      ),
-                                    ),
-                                    child: const Text('Ok'),
+                          (value) async {
+                            await controller
+                                .saveUid(uid: value.user!.uid)
+                                .then((_) {
+                              controller.validateUserAdmin();
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: Text(
+                                    value.user!.uid,
                                   ),
-                                ],
-                              ),
-                            );
+                                  content:
+                                      const Text('Inicio de sesión exitoso'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const tabBarUserView(),
+                                        ),
+                                      ),
+                                      child: const Text('Ok'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            });
                           },
                         ).catchError(
                           (error) {

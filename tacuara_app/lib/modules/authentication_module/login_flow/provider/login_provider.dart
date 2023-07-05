@@ -52,4 +52,8 @@ class LoginProvider extends ChangeNotifier {
   Future<void> saveUid({required String uid}) async {
     await LocalStorage.setUid(uid);
   }
+
+  Future<void> validateUserAdmin() async {
+    await FirebaseLoginUser.validateUserAdmin(email);
+  }
 }
