@@ -1,5 +1,7 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/data/get_reservations.dart';
+import 'package:tacuara_app/modules/room_types/room_flow/domain/models/reservation_model.dart';
 
 class DashboardAdminProvider extends ChangeNotifier {
   String adminUid = '';
@@ -27,5 +29,9 @@ class DashboardAdminProvider extends ChangeNotifier {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  Stream<List<ReservationModel>> getReservations() {
+    return GetReservations.getReservations();
   }
 }

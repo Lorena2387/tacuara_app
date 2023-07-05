@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ReservationModel {
   final String roomType;
   final String reservationNumber;
@@ -31,8 +33,8 @@ class ReservationModel {
   static ReservationModel fromJson(Map<String, dynamic> json) =>
       ReservationModel(
           reservationNumber: json['reservationNumber'],
-          checkIn: json['checkIn'],
-          checkOut: json['checkOut'],
+          checkIn: (json['checkIn'] as Timestamp).toDate(),
+          checkOut: (json['checkOut'] as Timestamp).toDate(),
           totalNights: json['totalNights'],
           nightRate: json['nightRate'],
           totalRate: json['totalRate'],

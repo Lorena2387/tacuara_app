@@ -7,6 +7,7 @@ import 'package:tacuara_app/modules/authentication_module/user_profile_flow/pres
 //import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/tab_bar_user_view.dart';
 //import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/admin_profile_view.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/tab_bar_admin_view.dart';
+import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/user_reservations_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
 import 'package:tacuara_app/widgets/my_button_widget.dart';
@@ -133,36 +134,39 @@ class _LoginViewState extends State<LoginView> {
                         ).catchError(
                           (error) {
                             showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                      title: const Text('Inicio de sesión'),
-                                      content: Text(
-                                        controller.loginUserExceptionMessage(
-                                            exceptionCode: error),
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(context),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    ));
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text('Inicio de sesión'),
+                                content: Text(
+                                  controller.loginUserExceptionMessage(
+                                      exceptionCode: error),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              ),
+                            );
                           },
                         );
                       }
                     },
                     color: AppThemes.primaryColor,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     text: 'Iniciar sesión',
                     width: 220,
                     height: 40,
                     onLongPress: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const tabBarAdminView()));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const UserReservations(),
+                        ),
+                      );
                     },
                   ),
                   SizedBox(
