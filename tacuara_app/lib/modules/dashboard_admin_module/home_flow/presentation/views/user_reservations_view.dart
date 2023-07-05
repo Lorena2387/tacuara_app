@@ -28,7 +28,7 @@ class _UserReservationsState extends State<UserReservations> {
           name: 'Daniel Cerquera',
           email: 'danielcerquera@gmail.com',
           cellphone: '3157394827',
-          totalNight: '4',
+          totalNight: '3',
         ),
       ],
     ));
