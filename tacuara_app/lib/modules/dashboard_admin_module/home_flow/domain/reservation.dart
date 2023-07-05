@@ -1,4 +1,4 @@
-class Reservation {
+class ReservationModel {
   String referenceNumber;
   DateTime checkIn;
   DateTime checkOut;
@@ -9,7 +9,7 @@ class Reservation {
   String email;
   String cellphone;
 
-  Reservation({
+  ReservationModel({
     required this.referenceNumber,
     required this.checkIn,
     required this.checkOut,
@@ -33,7 +33,8 @@ class Reservation {
         'cellphone': cellphone,
       };
 
-  static Reservation fromJson(Map<String, dynamic> json) => Reservation(
+  static ReservationModel fromJson(Map<String, dynamic> json) =>
+      ReservationModel(
         totalRight: json['totalRight'],
         name: json['name'],
         email: json['email'],
