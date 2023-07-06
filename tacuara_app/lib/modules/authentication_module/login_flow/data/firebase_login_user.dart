@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/domain/models/firebase_authentication_exception.dart';

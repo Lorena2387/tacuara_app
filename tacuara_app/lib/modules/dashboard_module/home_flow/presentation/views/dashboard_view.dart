@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/tab_bar_user_view.dart';
+
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/user_reservations_view.dart';
 import 'package:tacuara_app/modules/dashboard_module/home_flow/provider/dashboard_provider.dart';
 //import 'package:tacuara_app/modules/dashboard_module/views/cabana_familiar_view.dart';

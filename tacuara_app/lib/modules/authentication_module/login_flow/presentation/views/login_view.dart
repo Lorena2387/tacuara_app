@@ -3,12 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/provider/login_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/recover_password_flow/presentation/views/recover_password_view.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
-import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
-import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/tab_bar_user_view.dart';
+
 //import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/tab_bar_user_view.dart';
 //import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/admin_profile_view.dart';
-import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/tab_bar_admin_view.dart';
-import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/user_reservations_view.dart';
+
 import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
