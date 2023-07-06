@@ -3,11 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/provider/login_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/recover_password_flow/presentation/views/recover_password_view.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/presentation/views/user_register_view.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/provider/register_provider.dart';
 import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/tab_bar_user_view.dart';
 //import 'package:tacuara_app/modules/authentication_module/user_profile_flow/presentation/views/tab_bar_user_view.dart';
 //import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/admin_profile_view.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/tab_bar_admin_view.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/user_reservations_view.dart';
+import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
 import 'package:tacuara_app/utils/images.dart';
 import 'package:tacuara_app/widgets/my_button_widget.dart';
@@ -23,6 +25,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -103,33 +106,36 @@ class _LoginViewState extends State<LoginView> {
                         )
                             .then(
                           (value) async {
-                            await controller
-                                .saveUid(uid: value.user!.uid)
-                                .then((_) {
-                              controller.validateUserAdmin();
-                              showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  title: Text(
-                                    value.user!.uid,
-                                  ),
-                                  content:
-                                      const Text('Inicio de sesión exitoso'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const tabBarUserView(),
-                                        ),
+                            await controller.saveUid(uid: value.user!.uid).then(
+                              (_) async {
+                                await controller
+                                    .validateAdminUser(email: controller.email)
+                                    .then(
+                                  (_) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: const Text("Inicio de sesión"),
+                                        content: const Text(
+                                            'Inicio de sesión exitoso'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const DashboardView(),
+                                              ),
+                                            ),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
                                       ),
-                                      child: const Text('Ok'),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            });
+                                    );
+                                  },
+                                );
+                              },
+                            );
                           },
                         ).catchError(
                           (error) {
@@ -160,14 +166,6 @@ class _LoginViewState extends State<LoginView> {
                     text: 'Iniciar sesión',
                     width: 220,
                     height: 40,
-                    onLongPress: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const UserReservations(),
-                        ),
-                      );
-                    },
                   ),
                   SizedBox(
                     height: size.height * 0.03,

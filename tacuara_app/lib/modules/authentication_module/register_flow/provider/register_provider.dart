@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/data/create_user_register.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/data/firebase_register_user.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/data/validate_admin_user.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/domain/models/firebase_authentication_exception.dart';
 import 'package:tacuara_app/modules/authentication_module/register_flow/domain/models/user.dart';
 import 'package:tacuara_app/utils/local_storage.dart';
@@ -71,12 +73,36 @@ class RegisterProvider extends ChangeNotifier {
     await LocalStorage.setUid(uid);
   }
 
-  Future<void> saveUserData(
+  Future<void> saveUserDataRemotely(
       {required UserModel user, required String userUid}) async {
     CreateUserRegister.saveUserData(user: user, uid: userUid);
   }
 
+  Future<void> saveUserDataLocally() async {
+    await LocalStorage.setUserName('$name $lastname');
+    await LocalStorage.setUserEmail(email);
+    await LocalStorage.setUserPhoneNumber(cellphone);
+  }
+
   Future<void> getUid() async {
     userUid = await LocalStorage.getUid() ?? '';
+  }
+
+  Future<List<QueryDocumentSnapshot>> getAdminUsers() async =>
+      await ValidateUser.getAdminUser();
+
+  Future<bool> validateAdminUser({required String email}) async {
+    bool isAdminUser = false;
+    await getAdminUsers().then(
+      (documents) => documents.forEach(
+        (element) {
+          if (element.id == email) {
+            isAdminUser = true;
+          }
+        },
+      ),
+    );
+    await LocalStorage.setUserIsAdmin(isAdminUser.toString());
+    return isAdminUser;
   }
 }

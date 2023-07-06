@@ -12,21 +12,20 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Términos y condiciones',
+          style: TextStyle(
+            color: Colors.black87,
+            fontWeight: FontWeight.w500,
+            fontSize: 20,
+          ),
+        ),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: size.height * 0.05,
-              ),
-              const Text(
-                'Términos y condiciones',
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20,
-                ),
-              ),
               SizedBox(
                 height: size.height * 0.03,
               ),

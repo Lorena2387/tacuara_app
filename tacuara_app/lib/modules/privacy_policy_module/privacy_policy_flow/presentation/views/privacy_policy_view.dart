@@ -12,20 +12,17 @@ class _PrivacyPolicyViewState extends State<PrivacyPolicyView> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Política de privacidad',
+          style: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black87),
+        ),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: size.height * 0.04,
-              ),
-              const Text(
-                'Política de privacidad',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black87),
-              ),
               SizedBox(
                 height: size.height * 0.05,
               ),

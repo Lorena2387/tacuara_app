@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/data/firebase_login_user.dart';
 import 'package:tacuara_app/modules/authentication_module/login_flow/domain/models/firebase_authentication_exception.dart';
+import 'package:tacuara_app/modules/authentication_module/register_flow/data/validate_admin_user.dart';
 import 'package:tacuara_app/utils/local_storage.dart';
 
 import '../../../../utils/images.dart';
@@ -53,7 +55,21 @@ class LoginProvider extends ChangeNotifier {
     await LocalStorage.setUid(uid);
   }
 
-  Future<void> validateUserAdmin() async {
-    await FirebaseLoginUser.validateUserAdmin(email);
+  Future<List<QueryDocumentSnapshot>> getAdminUsers() async =>
+      await ValidateUser.getAdminUser();
+
+  Future<bool> validateAdminUser({required String email}) async {
+    bool isAdminUser = false;
+    await getAdminUsers().then(
+      (documents) => documents.forEach(
+        (element) {
+          if (element.id == email) {
+            isAdminUser = true;
+          }
+        },
+      ),
+    );
+    await LocalStorage.setUserIsAdmin(isAdminUser.toString());
+    return isAdminUser;
   }
 }

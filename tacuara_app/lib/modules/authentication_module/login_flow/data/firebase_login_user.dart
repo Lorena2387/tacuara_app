@@ -31,12 +31,4 @@ class FirebaseLoginUser {
   Future<void> saveUserUid(String uid) async {
     await LocalStorage.setUid(uid);
   }
-
-  static Future<void> validateUserAdmin(String email) async {
-    final adminUser =
-        FirebaseFirestore.instance.collection('admin').doc('adimn_users');
-    await adminUser.get().then((querySnapshot) {
-      print('Firestore: ${querySnapshot}');
-    });
-  }
 }

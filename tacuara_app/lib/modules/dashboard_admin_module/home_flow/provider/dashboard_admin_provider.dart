@@ -31,7 +31,6 @@ class DashboardAdminProvider extends ChangeNotifier {
     super.dispose();
   }
 
-  Stream<List<ReservationModel>> getReservations() {
-    return GetReservations.getReservations();
-  }
+  Stream<List<ReservationModel>> getReservations() =>
+      GetReservations.getReservations();
 }

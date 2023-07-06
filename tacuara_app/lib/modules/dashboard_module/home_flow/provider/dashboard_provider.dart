@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tacuara_app/utils/local_storage.dart';
 
 import '../../../../utils/images.dart';
 
 class DashboardProvider extends ChangeNotifier {
+  bool isUseradmin = false;
   List dashboardImages = [
     Images.tacuara,
     Images.tacuara1,
@@ -28,4 +30,10 @@ class DashboardProvider extends ChangeNotifier {
     'Cumpleaños',
     'Aniversarios',
   ];
+
+  Future<void> validateUserIsAdmin() async {
+    debugPrint("User is admin ${await LocalStorage.getUserIsAdmin()}");
+    isUseradmin = await LocalStorage.getUserIsAdmin() == "true";
+    notifyListeners();
+  }
 }

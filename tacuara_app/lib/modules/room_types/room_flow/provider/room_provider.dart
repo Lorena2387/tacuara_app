@@ -10,6 +10,9 @@ class RoomProvider extends ChangeNotifier {
   String userUid = '';
   int couplesCabinRate = 190000;
   int familyCabinRate = 490000;
+  String userName = "";
+  String userEmail = "";
+  String userPhoneNumber = "";
 
   List<String> familyCabinImages = [
     Images.cabanafam1,
@@ -104,5 +107,11 @@ class RoomProvider extends ChangeNotifier {
     String day =
         date.day.toString().length == 1 ? '0${date.day}' : date.day.toString();
     return '$day$month$year';
+  }
+
+  Future<void> getUserData() async {
+    userName = await LocalStorage.getUserName() ?? "";
+    userEmail = await LocalStorage.getUserEmail() ?? "";
+    userPhoneNumber = await LocalStorage.getUserPhoneNumber() ?? "";
   }
 }

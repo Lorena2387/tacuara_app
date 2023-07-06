@@ -8,6 +8,7 @@ import 'package:tacuara_app/modules/authentication_module/register_flow/provider
 import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 //import 'package:tacuara_app/modules/dashboard_module/home_flow/presentation/views/dashboard_view.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
+import 'package:tacuara_app/modules/room_types/room_flow/views/room_details_view.dart';
 import 'package:tacuara_app/widgets/my_button2_widget.dart';
 import 'package:tacuara_app/widgets/my_button_widget.dart';
 
@@ -27,15 +28,21 @@ class UserRegister extends StatefulWidget {
 
 class _UserRegisterState extends State<UserRegister> {
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    var controller = Provider.of<RegisterProvider>(context, listen: false);
+    controller.validateAdminUser(email: "");
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<RegisterProvider>(context, listen: true);
 
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: AppBar(
           actions: [],
@@ -64,7 +71,7 @@ class _UserRegisterState extends State<UserRegister> {
                       controller: controller.controllerName,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Por favor ingrese su nombre';
+                          return 'Por favor ingresa tu nombre';
                         }
                         return null;
                       },
@@ -80,7 +87,7 @@ class _UserRegisterState extends State<UserRegister> {
                       controller: controller.controllerLastname,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Por favor ingrese su apellido';
+                          return 'Por favor ingresa tu apellido';
                         }
                         return null;
                       },
@@ -97,7 +104,7 @@ class _UserRegisterState extends State<UserRegister> {
                       validator: (value) {
                         final phoneRegex = RegExp(r'^[0-9]{10}$');
                         if (!phoneRegex.hasMatch(value!)) {
-                          return 'Por favor ingrese un número de celular válido';
+                          return 'Por favor ingresa un número de celular válido';
                         }
                         return null;
                       },
@@ -115,10 +122,10 @@ class _UserRegisterState extends State<UserRegister> {
                         final emailRegExp =
                             RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
                         if (value == null || value.isEmpty) {
-                          return 'Por favor ingrese su correo electrónico';
+                          return 'Por favor ingresa tu correo electrónico';
                         }
                         if (!emailRegExp.hasMatch(value)) {
-                          return 'Por favor ingre un correo válido';
+                          return 'Por favor ingresa un correo válido';
                         }
                         return null;
                       },
@@ -134,10 +141,10 @@ class _UserRegisterState extends State<UserRegister> {
                       controller: controller.controllerPassword,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Por favor ingrese su contraseña';
+                          return 'Por favor ingresa tu contraseña';
                         }
                         if (value.length < 6) {
-                          return 'Su contraseña debe tener 6 caracteres';
+                          return 'Tu contraseña debe tener 6 caracteres';
                         }
                         return null;
                       },
@@ -154,7 +161,7 @@ class _UserRegisterState extends State<UserRegister> {
                       controller: controller.controllerConfirmPassword,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Confirme su contraseña';
+                          return 'Confirma tu contraseña';
                         }
                         if (value != controller.password) {
                           return 'Las contraseñas no coinciden';
@@ -214,44 +221,59 @@ class _UserRegisterState extends State<UserRegister> {
                                     .saveUid(uid: value.user!.uid)
                                     .then((_) async {
                                   await controller.getUid();
-                                  await controller.saveUserData(
-                                      user: UserModel(
-                                        name: controller.controllerName.text
-                                            .trim(),
-                                        lastname: controller
-                                            .controllerLastname.text
-                                            .trim(),
-                                        cellphone: controller
-                                            .controllerCellphone.text
-                                            .trim(),
-                                        email: controller.controllerEmail.text
-                                            .trim(),
+                                  await controller.validateAdminUser(
+                                      email: controller.email);
+                                  await controller.saveUserDataRemotely(
+                                    user: UserModel(
+                                      name:
+                                          controller.controllerName.text.trim(),
+                                      lastname: controller
+                                          .controllerLastname.text
+                                          .trim(),
+                                      cellphone: controller
+                                          .controllerCellphone.text
+                                          .trim(),
+                                      email: controller.controllerEmail.text
+                                          .trim(),
+                                      isAdmin:
+                                          await controller.validateAdminUser(
+                                        email: controller.email,
                                       ),
-                                      userUid: controller.userUid);
-                                }).then((_) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                      title: Text(
-                                        value.user!.uid,
-                                      ),
-                                      content: const Text(
-                                        'El registro ha sido exitoso.',
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () => Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const LoginView()),
-                                          ),
-                                          child: const Text(
-                                            'Ok',
-                                          ),
-                                        ),
-                                      ],
                                     ),
+                                    userUid: controller.userUid,
+                                  );
+                                }).then((_) async {
+                                  await controller.saveUserDataLocally().then(
+                                    (_) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                          title: const Text(
+                                            "Registro de usuario",
+                                          ),
+                                          content: const Text(
+                                            'El registro ha sido exitoso.',
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                                Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const RoomDetailsView(),
+                                                  ),
+                                                );
+                                              },
+                                              child: const Text(
+                                                'Ok',
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                   );
                                 });
                               },
@@ -281,7 +303,7 @@ class _UserRegisterState extends State<UserRegister> {
                               builder: (context) => AlertDialog(
                                 title: const Text('Registro'),
                                 content: const Text(
-                                  'Por favor acepte las políticas de privacidad y los términos y condiciones',
+                                  'Por favor acepta las políticas de privacidad y los términos y condiciones',
                                 ),
                                 actions: [
                                   TextButton(

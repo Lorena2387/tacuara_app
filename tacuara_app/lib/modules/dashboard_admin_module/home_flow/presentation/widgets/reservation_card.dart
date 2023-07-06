@@ -11,6 +11,9 @@ class ReservationCardWidget extends StatefulWidget {
   final String name;
   final String email;
   final String cellphone;
+  final String status;
+  final Function onPressConfirmReservation;
+  final Function onPressCancelReservation;
   const ReservationCardWidget({
     super.key,
     required this.referenceNumber,
@@ -23,6 +26,9 @@ class ReservationCardWidget extends StatefulWidget {
     required this.email,
     required this.cellphone,
     required this.totalNight,
+    required this.status,
+    required this.onPressConfirmReservation,
+    required this.onPressCancelReservation,
   });
 
   @override
@@ -36,13 +42,20 @@ class _ReservationCardWidgetState extends State<ReservationCardWidget> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: widget.status == "Confirmed"
+              ? Colors.green
+              : widget.status == "Cancelled"
+                  ? Colors.red
+                  : Colors.orange,
+        ),
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
+            color: Colors.black.withOpacity(0.2),
             spreadRadius: 0,
-            blurRadius: 8,
-            offset: const Offset(0, 8),
+            blurRadius: 5,
+            offset: const Offset(0, 2),
           ),
         ],
       ),
@@ -50,8 +63,14 @@ class _ReservationCardWidgetState extends State<ReservationCardWidget> {
         horizontal: 8,
         vertical: 10,
       ),
+      padding: EdgeInsets.symmetric(
+        horizontal: size.width * 0.05,
+        vertical: size.height * 0.02,
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const ClipRRect(
             borderRadius: BorderRadius.only(
@@ -62,52 +81,59 @@ class _ReservationCardWidgetState extends State<ReservationCardWidget> {
           SizedBox(
             height: size.height * 0.01,
           ),
-          Text('Número de referencia: ${widget.referenceNumber}'),
-          SizedBox(
-            height: size.height * 0.01,
+          cardField(
+            fieldLabel: "Status",
+            fieldContent: widget.status,
           ),
-          Text('Check In: ${widget.checkIn}'),
-          SizedBox(
-            height: size.height * 0.01,
+          cardField(
+            fieldLabel: "Número de referencia",
+            fieldContent: widget.referenceNumber,
           ),
-          Text('Check Out: ${widget.checkOut}'),
-          SizedBox(
-            height: size.height * 0.01,
+          cardField(
+            fieldLabel: "Check In",
+            fieldContent: widget.checkIn,
           ),
-          Text('Tipo de habitación: ${widget.roomType}'),
-          SizedBox(
-            height: size.height * 0.01,
+          cardField(
+            fieldLabel: "Check Out",
+            fieldContent: widget.checkOut,
           ),
-          Text('Total noche: ${widget.nightRate}'),
-          SizedBox(
-            height: size.height * 0.01,
+          cardField(
+            fieldLabel: "Tipo de habitación",
+            fieldContent: widget.roomType,
           ),
-          Text('Valor total: ${widget.totalRate}'),
-          SizedBox(
-            height: size.height * 0.01,
+          cardField(
+            fieldLabel: "Tarifa por noche",
+            fieldContent: "\$${widget.nightRate}",
           ),
-          Text('Total noches: ${widget.totalNight}'),
-          SizedBox(
-            height: size.height * 0.01,
+          cardField(
+            fieldLabel: "Total noches",
+            fieldContent: widget.totalNight,
           ),
-          Text('Nombre: ${widget.name}'),
-          SizedBox(
-            height: size.height * 0.01,
+          cardField(
+            fieldLabel: "Valor total",
+            fieldContent: "\$${widget.totalRate}",
           ),
-          Text('Correo electrónico: ${widget.email}'),
-          SizedBox(
-            height: size.height * 0.01,
+          cardField(
+            fieldLabel: "Nombre del huésped",
+            fieldContent: widget.name,
           ),
-          Text('Celular: ${widget.cellphone}'),
+          cardField(
+            fieldLabel: "Correo del huésped",
+            fieldContent: widget.email,
+          ),
+          cardField(
+            fieldLabel: "Teléfono del huésped",
+            fieldContent: widget.cellphone,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextButton(
-                onPressed: () {},
+                onPressed: () => widget.onPressCancelReservation.call(),
                 child: const Text('Rechazar reserva'),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () => widget.onPressConfirmReservation.call(),
                 child: const Text('Confirmar reserva'),
               ),
             ],
@@ -116,4 +142,38 @@ class _ReservationCardWidgetState extends State<ReservationCardWidget> {
       ),
     );
   }
+
+  Widget cardField({
+    required String fieldLabel,
+    required String fieldContent,
+  }) =>
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              fieldLabel,
+              maxLines: 1,
+              textAlign: TextAlign.start,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 13,
+              ),
+            ),
+            Text(
+              fieldContent,
+              maxLines: 1,
+              textAlign: TextAlign.start,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+      );
 }

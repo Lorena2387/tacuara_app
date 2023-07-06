@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/data/get_reservations.dart';
-import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/domain/reservation.dart';
+import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/widgets/reservation_card.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/provider/dashboard_admin_provider.dart';
+import 'package:tacuara_app/modules/room_types/room_flow/domain/models/reservation_model.dart';
 
 class UserReservations extends StatefulWidget {
   const UserReservations({super.key});
@@ -17,25 +17,52 @@ class _UserReservationsState extends State<UserReservations> {
     //Size size = MediaQuery.of(context).size;
     var controller = Provider.of<DashboardAdminProvider>(context, listen: true);
     return Scaffold(
-      appBar: AppBar(),
-      body: FutureBuilder(
-          future: controller.getReservations().first,
+      appBar: AppBar(
+        title: const Text(
+          "Todas las reservas",
+          style: TextStyle(
+            fontSize: 16,
+          ),
+        ),
+      ),
+      body: StreamBuilder<List<ReservationModel>>(
+          stream: controller.getReservations(),
           builder: (context, snapshop) {
             if (snapshop.hasError) {
-return const Text("Error cargando las reservas");
-            }
-            else if (snapshop.hasData) {
+              return Center(
+                child: Text("Error cargando las reservas ${snapshop.error}"),
+              );
+            } else if (snapshop.hasData) {
               final reservations = snapshop.data!;
-              return ListView(
-                children: reservations.map(buildReservation).toList();
+              return ListView.builder(
+                itemCount: reservations.length,
+                itemBuilder: (context, index) => buildReservation(
+                  reservation: reservations[index],
+                ),
               );
             } else {
-              return const Center(child: CircularProgressIndicator(),);
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             }
           }),
     );
   }
 
-  Widget buildReservation({required ReservationModel reservation}) => Container();
-  
+  Widget buildReservation({required ReservationModel reservation}) =>
+      ReservationCardWidget(
+        status: reservation.status,
+        referenceNumber: reservation.reservationNumber,
+        checkIn: reservation.checkIn.toIso8601String(),
+        checkOut: reservation.checkOut.toIso8601String(),
+        nightRate: reservation.nightRate.toString(),
+        roomType: reservation.roomType,
+        totalRate: reservation.totalRate.toString(),
+        name: reservation.userName,
+        email: reservation.userEmail,
+        cellphone: reservation.userPhoneNumber,
+        totalNight: reservation.totalNights.toString(),
+        onPressConfirmReservation: () {},
+        onPressCancelReservation: () {},
+      );
 }
