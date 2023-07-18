@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/authentication_module/change_password_flow/presentation/views/change_password_view.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/admin_profile_view.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/regsiter_user_view.dart';
-import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/user_reservations_view.dart';
+import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/views/admin_reservations_view.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/privacy_policy_view.dart';
 import 'package:tacuara_app/modules/privacy_policy_module/privacy_policy_flow/presentation/views/terms_conditions_view.dart';
 import 'package:tacuara_app/utils/app_themes.dart';
@@ -141,7 +141,7 @@ class _tabBarAdminViewState extends State<tabBarAdminView>
               child: TabBarView(
             controller: controller,
             children: const [
-              UserReservations(),
+              AdminReservations(),
               RegisterUser(),
               AdminProfileView()
             ],

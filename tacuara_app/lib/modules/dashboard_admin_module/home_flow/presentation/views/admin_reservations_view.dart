@@ -1,42 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tacuara_app/modules/authentication_module/user_profile_flow/provider/profile_provider.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/presentation/widgets/reservation_card.dart';
+import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/provider/dashboard_admin_provider.dart';
 import 'package:tacuara_app/modules/room_types/room_flow/domain/models/reservation_model.dart';
 
-class MyReservationView extends StatefulWidget {
-  const MyReservationView({super.key});
+class AdminReservations extends StatefulWidget {
+  const AdminReservations({super.key});
 
   @override
-  State<MyReservationView> createState() => _MyReservationViewState();
+  State<AdminReservations> createState() => _AdminReservationsState();
 }
 
-class _MyReservationViewState extends State<MyReservationView> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) async {
-        var controller = Provider.of<ProfileProvider>(context, listen: false);
-        await controller.getUid();
-      },
-    );
-  }
-
+class _AdminReservationsState extends State<AdminReservations> {
   @override
   Widget build(BuildContext context) {
-    var controller = Provider.of<ProfileProvider>(context, listen: true);
+    //Size size = MediaQuery.of(context).size;
+    var controller = Provider.of<DashboardAdminProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Mis reservas",
+          "Todas las reservas",
           style: TextStyle(
             fontSize: 16,
           ),
         ),
       ),
       body: StreamBuilder<List<ReservationModel>>(
-        stream: controller.getMyReservations(),
+        stream: controller.getReservations(),
         builder: (context, snapshop) {
           if (snapshop.hasError) {
             return Center(
@@ -61,9 +51,10 @@ class _MyReservationViewState extends State<MyReservationView> {
   }
 
   Widget buildReservation({required ReservationModel reservation}) {
-    var controller = Provider.of<ProfileProvider>(context, listen: true);
+    var controller =
+        Provider.of<DashboardAdminProvider>(context, listen: false);
     return ReservationCardWidget(
-      isAdmin: false,
+      isAdmin: true,
       status: reservation.status,
       referenceNumber: reservation.reservationNumber,
       checkIn: reservation.checkIn.toIso8601String(),
@@ -75,14 +66,40 @@ class _MyReservationViewState extends State<MyReservationView> {
       email: reservation.userEmail,
       cellphone: reservation.userPhoneNumber,
       totalNight: reservation.totalNights.toString(),
-      onPressConfirmReservation: () {},
+      onPressConfirmReservation: () {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text("¡Alerta!"),
+            content: const Text(
+                "¿Estas seguro que deseas confirmar esta reservación?"),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text("No, regresar"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  controller.confirmReservation(
+                    reservationID:
+                        "${reservation.reservationNumber}-${reservation.userUID}",
+                    userUID: reservation.userUID,
+                  );
+                },
+                child: const Text("Si, confirmar"),
+              ),
+            ],
+          ),
+        );
+      },
       onPressCancelReservation: () {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
             title: const Text("¡Alerta!"),
             content: const Text(
-                "¿Estas seguro que deseas cancelar esta reservación?"),
+                "¿Estas seguro que deseas rechazar esta reservación?"),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
@@ -97,7 +114,7 @@ class _MyReservationViewState extends State<MyReservationView> {
                     userUID: reservation.userUID,
                   );
                 },
-                child: const Text("Si, cancelar"),
+                child: const Text("Si, rechazar"),
               ),
             ],
           ),

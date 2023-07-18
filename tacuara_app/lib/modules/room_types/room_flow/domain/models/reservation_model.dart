@@ -12,6 +12,7 @@ class ReservationModel {
   final String userName;
   final String userEmail;
   final String userPhoneNumber;
+  final String userUID;
 
   ReservationModel({
     required this.roomType,
@@ -25,6 +26,7 @@ class ReservationModel {
     required this.userName,
     required this.userEmail,
     required this.userPhoneNumber,
+    required this.userUID,
   });
   Map<String, dynamic> toJson() => {
         'roomType': roomType,
@@ -38,6 +40,7 @@ class ReservationModel {
         'userName': userName,
         'userEmail': userEmail,
         'userPhoneNumber': userPhoneNumber,
+        'userUID': userUID,
       };
   static ReservationModel fromJson(Map<String, dynamic> json) =>
       ReservationModel(
@@ -52,5 +55,6 @@ class ReservationModel {
         userName: json['userName'],
         userEmail: json['userEmail'],
         userPhoneNumber: json['userPhoneNumber'],
+        userUID: json['userUID'],
       );
 }

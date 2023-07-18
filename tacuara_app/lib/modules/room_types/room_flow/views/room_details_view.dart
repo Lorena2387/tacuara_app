@@ -273,6 +273,7 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                                       userEmail: controller.userEmail,
                                       userPhoneNumber:
                                           controller.userPhoneNumber,
+                                      userUID: controller.userUid,
                                     ),
                                   )
                                   .then(
@@ -512,11 +513,12 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                                           'P${controller.reservationNumber(
                                         date: calendarController.dateTimeStart,
                                       )}',
-                                      status: 'pending',
+                                      status: 'Pending',
                                       userName: controller.userName,
                                       userEmail: controller.userEmail,
                                       userPhoneNumber:
                                           controller.userPhoneNumber,
+                                      userUID: controller.userUid,
                                     ),
                                   )
                                   .then(

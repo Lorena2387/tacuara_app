@@ -10,6 +10,7 @@ class RoomProvider extends ChangeNotifier {
   String userUid = '';
   int couplesCabinRate = 190000;
   int familyCabinRate = 490000;
+
   String userName = "";
   String userEmail = "";
   String userPhoneNumber = "";

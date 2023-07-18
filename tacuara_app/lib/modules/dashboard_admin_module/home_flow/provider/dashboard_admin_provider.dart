@@ -1,6 +1,7 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/data/get_reservations.dart';
+import 'package:tacuara_app/modules/dashboard_admin_module/home_flow/data/update_reservation.dart';
 import 'package:tacuara_app/modules/room_types/room_flow/domain/models/reservation_model.dart';
 
 class DashboardAdminProvider extends ChangeNotifier {
@@ -33,4 +34,26 @@ class DashboardAdminProvider extends ChangeNotifier {
 
   Stream<List<ReservationModel>> getReservations() =>
       GetReservations.getReservations();
+
+  Future<void> confirmReservation({
+    required String reservationID,
+    required String userUID,
+  }) async {
+    UpdateReservation.reservationStatus(
+      reservationID: reservationID,
+      newValue: "Confirmed",
+      userUID: userUID,
+    );
+  }
+
+  Future<void> cancelReservation({
+    required String reservationID,
+    required String userUID,
+  }) async {
+    UpdateReservation.reservationStatus(
+      reservationID: reservationID,
+      newValue: "Cancelled",
+      userUID: userUID,
+    );
+  }
 }

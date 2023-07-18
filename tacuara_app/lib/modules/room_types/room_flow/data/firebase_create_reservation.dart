@@ -4,7 +4,15 @@ import 'package:tacuara_app/modules/room_types/room_flow/domain/models/reservati
 class FirebaseCreateReservation {
   static Future<void> newReservation(
       {required ReservationModel reservation}) async {
-    final firebase = FirebaseFirestore.instance.collection('reservation').doc();
+    final firebase = FirebaseFirestore.instance
+        .collection('reservation')
+        .doc("${reservation.reservationNumber}-${reservation.userUID}");
+    final userProfile = FirebaseFirestore.instance
+        .collection("user")
+        .doc(reservation.userUID)
+        .collection("reservations")
+        .doc("${reservation.reservationNumber}-${reservation.userUID}");
     await firebase.set(reservation.toJson());
+    await userProfile.set(reservation.toJson());
   }
 }

@@ -14,6 +14,7 @@ class ReservationCardWidget extends StatefulWidget {
   final String status;
   final Function onPressConfirmReservation;
   final Function onPressCancelReservation;
+  final bool isAdmin;
   const ReservationCardWidget({
     super.key,
     required this.referenceNumber,
@@ -29,6 +30,7 @@ class ReservationCardWidget extends StatefulWidget {
     required this.status,
     required this.onPressConfirmReservation,
     required this.onPressCancelReservation,
+    required this.isAdmin,
   });
 
   @override
@@ -113,31 +115,49 @@ class _ReservationCardWidgetState extends State<ReservationCardWidget> {
             fieldLabel: "Valor total",
             fieldContent: "\$${widget.totalRate}",
           ),
-          cardField(
-            fieldLabel: "Nombre del huésped",
-            fieldContent: widget.name,
+          Visibility(
+            visible: widget.isAdmin,
+            child: cardField(
+              fieldLabel: "Nombre del huésped",
+              fieldContent: widget.name,
+            ),
           ),
-          cardField(
-            fieldLabel: "Correo del huésped",
-            fieldContent: widget.email,
+          Visibility(
+            visible: widget.isAdmin,
+            child: cardField(
+              fieldLabel: "Correo del huésped",
+              fieldContent: widget.email,
+            ),
           ),
-          cardField(
-            fieldLabel: "Teléfono del huésped",
-            fieldContent: widget.cellphone,
+          Visibility(
+            visible: widget.isAdmin,
+            child: cardField(
+              fieldLabel: "Teléfono del huésped",
+              fieldContent: widget.cellphone,
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () => widget.onPressCancelReservation.call(),
-                child: const Text('Rechazar reserva'),
-              ),
-              TextButton(
-                onPressed: () => widget.onPressConfirmReservation.call(),
-                child: const Text('Confirmar reserva'),
-              ),
-            ],
-          ),
+          widget.isAdmin
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () => widget.onPressCancelReservation.call(),
+                      child: const Text('Rechazar reserva'),
+                    ),
+                    TextButton(
+                      onPressed: () => widget.onPressConfirmReservation.call(),
+                      child: const Text('Confirmar reserva'),
+                    ),
+                  ],
+                )
+              : widget.status == "Cancelled"
+                  ? const SizedBox()
+                  : Center(
+                      child: TextButton(
+                        onPressed: () => widget.onPressCancelReservation.call(),
+                        child: const Text('Cancelar reserva'),
+                      ),
+                    ),
         ],
       ),
     );

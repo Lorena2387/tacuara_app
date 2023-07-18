@@ -29,6 +29,7 @@ class _LoginViewState extends State<LoginView> {
     Size size = MediaQuery.of(context).size;
     var controller = Provider.of<LoginProvider>(context, listen: true);
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
